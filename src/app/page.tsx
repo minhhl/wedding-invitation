@@ -6,14 +6,11 @@ import { InvitationCover } from '@/components/InvitationCover'
 import { HeroSection } from '@/components/HeroSection'
 import { Countdown } from '@/components/Countdown'
 import { FamilyIntroduction } from '@/components/FamilyIntroduction'
-import { WeddingStory } from '@/components/WeddingStory'
 import { PhotoGallery } from '@/components/PhotoGallery'
 import { WeddingEventsInfo } from '@/components/WeddingEventsInfo'
 import { EventTimeline } from '@/components/EventTimeline'
-import { DressCode } from '@/components/DressCode'
 import { RSVPForm } from '@/components/RSVPForm'
 import { GuestBook } from '@/components/GuestBook'
-import { GiftInformation } from '@/components/GiftInformation'
 import { ClosingMessage } from '@/components/ClosingMessage'
 import { Footer } from '@/components/Footer'
 
@@ -37,14 +34,11 @@ export default function Home() {
             <HeroSection />
             <Countdown />
             <FamilyIntroduction />
-            <WeddingStory />
             <PhotoGallery />
             <WeddingEventsInfo />
             <EventTimeline />
-            <DressCode />
             <RSVPForm />
             <GuestBook />
-            <GiftInformation />
             <ClosingMessage />
             <Footer />
           </motion.div>
