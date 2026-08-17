@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Playfair_Display, Cormorant_Garamond, Inter } from 'next/font/google'
 import '../styles/globals.css'
 import { ogImage } from '@/lib/images'
@@ -25,6 +25,9 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
+  metadataBase: process.env.NEXT_PUBLIC_SITE_URL
+    ? new URL(process.env.NEXT_PUBLIC_SITE_URL)
+    : undefined,
   title: `Thiệp Cưới ${groomName} & ${brideName}`,
   description: `Trân trọng kính mời bạn đến tham dự lễ thành hôn của ${groomName} & ${brideName}`,
   openGraph: {
@@ -36,13 +39,15 @@ export const metadata: Metadata = {
   },
 }
 
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  themeColor: '#3d3024',
+}
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="vi" className={`${playfair.variable} ${cormorant.variable} ${inter.variable}`}>
-      <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
-      </head>
       <body>
         <SmoothScroll>{children}</SmoothScroll>
       </body>
