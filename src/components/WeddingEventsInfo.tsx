@@ -114,7 +114,7 @@ export function WeddingEventsInfo() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <p className="subtle-text mb-4">Chương Ba — Lời Hứa</p>
+          <p className="subtle-text mb-4">Ngày Trọng Đại</p>
           <h2 className="heading-2 text-wedding-brown">Thông Tin Lễ Cưới</h2>
         </motion.div>
 

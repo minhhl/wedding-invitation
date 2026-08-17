@@ -53,7 +53,7 @@ export function PhotoGallery() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <p className="subtle-text mb-4">Chương Hai — Khoảnh Khắc</p>
+          <p className="subtle-text mb-4">Khoảnh Khắc</p>
           <h2 className="heading-2 text-wedding-brown">Album Ảnh</h2>
         </motion.div>
 

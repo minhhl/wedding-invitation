@@ -50,7 +50,7 @@ export function Countdown() {
         viewport={{ once: true }}
       >
         <motion.p variants={itemVariants} className="subtle-text mb-4">
-          Chương Một — Ngày Hội Ngộ
+          Đếm Ngược Thời Gian
         </motion.p>
         <motion.h2 variants={itemVariants} className="heading-2 text-wedding-brown mb-16">
           Chỉ Còn Lại

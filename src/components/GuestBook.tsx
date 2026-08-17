@@ -3,41 +3,53 @@
 import { useState, useEffect } from 'react'
 import { motion, type Variants } from 'framer-motion'
 import { Heart } from 'lucide-react'
+import { supabase } from '@/lib/supabase'
 
 interface GuestMessage {
-  id: number
-  name: string
+  id: string
+  guest_name: string
   message: string
-  timestamp: Date
+  created_at: string
 }
-
-// Sample guest messages
-const sampleMessages: GuestMessage[] = [
-  {
-    id: 1,
-    name: 'Nguyễn Thanh',
-    message: 'Cảm ơn vì lời mời. Chúc hai bạn hôn hạnh phúc và bình an!',
-    timestamp: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000),
-  },
-  {
-    id: 2,
-    name: 'Trần Hương',
-    message: 'Hai bạn trông rất hạnh phúc. Chúc mừng các bạn!',
-    timestamp: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000),
-  },
-  {
-    id: 3,
-    name: 'Lê Anh',
-    message: 'Một lễ cưới đẹp và ý nghĩa. Chúc hạnh phúc mãi mãi!',
-    timestamp: new Date(Date.now() - 12 * 60 * 60 * 1000),
-  },
-]
 
 export function GuestBook() {
   const [messages, setMessages] = useState<GuestMessage[]>([])
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    setMessages(sampleMessages)
+    let isMounted = true
+
+    async function loadMessages() {
+      try {
+        const response = await fetch('/api/guestbook')
+        const { data } = await response.json()
+        if (isMounted && Array.isArray(data)) {
+          setMessages(data)
+        }
+      } catch (error) {
+        console.error('Error loading guest book:', error)
+      } finally {
+        if (isMounted) setIsLoading(false)
+      }
+    }
+
+    loadMessages()
+
+    const channel = supabase
+      .channel('guest_book_public')
+      .on(
+        'postgres_changes',
+        { event: 'INSERT', schema: 'public', table: 'guest_book', filter: 'approved=eq.true' },
+        (payload) => {
+          setMessages((prev) => [payload.new as GuestMessage, ...prev])
+        }
+      )
+      .subscribe()
+
+    return () => {
+      isMounted = false
+      supabase.removeChannel(channel)
+    }
   }, [])
 
   const containerVariants: Variants = {
@@ -61,7 +73,8 @@ export function GuestBook() {
     },
   }
 
-  const formatDate = (date: Date) => {
+  const formatDate = (isoDate: string) => {
+    const date = new Date(isoDate)
     const now = new Date()
     const diffMs = now.getTime() - date.getTime()
     const diffMins = Math.floor(diffMs / 60000)
@@ -98,55 +111,68 @@ export function GuestBook() {
         </motion.div>
 
         {/* Messages grid */}
-        <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
-          {messages.map((msg, index) => (
-            <motion.div
-              key={msg.id}
-              variants={itemVariants}
-              whileHover={{ translateY: -4 }}
-              className="group paper-card p-6 transition-transform duration-500 hover:-translate-y-1"
-            >
-              {/* Header */}
-              <div className="flex items-start justify-between mb-4">
-                <div>
-                  <h3 className="text-wedding-brown font-sans font-semibold">
-                    {msg.name}
-                  </h3>
-                  <p className="text-wedding-brown/50 text-xs font-sans mt-1">
-                    {formatDate(msg.timestamp)}
-                  </p>
-                </div>
-                <motion.div
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ delay: 0.2 + index * 0.1 }}
-                  className="text-wedding-gold"
-                >
-                  <Heart size={20} fill="currentColor" />
-                </motion.div>
-              </div>
-
-              {/* Message */}
-              <p className="text-wedding-brown/70 font-sans text-sm leading-relaxed">
-                {msg.message}
-              </p>
-
-              {/* Decorative line */}
+        {!isLoading && messages.length === 0 ? (
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="text-center mb-12 paper-card p-10"
+          >
+            <p className="text-wedding-brown/60 font-cormorant italic text-lg">
+              Chưa có lời chúc nào. Hãy là người đầu tiên gửi lời chúc cho chúng tôi.
+            </p>
+          </motion.div>
+        ) : (
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
+            {messages.map((msg, index) => (
               <motion.div
-                initial={{ scaleX: 0 }}
-                animate={{ scaleX: 1 }}
-                transition={{ delay: 0.1 + index * 0.1, duration: 0.6 }}
-                className="mt-4 h-0.5 bg-gradient-to-r from-wedding-champagne/0 via-wedding-champagne/50 to-wedding-champagne/0 origin-left"
-              />
-            </motion.div>
-          ))}
-        </motion.div>
+                key={msg.id}
+                variants={itemVariants}
+                whileHover={{ translateY: -4 }}
+                className="group paper-card p-6 transition-transform duration-500 hover:-translate-y-1"
+              >
+                {/* Header */}
+                <div className="flex items-start justify-between mb-4">
+                  <div>
+                    <h3 className="text-wedding-brown font-sans font-semibold">
+                      {msg.guest_name}
+                    </h3>
+                    <p className="text-wedding-brown/50 text-xs font-sans mt-1">
+                      {formatDate(msg.created_at)}
+                    </p>
+                  </div>
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ delay: 0.2 + index * 0.1 }}
+                    className="text-wedding-gold"
+                  >
+                    <Heart size={20} fill="currentColor" />
+                  </motion.div>
+                </div>
+
+                {/* Message */}
+                <p className="text-wedding-brown/70 font-sans text-sm leading-relaxed">
+                  {msg.message}
+                </p>
+
+                {/* Decorative line */}
+                <motion.div
+                  initial={{ scaleX: 0 }}
+                  animate={{ scaleX: 1 }}
+                  transition={{ delay: 0.1 + index * 0.1, duration: 0.6 }}
+                  className="mt-4 h-0.5 bg-gradient-to-r from-wedding-champagne/0 via-wedding-champagne/50 to-wedding-champagne/0 origin-left"
+                />
+              </motion.div>
+            ))}
+          </motion.div>
+        )}
 
         {/* CTA */}
         <motion.div

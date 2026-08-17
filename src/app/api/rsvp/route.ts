@@ -32,6 +32,22 @@ export async function POST(req: Request) {
       )
     }
 
+    // A wish left with the RSVP doubles as a guestbook entry — the guest
+    // already identified themselves, so it's auto-approved and shows live.
+    if (validData.wishes && validData.wishes.trim().length > 0) {
+      const { error: guestBookError } = await supabase.from('guest_book').insert([
+        {
+          guest_name: validData.fullName,
+          message: validData.wishes,
+          approved: true,
+          created_at: new Date().toISOString(),
+        },
+      ])
+      if (guestBookError) {
+        console.error('Supabase guest_book error:', guestBookError)
+      }
+    }
+
     return NextResponse.json(
       {
         success: true,
