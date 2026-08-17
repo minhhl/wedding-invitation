@@ -1,9 +1,11 @@
 'use client'
 
 import { useState } from 'react'
+import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Copy, Download, Check, Gem } from 'lucide-react'
+import { Copy, Download, Check, Gem, Loader2 } from 'lucide-react'
 import { copyToClipboard } from '@/utils/helpers'
+import { resolveVietQrBankCode, vietQrImageUrl } from '@/lib/weddingData'
 
 interface BankInfo {
   name: string
@@ -29,11 +31,39 @@ const bankAccounts: BankInfo[] = [
 
 function BankCard({ account }: { account: BankInfo }) {
   const [copied, setCopied] = useState(false)
+  const [isDownloading, setIsDownloading] = useState(false)
+
+  const qrUrl = vietQrImageUrl(
+    resolveVietQrBankCode(account.bankName),
+    account.accountNumber,
+    account.accountHolder
+  )
 
   const handleCopy = async () => {
     await copyToClipboard(account.accountNumber)
     setCopied(true)
     setTimeout(() => setCopied(false), 2000)
+  }
+
+  const handleDownload = async () => {
+    setIsDownloading(true)
+    try {
+      const response = await fetch(qrUrl)
+      const blob = await response.blob()
+      const url = URL.createObjectURL(blob)
+      const link = document.createElement('a')
+      link.href = url
+      link.download = `qr-mung-cuoi-${account.name === 'Chú Rể' ? 'chu-re' : 'co-dau'}.png`
+      document.body.appendChild(link)
+      link.click()
+      document.body.removeChild(link)
+      URL.revokeObjectURL(url)
+    } catch (error) {
+      console.error('Error downloading QR:', error)
+      window.open(qrUrl, '_blank')
+    } finally {
+      setIsDownloading(false)
+    }
   }
 
   return (
@@ -46,6 +76,20 @@ function BankCard({ account }: { account: BankInfo }) {
         <div className="flex items-center gap-3">
           <Gem className="text-wedding-gold w-6 h-6" strokeWidth={1.5} />
           <h3 className="heading-4 text-wedding-brown">{account.name}</h3>
+        </div>
+      </div>
+
+      {/* QR code */}
+      <div className="flex justify-center mb-6">
+        <div className="relative w-40 h-40 md:w-48 md:h-48 bg-white rounded-lg overflow-hidden border border-wedding-champagne/30 shadow-sm">
+          <Image
+            src={qrUrl}
+            alt={`Mã QR chuyển khoản mừng cưới cho ${account.name}`}
+            fill
+            className="object-contain p-2"
+            sizes="192px"
+            unoptimized
+          />
         </div>
       </div>
 
@@ -119,9 +163,11 @@ function BankCard({ account }: { account: BankInfo }) {
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className="flex-1 px-4 py-2 bg-wedding-brown/10 hover:bg-wedding-brown/20 text-wedding-brown rounded-md text-xs font-sans font-semibold transition-all duration-300 inline-flex items-center justify-center gap-2"
+          onClick={handleDownload}
+          disabled={isDownloading}
+          className="flex-1 px-4 py-2 bg-wedding-brown/10 hover:bg-wedding-brown/20 text-wedding-brown rounded-md text-xs font-sans font-semibold transition-all duration-300 inline-flex items-center justify-center gap-2 disabled:opacity-50"
         >
-          <Download size={14} />
+          {isDownloading ? <Loader2 size={14} className="animate-spin" /> : <Download size={14} />}
           Tải QR
         </motion.button>
       </div>

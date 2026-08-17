@@ -10,6 +10,7 @@ import { Loader2 } from 'lucide-react'
 export function RSVPForm() {
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
+  const [submitError, setSubmitError] = useState(false)
 
   const {
     register,
@@ -22,6 +23,7 @@ export function RSVPForm() {
 
   const onSubmit = async (data: RSVPFormData) => {
     setIsLoading(true)
+    setSubmitError(false)
     try {
       // Submit to API
       const response = await fetch('/api/rsvp', {
@@ -42,7 +44,7 @@ export function RSVPForm() {
       reset()
     } catch (error) {
       console.error('Error submitting RSVP:', error)
-      // You can add error handling UI here
+      setSubmitError(true)
     } finally {
       setIsLoading(false)
     }
@@ -242,6 +244,18 @@ export function RSVPForm() {
                     </motion.p>
                   )}
                 </motion.div>
+
+                {/* Submit error */}
+                {submitError && (
+                  <motion.div
+                    variants={itemVariants}
+                    initial={{ opacity: 0, y: -5 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="text-red-600 text-sm font-sans text-center bg-red-50 border border-red-200 rounded-lg px-4 py-3"
+                  >
+                    Có lỗi xảy ra, vui lòng thử lại sau ít phút.
+                  </motion.div>
+                )}
 
                 {/* Submit Button */}
                 <motion.div variants={itemVariants}>
