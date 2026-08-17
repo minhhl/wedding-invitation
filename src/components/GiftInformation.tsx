@@ -121,6 +121,7 @@ function BankCard({ account }: { account: BankInfo }) {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
               onClick={handleCopy}
+              aria-label={copied ? 'Đã sao chép số tài khoản' : 'Sao chép số tài khoản'}
               className="text-wedding-gold hover:text-wedding-brown transition-colors duration-200"
             >
               <AnimatePresence mode="wait">
