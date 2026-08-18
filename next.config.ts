@@ -1,11 +1,17 @@
 import type { NextConfig } from 'next'
 
+// Set only by the GitHub Pages workflow (.github/workflows/deploy.yml), which
+// also strips src/app/api, src/app/guest-management, src/app/login, and
+// src/proxy.ts before building — none of those can run as static files.
+// Local `npm run dev` / `npm run build` never set this, so the full app
+// (login, Guest Management, RSVP) keeps working as a normal Node.js server.
+const isStaticExport = process.env.NEXT_PUBLIC_STATIC_EXPORT === 'true'
+
 const nextConfig: NextConfig = {
   reactStrictMode: true,
-  output: 'export',
-  basePath: '/wedding-invitation',
+  ...(isStaticExport ? { output: 'export' as const, basePath: '/wedding-invitation' } : {}),
   images: {
-    unoptimized: true,
+    unoptimized: isStaticExport,
     remotePatterns: [
       {
         protocol: 'https',

@@ -16,7 +16,29 @@ const floatingLabelClass =
 const selectClass =
   'w-full border-b border-champagne/40 bg-transparent px-1 py-3 font-body text-sm text-ink focus:border-champagne focus:outline-none focus:shadow-[0_10px_18px_-16px_rgba(201,169,119,0.9)] transition-[border-color,box-shadow] duration-300'
 
+// The GitHub Pages build is static-exported with no backend, so /api/rsvp
+// doesn't exist there — fall back to a message instead of a dead form.
+const isStaticExport = process.env.NEXT_PUBLIC_STATIC_EXPORT === 'true'
+
 export function RSVPSection() {
+  if (isStaticExport) {
+    return (
+      <section id="rsvp" className="relative bg-white py-20 md:py-28">
+        <div className="mx-auto w-full max-w-xl px-5 text-center md:px-10">
+          <p className="eyebrow mb-4">RSVP</p>
+          <h2 className="heading-2 mb-4 text-ink">Rất mong được đón tiếp bạn.</h2>
+          <p className="mx-auto max-w-sm font-body text-sm leading-relaxed text-text/80">
+            Vui lòng xác nhận tham dự trực tiếp qua điện thoại hoặc tin nhắn với cô dâu chú rể.
+          </p>
+        </div>
+      </section>
+    )
+  }
+
+  return <RSVPForm />
+}
+
+function RSVPForm() {
   const [showThankYou, setShowThankYou] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [submitError, setSubmitError] = useState(false)

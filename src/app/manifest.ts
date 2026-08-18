@@ -1,6 +1,8 @@
 import type { MetadataRoute } from 'next'
 import { groomName, brideName } from '@/lib/weddingData'
 
+export const dynamic = 'force-static'
+
 export default function manifest(): MetadataRoute.Manifest {
   const coupleName = `${groomName} & ${brideName}`
 
