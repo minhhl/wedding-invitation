@@ -2,7 +2,10 @@ import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  output: 'export',
+  basePath: '/wedding-invitation',
   images: {
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: 'https',
@@ -16,7 +19,6 @@ const nextConfig: NextConfig = {
   // xlsx's package.json "browser" field otherwise gets picked up when
   // bundling the /api/guests route, which strips its Node `fs` access.
   serverExternalPackages: ['xlsx'],
-  turbopack: {},
 }
 
 export default nextConfig
