@@ -7,14 +7,14 @@
     "guestCount": 2,
     "message": "Chúc hai bạn trăm năm hạnh phúc!",
     "attending": true,
-    "status": "APPROVED",
-    "submittedAt": "2026-08-17T20:29:47.808Z",
-    "approvedAt": "2026-08-18T20:30:04.323Z",
-    "approvedBy": "minh",
-    "linkedGuestId": "guest-1787084996213-enw3w1zk",
+    "status": "PENDING",
+    "submittedAt": "2026-08-17T20:33:07.167Z",
+    "approvedAt": null,
+    "approvedBy": null,
+    "linkedGuestId": null,
     "rejectionReason": null,
-    "createdAt": "2026-08-17T20:29:47.808Z",
-    "updatedAt": "2026-08-18T20:30:04.323Z"
+    "createdAt": "2026-08-17T20:33:07.167Z",
+    "updatedAt": "2026-08-17T20:33:07.167Z"
   },
   {
     "id": "rsvp-seed-2",
@@ -25,13 +25,13 @@
     "message": "",
     "attending": true,
     "status": "PENDING",
-    "submittedAt": "2026-08-18T17:29:47.808Z",
+    "submittedAt": "2026-08-18T17:33:07.167Z",
     "approvedAt": null,
     "approvedBy": null,
     "linkedGuestId": null,
     "rejectionReason": null,
-    "createdAt": "2026-08-18T17:29:47.808Z",
-    "updatedAt": "2026-08-18T17:29:47.808Z"
+    "createdAt": "2026-08-18T17:33:07.167Z",
+    "updatedAt": "2026-08-18T17:33:07.167Z"
   },
   {
     "id": "rsvp-seed-3",
@@ -42,29 +42,12 @@
     "message": "Rất tiếc mình bận công tác nước ngoài.",
     "attending": false,
     "status": "PENDING",
-    "submittedAt": "2026-08-16T20:29:47.808Z",
+    "submittedAt": "2026-08-16T20:33:07.167Z",
     "approvedAt": null,
     "approvedBy": null,
     "linkedGuestId": null,
     "rejectionReason": null,
-    "createdAt": "2026-08-16T20:29:47.808Z",
-    "updatedAt": "2026-08-16T20:29:47.808Z"
-  },
-  {
-    "id": "rsvp-1787085140650-hiyuak3n",
-    "guestName": "Playwright Tester",
-    "phone": "0900111222",
-    "email": "",
-    "guestCount": 2,
-    "message": "Test submission from Playwright",
-    "attending": true,
-    "status": "PENDING",
-    "submittedAt": "2026-08-18T20:32:20.650Z",
-    "approvedAt": null,
-    "approvedBy": null,
-    "linkedGuestId": null,
-    "rejectionReason": null,
-    "createdAt": "2026-08-18T20:32:20.650Z",
-    "updatedAt": "2026-08-18T20:32:20.650Z"
+    "createdAt": "2026-08-16T20:33:07.167Z",
+    "updatedAt": "2026-08-16T20:33:07.167Z"
   }
 ]
