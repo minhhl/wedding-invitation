@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import type { UserRole } from '@/lib/auth'
+import { getStaticSession, IS_STATIC_EXPORT } from '@/lib/staticAuth'
 
 export interface SessionInfo {
   username: string
@@ -12,6 +13,11 @@ export function useSession() {
   const [session, setSession] = useState<SessionInfo | null | undefined>(undefined)
 
   useEffect(() => {
+    if (IS_STATIC_EXPORT) {
+      setSession(getStaticSession())
+      return
+    }
+
     let cancelled = false
     fetch('/api/auth/session')
       .then((res) => (res.ok ? res.json() : { session: null }))

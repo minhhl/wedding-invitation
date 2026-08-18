@@ -1,5 +1,6 @@
 import { Suspense } from 'react'
 import { AdminSidebar } from '@/components/guest-management/AdminSidebar'
+import { StaticAuthGate } from '@/components/guest-management/StaticAuthGate'
 
 export default function GuestManagementLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -7,7 +8,9 @@ export default function GuestManagementLayout({ children }: { children: React.Re
       <Suspense>
         <AdminSidebar />
       </Suspense>
-      <div className="min-w-0 flex-1">{children}</div>
+      <div className="min-w-0 flex-1">
+        <StaticAuthGate>{children}</StaticAuthGate>
+      </div>
     </div>
   )
 }

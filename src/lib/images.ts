@@ -1,6 +1,10 @@
 // Real wedding photography, served from /public/photos/gallery.
 
-const photo = (file: string) => `/photos/gallery/${file}`
+// next/image's basePath auto-prefixing doesn't apply once `images.unoptimized`
+// is on (required for the GitHub Pages static export), so it's added by hand
+// here — matches the basePath computed in next.config.ts.
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
+const photo = (file: string) => `${basePath}/photos/gallery/${file}`
 
 // Header — full-bleed cover photo
 export const headerImage = photo('HTC03433.jpg')

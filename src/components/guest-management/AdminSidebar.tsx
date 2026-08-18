@@ -21,6 +21,7 @@ import {
 import { cn } from '@/lib/utils'
 import { useSession } from '@/hooks/useSession'
 import { useRsvpPendingCount } from '@/hooks/useRsvpPendingCount'
+import { clearStaticSession, IS_STATIC_EXPORT } from '@/lib/staticAuth'
 
 interface NavLeaf {
   label: string
@@ -90,6 +91,11 @@ export function AdminSidebar() {
   }
 
   async function logout() {
+    if (IS_STATIC_EXPORT) {
+      clearStaticSession()
+      router.push('/login')
+      return
+    }
     await fetch('/api/auth/logout', { method: 'POST' })
     router.push('/login')
     router.refresh()
