@@ -90,7 +90,9 @@ export function GuestManagementPage() {
           </Link>
         )}
 
-        <DashboardPanel stats={stats} tableStats={tableStats} />
+        <div id="dashboard">
+          <DashboardPanel stats={stats} tableStats={tableStats} />
+        </div>
 
         <TableWarnings tables={tableSummaries} />
 
@@ -113,13 +115,15 @@ export function GuestManagementPage() {
           onQuickTabChange={setQuickTab}
         />
 
-        <GuestTable
-          guests={filteredGuests}
-          totalGuestCount={guests.length}
-          overloadedTableNumbers={overloadedTableNumbers}
-          onUpdate={updateGuest}
-          onRemove={removeGuest}
-        />
+        <div id="guest-table">
+          <GuestTable
+            guests={filteredGuests}
+            totalGuestCount={guests.length}
+            overloadedTableNumbers={overloadedTableNumbers}
+            onUpdate={updateGuest}
+            onRemove={removeGuest}
+          />
+        </div>
       </main>
     </>
   )

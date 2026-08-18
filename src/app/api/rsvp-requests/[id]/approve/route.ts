@@ -101,6 +101,7 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
     approvedAt: now,
     approvedBy: session.username,
     linkedGuestId,
+    creationMode: mode,
     updatedAt: now,
   }
   writeRsvpRequestsToDisk(requests)

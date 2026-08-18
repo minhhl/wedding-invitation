@@ -1,6 +1,7 @@
 'use client'
 
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
+import { useSearchParams } from 'next/navigation'
 import { useRsvpRequests } from '@/hooks/useRsvpRequests'
 import { useSession } from '@/hooks/useSession'
 import { RsvpRequest, RsvpStatus } from '@/types/rsvp'
@@ -18,12 +19,24 @@ const TABS: Array<{ label: string; value: RsvpStatus | 'ALL' }> = [
   { label: 'Rejected', value: 'REJECTED' },
 ]
 
+function parseStatusParam(value: string | null): RsvpStatus | 'ALL' {
+  return value === 'PENDING' || value === 'APPROVED' || value === 'REJECTED' ? value : 'ALL'
+}
+
 export function RsvpRequestsPage() {
   const { requests, loading, error, approve, reject } = useRsvpRequests()
   const session = useSession()
   const isAdmin = session?.role === 'admin'
+  const searchParams = useSearchParams()
 
-  const [tab, setTab] = useState<RsvpStatus | 'ALL'>('ALL')
+  const [tab, setTab] = useState<RsvpStatus | 'ALL'>(() => parseStatusParam(searchParams.get('status')))
+
+  // The sidebar links to /guest-management/rsvp?status=... — re-sync the tab
+  // when that query param changes while this page is already mounted.
+  useEffect(() => {
+    setTab(parseStatusParam(searchParams.get('status')))
+  }, [searchParams])
+
   const [viewing, setViewing] = useState<RsvpRequest | null>(null)
   const [approving, setApproving] = useState<RsvpRequest | null>(null)
   const [rejecting, setRejecting] = useState<RsvpRequest | null>(null)

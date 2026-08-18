@@ -8,13 +8,14 @@
     "message": "Chúc hai bạn trăm năm hạnh phúc!",
     "attending": true,
     "status": "PENDING",
-    "submittedAt": "2026-08-17T20:33:07.167Z",
+    "submittedAt": "2026-08-17T20:43:18.477Z",
     "approvedAt": null,
     "approvedBy": null,
     "linkedGuestId": null,
+    "creationMode": null,
     "rejectionReason": null,
-    "createdAt": "2026-08-17T20:33:07.167Z",
-    "updatedAt": "2026-08-17T20:33:07.167Z"
+    "createdAt": "2026-08-17T20:43:18.477Z",
+    "updatedAt": "2026-08-17T20:43:18.477Z"
   },
   {
     "id": "rsvp-seed-2",
@@ -24,14 +25,15 @@
     "guestCount": 0,
     "message": "",
     "attending": true,
-    "status": "PENDING",
-    "submittedAt": "2026-08-18T17:33:07.167Z",
-    "approvedAt": null,
-    "approvedBy": null,
-    "linkedGuestId": null,
+    "status": "APPROVED",
+    "submittedAt": "2026-08-18T17:43:18.477Z",
+    "approvedAt": "2026-08-18T20:45:12.200Z",
+    "approvedBy": "minh",
+    "linkedGuestId": "guest-1787085912197-uydcmkst",
+    "creationMode": "new",
     "rejectionReason": null,
-    "createdAt": "2026-08-18T17:33:07.167Z",
-    "updatedAt": "2026-08-18T17:33:07.167Z"
+    "createdAt": "2026-08-18T17:43:18.477Z",
+    "updatedAt": "2026-08-18T20:45:12.200Z"
   },
   {
     "id": "rsvp-seed-3",
@@ -42,12 +44,13 @@
     "message": "Rất tiếc mình bận công tác nước ngoài.",
     "attending": false,
     "status": "PENDING",
-    "submittedAt": "2026-08-16T20:33:07.167Z",
+    "submittedAt": "2026-08-16T20:43:18.477Z",
     "approvedAt": null,
     "approvedBy": null,
     "linkedGuestId": null,
+    "creationMode": null,
     "rejectionReason": null,
-    "createdAt": "2026-08-16T20:33:07.167Z",
-    "updatedAt": "2026-08-16T20:33:07.167Z"
+    "createdAt": "2026-08-16T20:43:18.477Z",
+    "updatedAt": "2026-08-16T20:43:18.477Z"
   }
 ]

@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import type { Metadata } from 'next'
 import { RsvpRequestsPage } from '@/components/rsvp-admin/RsvpRequestsPage'
 
@@ -7,5 +8,9 @@ export const metadata: Metadata = {
 }
 
 export default function Page() {
-  return <RsvpRequestsPage />
+  return (
+    <Suspense>
+      <RsvpRequestsPage />
+    </Suspense>
+  )
 }

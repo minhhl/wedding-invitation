@@ -32,6 +32,7 @@ export async function POST(req: Request) {
       approvedAt: null,
       approvedBy: null,
       linkedGuestId: null,
+      creationMode: null,
       rejectionReason: null,
       createdAt: now,
       updatedAt: now,

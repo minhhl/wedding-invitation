@@ -62,14 +62,21 @@ export function RsvpTable({ requests, isAdmin, onView, onApprove, onReject }: Rs
                 <td className="px-4 py-3 text-zinc-300">{r.phone}</td>
                 <td className="px-4 py-3 text-zinc-300">{r.guestCount}</td>
                 <td className="px-4 py-3">
-                  <span
-                    className={cn(
-                      'inline-flex items-center rounded-full px-2 py-1 text-xs font-medium',
-                      STATUS_STYLES[r.status]
+                  <div className="flex flex-wrap items-center gap-1.5">
+                    <span
+                      className={cn(
+                        'inline-flex items-center rounded-full px-2 py-1 text-xs font-medium',
+                        STATUS_STYLES[r.status]
+                      )}
+                    >
+                      {STATUS_LABELS[r.status]}
+                    </span>
+                    {r.status === 'APPROVED' && (
+                      <span className="inline-flex items-center rounded-full bg-zinc-800 px-2 py-1 text-xs font-medium text-zinc-400">
+                        {r.creationMode === 'link' ? 'Linked Guest' : 'Đã tạo Guest'}
+                      </span>
                     )}
-                  >
-                    {STATUS_LABELS[r.status]}
-                  </span>
+                  </div>
                 </td>
                 <td className="px-4 py-3 text-zinc-400">{formatDate(r.submittedAt)}</td>
                 <td className="px-4 py-3">

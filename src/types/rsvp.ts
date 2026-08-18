@@ -15,6 +15,8 @@ export interface RsvpRequest {
   approvedAt: string | null
   approvedBy: string | null
   linkedGuestId: string | null
+  /** How linkedGuestId was produced — null until approved. */
+  creationMode: 'new' | 'link' | null
   rejectionReason: string | null
   createdAt: string
   updatedAt: string
