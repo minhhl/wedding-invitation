@@ -1,0 +1,53 @@
+[
+  {
+    "id": "rsvp-seed-1",
+    "guestName": "Nguyễn Văn A",
+    "phone": "0911222333",
+    "email": "",
+    "guestCount": 2,
+    "message": "Chúc hai bạn trăm năm hạnh phúc!",
+    "attending": true,
+    "status": "PENDING",
+    "submittedAt": "2026-08-17T20:29:47.808Z",
+    "approvedAt": null,
+    "approvedBy": null,
+    "linkedGuestId": null,
+    "rejectionReason": null,
+    "createdAt": "2026-08-17T20:29:47.808Z",
+    "updatedAt": "2026-08-17T20:29:47.808Z"
+  },
+  {
+    "id": "rsvp-seed-2",
+    "guestName": "Trần Thị B",
+    "phone": "0922333444",
+    "email": "tranthib@example.com",
+    "guestCount": 0,
+    "message": "",
+    "attending": true,
+    "status": "PENDING",
+    "submittedAt": "2026-08-18T17:29:47.808Z",
+    "approvedAt": null,
+    "approvedBy": null,
+    "linkedGuestId": null,
+    "rejectionReason": null,
+    "createdAt": "2026-08-18T17:29:47.808Z",
+    "updatedAt": "2026-08-18T17:29:47.808Z"
+  },
+  {
+    "id": "rsvp-seed-3",
+    "guestName": "Lê Văn C",
+    "phone": "0933444555",
+    "email": "",
+    "guestCount": 1,
+    "message": "Rất tiếc mình bận công tác nước ngoài.",
+    "attending": false,
+    "status": "PENDING",
+    "submittedAt": "2026-08-16T20:29:47.808Z",
+    "approvedAt": null,
+    "approvedBy": null,
+    "linkedGuestId": null,
+    "rejectionReason": null,
+    "createdAt": "2026-08-16T20:29:47.808Z",
+    "updatedAt": "2026-08-16T20:29:47.808Z"
+  }
+]

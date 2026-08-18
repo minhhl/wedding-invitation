@@ -16,6 +16,7 @@ export const sampleGuests: Guest[] = [
     status: 'Sẽ đến',
     table: 1,
     note: 'Bác ruột chú rể',
+    source: 'MANUAL',
   },
   {
     id: 'sample-2',
@@ -27,6 +28,7 @@ export const sampleGuests: Guest[] = [
     status: 'Sẽ đến',
     table: 1,
     note: '',
+    source: 'MANUAL',
   },
   {
     id: 'sample-3',
@@ -38,6 +40,7 @@ export const sampleGuests: Guest[] = [
     status: 'Sẽ đến',
     table: 1,
     note: 'Bạn đại học',
+    source: 'MANUAL',
   },
   {
     id: 'sample-4',
@@ -49,6 +52,7 @@ export const sampleGuests: Guest[] = [
     status: 'Sẽ đến',
     table: 2,
     note: '',
+    source: 'MANUAL',
   },
   {
     id: 'sample-5',
@@ -60,6 +64,7 @@ export const sampleGuests: Guest[] = [
     status: 'Sẽ đến',
     table: 2,
     note: '',
+    source: 'MANUAL',
   },
   {
     id: 'sample-6',
@@ -71,6 +76,7 @@ export const sampleGuests: Guest[] = [
     status: 'Sẽ đến',
     table: 2,
     note: 'Nhóm bạn thân — bàn 2 đang quá tải, cần chuyển bớt',
+    source: 'MANUAL',
   },
   {
     id: 'sample-7',
@@ -82,6 +88,7 @@ export const sampleGuests: Guest[] = [
     status: 'Sẽ đến',
     table: 3,
     note: '',
+    source: 'MANUAL',
   },
   {
     id: 'sample-8',
@@ -93,6 +100,7 @@ export const sampleGuests: Guest[] = [
     status: 'Đã mời',
     table: null,
     note: '',
+    source: 'MANUAL',
   },
   {
     id: 'sample-9',
@@ -104,6 +112,7 @@ export const sampleGuests: Guest[] = [
     status: 'Chưa mời',
     table: null,
     note: '',
+    source: 'MANUAL',
   },
   {
     id: 'sample-10',
@@ -115,5 +124,6 @@ export const sampleGuests: Guest[] = [
     status: 'Không đến',
     table: null,
     note: 'Bận việc gia đình',
+    source: 'MANUAL',
   },
 ]

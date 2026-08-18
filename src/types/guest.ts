@@ -16,6 +16,15 @@ export type GuestGroup = (typeof GUEST_GROUPS)[number]
 export const GUEST_STATUSES = ['Chưa mời', 'Đã mời', 'Sẽ đến', 'Không đến'] as const
 export type GuestStatus = (typeof GUEST_STATUSES)[number]
 
+export const GUEST_SOURCES = ['MANUAL', 'IMPORT_EXCEL', 'RSVP'] as const
+export type GuestSource = (typeof GUEST_SOURCES)[number]
+
+export const GUEST_SOURCE_LABELS: Record<GuestSource, string> = {
+  MANUAL: 'Thủ công',
+  IMPORT_EXCEL: 'Import Excel',
+  RSVP: 'RSVP',
+}
+
 export interface Guest {
   id: string
   name: string
@@ -26,6 +35,7 @@ export interface Guest {
   status: GuestStatus
   table: number | null
   note: string
+  source: GuestSource
 }
 
 export type GuestDraft = Omit<Guest, 'id' | 'table'>

@@ -1,9 +1,12 @@
 'use client'
 
 import { useMemo } from 'react'
+import Link from 'next/link'
+import { Bell } from 'lucide-react'
 import { useGuestStore } from '@/store/guestStore'
 import { useGuestFilters } from '@/hooks/useGuestFilters'
 import { useGuestServerSync } from '@/hooks/useGuestServerSync'
+import { useRsvpPendingCount } from '@/hooks/useRsvpPendingCount'
 import { computeGuestStats, computeTableStats, getTableSummaries } from '@/lib/guestTable'
 import { DashboardPanel } from '@/components/guest-management/DashboardPanel'
 import { TableWarnings } from '@/components/guest-management/TableWarnings'
@@ -24,6 +27,7 @@ export function GuestManagementPage() {
   const autoAssignTables = useGuestStore((s) => s.autoAssignTables)
 
   const syncStatus = useGuestServerSync()
+  const pendingRsvpCount = useRsvpPendingCount()
 
   const stats = useMemo(() => computeGuestStats(guests), [guests])
   const tableSummaries = useMemo(() => getTableSummaries(guests), [guests])
@@ -50,15 +54,15 @@ export function GuestManagementPage() {
 
   if (!hasHydrated) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-zinc-950 text-zinc-400">
+      <div className="flex min-h-[60vh] items-center justify-center text-zinc-400">
         Đang tải dữ liệu khách mời...
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-100">
-      <header className="sticky top-0 z-30 border-b border-zinc-800 bg-zinc-950/95 backdrop-blur">
+    <>
+      <div className="border-b border-zinc-800">
         <div className="mx-auto flex max-w-7xl flex-wrap items-end justify-between gap-2 px-4 py-4 sm:px-6">
           <div>
             <h1 className="text-xl font-semibold text-zinc-50 sm:text-2xl">
@@ -70,9 +74,22 @@ export function GuestManagementPage() {
           </div>
           <SyncStatusBadge status={syncStatus} />
         </div>
-      </header>
+      </div>
 
       <main className="mx-auto flex max-w-7xl flex-col gap-5 px-4 py-5 sm:px-6">
+        {!!pendingRsvpCount && (
+          <Link
+            href="/guest-management/rsvp"
+            className="flex items-center gap-3 rounded-xl border border-amber-500/40 bg-amber-500/10 px-4 py-3 text-sm text-amber-300 transition-colors hover:bg-amber-500/15"
+          >
+            <Bell className="h-4 w-4 shrink-0" />
+            Có {pendingRsvpCount} yêu cầu RSVP mới cần duyệt.
+            <span className="ml-auto text-amber-200 underline underline-offset-2">
+              Xem ngay
+            </span>
+          </Link>
+        )}
+
         <DashboardPanel stats={stats} tableStats={tableStats} />
 
         <TableWarnings tables={tableSummaries} />
@@ -104,6 +121,6 @@ export function GuestManagementPage() {
           onRemove={removeGuest}
         />
       </main>
-    </div>
+    </>
   )
 }

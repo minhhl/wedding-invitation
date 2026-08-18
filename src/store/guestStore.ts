@@ -19,6 +19,7 @@ export function emptyGuestDraft(): GuestDraft {
     partySize: 1,
     status: 'Chưa mời',
     note: '',
+    source: 'MANUAL',
   }
 }
 

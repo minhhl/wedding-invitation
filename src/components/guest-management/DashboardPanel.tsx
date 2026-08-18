@@ -1,34 +1,21 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { ChevronDown, LayoutDashboard } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { GuestStats, TableStats } from '@/types/guest'
 import { StatsCards } from '@/components/guest-management/StatsCards'
 import { TableStatusCards } from '@/components/guest-management/TableStatusCards'
 
-const COLLAPSE_STORAGE_KEY = 'guest-dashboard-collapsed'
-
+// Always starts closed on page load — the toggle only affects the current session.
 export function DashboardPanel({ stats, tableStats }: { stats: GuestStats; tableStats: TableStats }) {
-  const [collapsed, setCollapsed] = useState(false)
-
-  useEffect(() => {
-    setCollapsed(localStorage.getItem(COLLAPSE_STORAGE_KEY) === '1')
-  }, [])
-
-  function toggle() {
-    setCollapsed((prev) => {
-      const next = !prev
-      localStorage.setItem(COLLAPSE_STORAGE_KEY, next ? '1' : '0')
-      return next
-    })
-  }
+  const [collapsed, setCollapsed] = useState(true)
 
   return (
     <section className="flex flex-col gap-3">
       <button
         type="button"
-        onClick={toggle}
+        onClick={() => setCollapsed((prev) => !prev)}
         aria-expanded={!collapsed}
         className="flex items-center justify-between gap-3 rounded-xl border border-zinc-800 bg-zinc-900 px-4 py-2.5 text-left text-sm text-zinc-200 transition-colors hover:bg-zinc-800/60"
       >

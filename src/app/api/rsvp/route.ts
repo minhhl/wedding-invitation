@@ -1,53 +1,58 @@
-import { supabase, isSupabaseConfigured } from '@/lib/supabase'
-import { rsvpSchema } from '@/lib/validations'
 import { NextResponse } from 'next/server'
+import { z } from 'zod'
+import { rsvpSubmissionSchema } from '@/lib/rsvpValidation'
+import { readRsvpRequestsFromDisk, writeRsvpRequestsToDisk } from '@/lib/rsvpFileStore'
+import { RsvpRequest } from '@/types/rsvp'
+
+// Public endpoint — guests submit RSVPs without logging in. Requests land as
+// PENDING and only become a Guest once an admin approves them from
+// /guest-management/rsvp.
+export const dynamic = 'force-dynamic'
+
+function createId() {
+  return `rsvp-${Date.now()}-${Math.random().toString(36).slice(2, 10)}`
+}
 
 export async function POST(req: Request) {
   try {
     const body = await req.json()
-    const validData = rsvpSchema.parse(body)
+    const data = rsvpSubmissionSchema.parse(body)
 
-    if (!isSupabaseConfigured || !supabase) {
-      console.warn('Supabase is not configured — RSVP response was not persisted:', validData)
-      return NextResponse.json(
-        { success: true, message: 'RSVP received (not persisted — Supabase not configured)' },
-        { status: 201 }
-      )
+    const now = new Date().toISOString()
+    const request: RsvpRequest = {
+      id: createId(),
+      guestName: data.guestName,
+      phone: data.phone,
+      email: data.email || '',
+      guestCount: data.guestCount,
+      message: data.message || '',
+      attending: data.attending === 'yes',
+      status: 'PENDING',
+      submittedAt: now,
+      approvedAt: null,
+      approvedBy: null,
+      linkedGuestId: null,
+      rejectionReason: null,
+      createdAt: now,
+      updatedAt: now,
     }
 
-    const { data, error } = await supabase
-      .from('rsvp_responses')
-      .insert([
-        {
-          guest_name: validData.guestName,
-          attendance: validData.attendance,
-          guest_count: validData.guestCount,
-          side: validData.side,
-          wishes: validData.wishes || '',
-          created_at: new Date().toISOString(),
-        },
-      ])
-      .select()
-
-    if (error) {
-      console.error('Supabase error:', error)
-      return NextResponse.json({ error: 'Failed to save RSVP response' }, { status: 500 })
-    }
+    const requests = readRsvpRequestsFromDisk()
+    requests.push(request)
+    writeRsvpRequestsToDisk(requests)
 
     return NextResponse.json(
-      { success: true, message: 'RSVP response saved successfully', data },
+      { success: true, message: 'RSVP request received and pending review' },
       { status: 201 }
     )
-  } catch (error: any) {
-    console.error('API error:', error)
-
-    if (error.name === 'ZodError') {
+  } catch (error) {
+    if (error instanceof z.ZodError) {
       return NextResponse.json(
-        { error: 'Invalid request data', details: error.errors },
+        { error: 'Dữ liệu không hợp lệ', details: error.issues },
         { status: 400 }
       )
     }
-
+    console.error('RSVP submit error:', error)
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
   }
 }

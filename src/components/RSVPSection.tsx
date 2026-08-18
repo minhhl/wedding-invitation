@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { motion, AnimatePresence, type Variants } from 'framer-motion'
 import { Loader2, X } from 'lucide-react'
-import { rsvpSchema, RSVPFormData, guestCountLabels, sideLabels } from '@/lib/validations'
+import { rsvpSubmissionSchema, RsvpSubmissionFormData } from '@/lib/rsvpValidation'
 
 const fieldClass =
   'peer w-full border-b border-champagne/40 bg-transparent px-1 pb-3 pt-5 font-body text-sm text-ink placeholder-transparent focus:border-champagne focus:outline-none focus:shadow-[0_10px_18px_-16px_rgba(201,169,119,0.9)] transition-[border-color,box-shadow] duration-300'
@@ -26,11 +26,12 @@ export function RSVPSection() {
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<RSVPFormData>({
-    resolver: zodResolver(rsvpSchema),
+  } = useForm<RsvpSubmissionFormData>({
+    resolver: zodResolver(rsvpSubmissionSchema),
+    defaultValues: { guestCount: 0 },
   })
 
-  const onSubmit = async (data: RSVPFormData) => {
+  const onSubmit = async (data: RsvpSubmissionFormData) => {
     setIsLoading(true)
     setSubmitError(false)
     try {
@@ -88,12 +89,12 @@ export function RSVPSection() {
             <input
               id="guestName"
               type="text"
-              placeholder="Tên khách mời"
+              placeholder="Họ và tên"
               {...register('guestName')}
               className={fieldClass}
             />
             <label htmlFor="guestName" className={floatingLabelClass}>
-              Tên khách mời
+              Họ và tên
             </label>
             {errors.guestName && (
               <p className="mt-2 text-xs text-red-500">{errors.guestName.message}</p>
@@ -101,71 +102,83 @@ export function RSVPSection() {
           </motion.div>
 
           <motion.div variants={itemVariants} className="grid grid-cols-1 gap-7 sm:grid-cols-2">
+            <div className="relative">
+              <input
+                id="phone"
+                type="tel"
+                placeholder="Số điện thoại"
+                {...register('phone')}
+                className={fieldClass}
+              />
+              <label htmlFor="phone" className={floatingLabelClass}>
+                Số điện thoại
+              </label>
+              {errors.phone && <p className="mt-2 text-xs text-red-500">{errors.phone.message}</p>}
+            </div>
+
+            <div className="relative">
+              <input
+                id="email"
+                type="email"
+                placeholder="Email (không bắt buộc)"
+                {...register('email')}
+                className={fieldClass}
+              />
+              <label htmlFor="email" className={floatingLabelClass}>
+                Email (không bắt buộc)
+              </label>
+              {errors.email && <p className="mt-2 text-xs text-red-500">{errors.email.message}</p>}
+            </div>
+          </motion.div>
+
+          <motion.div variants={itemVariants} className="grid grid-cols-1 gap-7 sm:grid-cols-2">
             <div>
               <label className="mb-2 block text-xs font-medium uppercase tracking-[0.2em] text-text/70">
                 Xác nhận tham dự
               </label>
-              <select {...register('attendance')} defaultValue="" className={selectClass}>
+              <select {...register('attending')} defaultValue="" className={selectClass}>
                 <option value="" disabled>
                   Chọn phản hồi
                 </option>
                 <option value="yes">Tôi sẽ tham dự</option>
                 <option value="no">Rất tiếc không thể tham dự</option>
               </select>
-              {errors.attendance && (
-                <p className="mt-2 text-xs text-red-500">{errors.attendance.message}</p>
+              {errors.attending && (
+                <p className="mt-2 text-xs text-red-500">{errors.attending.message}</p>
               )}
             </div>
 
-            <div>
-              <label className="mb-2 block text-xs font-medium uppercase tracking-[0.2em] text-text/70">
-                Đi cùng khách
+            <div className="relative">
+              <input
+                id="guestCount"
+                type="number"
+                min={0}
+                max={20}
+                placeholder="0"
+                {...register('guestCount', { valueAsNumber: true })}
+                className={fieldClass}
+              />
+              <label htmlFor="guestCount" className={floatingLabelClass}>
+                Số người đi cùng
               </label>
-              <select {...register('guestCount')} defaultValue="" className={selectClass}>
-                <option value="" disabled>
-                  Chọn số lượng
-                </option>
-                {Object.entries(guestCountLabels).map(([value, label]) => (
-                  <option key={value} value={value}>
-                    {label}
-                  </option>
-                ))}
-              </select>
               {errors.guestCount && (
                 <p className="mt-2 text-xs text-red-500">{errors.guestCount.message}</p>
               )}
             </div>
           </motion.div>
 
-          <motion.div variants={itemVariants}>
-            <label className="mb-2 block text-xs font-medium uppercase tracking-[0.2em] text-text/70">
-              Khách nhà trai / nhà gái
-            </label>
-            <select {...register('side')} defaultValue="" className={selectClass}>
-              <option value="" disabled>
-                Chọn bên khách mời
-              </option>
-              {Object.entries(sideLabels).map(([value, label]) => (
-                <option key={value} value={value}>
-                  {label}
-                </option>
-              ))}
-            </select>
-            {errors.side && <p className="mt-2 text-xs text-red-500">{errors.side.message}</p>}
-          </motion.div>
-
           <motion.div variants={itemVariants} className="relative">
             <textarea
-              id="wishes"
+              id="message"
               placeholder="Lời chúc"
               rows={4}
-              {...register('wishes')}
+              {...register('message')}
               className={`${fieldClass} resize-none`}
             />
-            <label htmlFor="wishes" className={floatingLabelClass}>
+            <label htmlFor="message" className={floatingLabelClass}>
               Lời chúc
             </label>
-            {errors.wishes && <p className="mt-2 text-xs text-red-500">{errors.wishes.message}</p>}
+            {errors.message && <p className="mt-2 text-xs text-red-500">{errors.message.message}</p>}
           </motion.div>
 
           {submitError && (
@@ -221,8 +234,7 @@ export function RSVPSection() {
               <p className="script-text mb-4 text-4xl text-champagne">Thank You</p>
               <h3 className="heading-3 mb-3 text-ink">Cảm Ơn Bạn</h3>
               <p className="mx-auto max-w-xs font-body text-sm leading-relaxed text-text/80">
-                Cảm ơn bạn đã dành thời gian gửi phản hồi. Hẹn gặp bạn trong ngày đặc biệt của
-                chúng mình.
+                Cảm ơn bạn đã xác nhận tham dự. Thông tin của bạn đang chờ gia đình xác nhận.
               </p>
             </motion.div>
           </motion.div>

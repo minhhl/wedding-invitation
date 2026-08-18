@@ -3,9 +3,11 @@ import {
   GuestGroup,
   GuestImportDraft,
   GuestSide,
+  GuestSource,
   GuestStatus,
   GUEST_GROUPS,
   GUEST_SIDES,
+  GUEST_SOURCES,
   GUEST_STATUSES,
 } from '@/types/guest'
 
@@ -20,6 +22,8 @@ export const EXCEL_COLUMNS = [
   'Xác nhận',
   'Bàn',
   'Ghi chú',
+  'Nguồn',
+  'ID',
 ] as const
 
 export type GuestExcelRow = Record<(typeof EXCEL_COLUMNS)[number], string | number>
@@ -33,6 +37,8 @@ export const EXCEL_COLUMN_WIDTHS = [
   { wch: 12 },
   { wch: 8 },
   { wch: 40 },
+  { wch: 14 },
+  { wch: 24 },
 ]
 
 export function guestToRow(guest: Guest): GuestExcelRow {
@@ -45,6 +51,10 @@ export function guestToRow(guest: Guest): GuestExcelRow {
     'Xác nhận': guest.status,
     'Bàn': guest.table ?? '',
     'Ghi chú': guest.note,
+    'Nguồn': guest.source,
+    // Keeps each guest's id stable across re-reads of the file — required so
+    // RSVP "link to existing guest" can reference a guest reliably.
+    'ID': guest.id,
   }
 }
 
@@ -82,5 +92,8 @@ export function rowToGuestDraft(row: Record<string, unknown>): GuestImportDraft 
     // Only a confirmed guest may hold a table seat.
     table: status === 'Sẽ đến' ? normalizeTable(row['Bàn']) : null,
     note: String(row['Ghi chú'] ?? '').trim(),
+    // Preserve a re-imported "Nguồn" value when present; otherwise this row
+    // came in through a file, so it wasn't entered by hand.
+    source: normalizeEnum<GuestSource>(row['Nguồn'], GUEST_SOURCES, 'IMPORT_EXCEL'),
   }
 }

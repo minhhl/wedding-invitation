@@ -8,9 +8,11 @@ import {
   Guest,
   GuestGroup,
   GuestSide,
+  GuestSource,
   GuestStatus,
   GUEST_GROUPS,
   GUEST_SIDES,
+  GUEST_SOURCE_LABELS,
   GUEST_STATUSES,
   MAX_PARTY_SIZE,
 } from '@/types/guest'
@@ -31,6 +33,12 @@ const STATUS_STYLES: Record<GuestStatus, string> = {
 }
 
 const PARTY_SIZE_TOOLTIP = 'Ví dụ nhập 4 nghĩa là khách này tham dự cùng tổng cộng 4 người.'
+
+const SOURCE_STYLES: Record<GuestSource, string> = {
+  MANUAL: 'text-zinc-400 bg-zinc-800',
+  IMPORT_EXCEL: 'text-sky-300 bg-sky-500/10',
+  RSVP: 'text-violet-300 bg-violet-500/10',
+}
 
 export function GuestTable({
   guests,
@@ -53,6 +61,7 @@ export function GuestTable({
               <th className="px-4 py-3 min-w-[140px]">Xác nhận</th>
               <th className="px-4 py-3 min-w-[80px]">Bàn</th>
               <th className="px-4 py-3 min-w-[180px]">Ghi chú</th>
+              <th className="px-4 py-3 min-w-[110px]">Nguồn</th>
               <th className="px-4 py-3 w-12" />
             </tr>
           </thead>
@@ -163,6 +172,16 @@ export function GuestTable({
                       placeholder="Ghi chú"
                     />
                   </td>
+                  <td className="px-4 py-2">
+                    <span
+                      className={cn(
+                        'inline-flex items-center rounded-full px-2 py-1 text-xs font-medium',
+                        SOURCE_STYLES[guest.source]
+                      )}
+                    >
+                      {GUEST_SOURCE_LABELS[guest.source]}
+                    </span>
+                  </td>
                   <td className="px-4 py-2 text-center">
                     <button
                       type="button"
@@ -179,7 +198,7 @@ export function GuestTable({
 
             {guests.length === 0 && (
               <tr>
-                <td colSpan={9} className="px-4 py-10 text-center text-zinc-500">
+                <td colSpan={10} className="px-4 py-10 text-center text-zinc-500">
                   {totalGuestCount === 0
                     ? 'Chưa có khách mời nào. Bấm "Thêm khách" để bắt đầu.'
                     : 'Không tìm thấy khách phù hợp với bộ lọc hiện tại.'}

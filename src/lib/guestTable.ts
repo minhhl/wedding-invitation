@@ -69,6 +69,17 @@ export function getTableSummaries(guests: Guest[]): TableSummary[] {
   return [...byTable.values()].sort((a, b) => a.tableNumber - b.tableNumber)
 }
 
+/**
+ * Sum of partySize for confirmed guests already seated at `table`, optionally
+ * excluding one guest (used when re-checking a guest that's being edited).
+ * Used to validate a table before an RSVP approval assigns it.
+ */
+export function getTableTotal(guests: Guest[], table: number, excludeGuestId?: string): number {
+  return guests
+    .filter((g) => g.status === 'Sẽ đến' && g.table === table && g.id !== excludeGuestId)
+    .reduce((sum, g) => sum + g.partySize, 0)
+}
+
 export function computeTableStats(summaries: TableSummary[]): TableStats {
   let tablesWithRoom = 0
   let tablesFull = 0

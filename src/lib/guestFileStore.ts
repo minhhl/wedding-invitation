@@ -13,9 +13,10 @@ import {
 
 const GUEST_FILE_PATH = path.join(process.cwd(), 'src', 'data', 'guest-list.xlsx')
 
-function createId() {
+export function createGuestId() {
   return `guest-${Date.now()}-${Math.random().toString(36).slice(2, 10)}`
 }
+const createId = createGuestId
 
 /** Reads guest-list.xlsx from disk. Creates an empty file on first run. */
 export function readGuestsFromDisk(): Guest[] {
@@ -31,9 +32,22 @@ export function readGuestsFromDisk(): Guest[] {
   const sheet = workbook.Sheets[sheetName]
   const rows = XLSX.utils.sheet_to_json<Record<string, unknown>>(sheet, { defval: '' })
 
-  return rows
-    .map((row) => ({ id: createId(), ...rowToGuestDraft(row) }))
+  let generatedNewId = false
+  const guests = rows
+    .map((row) => {
+      const existingId = String(row['ID'] ?? '').trim()
+      if (existingId) return { id: existingId, ...rowToGuestDraft(row) }
+      generatedNewId = true
+      return { id: createId(), ...rowToGuestDraft(row) }
+    })
     .filter((guest) => guest.name.length > 0)
+
+  // Persist any freshly-generated ids immediately so a *different* request
+  // reading the file a moment later (e.g. an RSVP approval) sees the same
+  // ids rather than generating its own — ids aren't stable otherwise.
+  if (generatedNewId) writeGuestsToDisk(guests)
+
+  return guests
 }
 
 /** Overwrites guest-list.xlsx on disk with the given guest list. */

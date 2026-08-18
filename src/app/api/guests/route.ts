@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { Guest, GUEST_GROUPS, GUEST_SIDES, GUEST_STATUSES } from '@/types/guest'
+import { Guest, GUEST_GROUPS, GUEST_SIDES, GUEST_SOURCES, GUEST_STATUSES } from '@/types/guest'
 import { readGuestsFromDisk, writeGuestsToDisk } from '@/lib/guestFileStore'
 
 // This route reads/writes a local .xlsx file, so responses must never be cached.
@@ -17,7 +17,8 @@ function isValidGuest(value: unknown): value is Guest {
     typeof g.partySize === 'number' &&
     (GUEST_STATUSES as readonly string[]).includes(g.status as string) &&
     (g.table === null || typeof g.table === 'number') &&
-    typeof g.note === 'string'
+    typeof g.note === 'string' &&
+    (GUEST_SOURCES as readonly string[]).includes(g.source as string)
   )
 }
 
