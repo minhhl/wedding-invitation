@@ -1,56 +1,19 @@
 import * as XLSX from 'xlsx'
-import {
-  Guest,
-  GuestGroup,
-  GuestImportDraft,
-  GuestSide,
-  GuestStatus,
-  GUEST_GROUPS,
-  GUEST_SIDES,
-  GUEST_STATUSES,
-} from '@/types/guest'
+import { Guest, GuestImportDraft, GuestSide, GUEST_SIDES } from '@/types/guest'
 import { computeGuestStats, computeTableStats, getTableSummaries } from '@/lib/guestTable'
-
-const EXCEL_COLUMNS = [
-  'Tên khách',
-  'SĐT',
-  'Bên',
-  'Nhóm',
-  'Số người',
-  'Xác nhận',
-  'Bàn',
-  'Ghi chú',
-] as const
-
-type GuestExcelRow = Record<(typeof EXCEL_COLUMNS)[number], string | number>
-
-function guestToRow(guest: Guest): GuestExcelRow {
-  return {
-    'Tên khách': guest.name,
-    'SĐT': guest.phone,
-    'Bên': guest.side,
-    'Nhóm': guest.group,
-    'Số người': guest.partySize,
-    'Xác nhận': guest.status,
-    'Bàn': guest.table ?? '',
-    'Ghi chú': guest.note,
-  }
-}
+import {
+  EXCEL_COLUMN_WIDTHS,
+  EXCEL_COLUMNS,
+  EXCEL_SHEET_NAME,
+  guestToRow,
+  rowToGuestDraft,
+} from '@/lib/guestExcelRows'
 
 function buildWorkbook(guests: Guest[], sheetName: string) {
   const worksheet = XLSX.utils.json_to_sheet(guests.map(guestToRow), {
     header: [...EXCEL_COLUMNS],
   })
-  worksheet['!cols'] = [
-    { wch: 22 },
-    { wch: 14 },
-    { wch: 10 },
-    { wch: 12 },
-    { wch: 10 },
-    { wch: 12 },
-    { wch: 8 },
-    { wch: 28 },
-  ]
+  worksheet['!cols'] = EXCEL_COLUMN_WIDTHS
   const workbook = XLSX.utils.book_new()
   XLSX.utils.book_append_sheet(workbook, worksheet, sheetName)
   return workbook
@@ -59,7 +22,7 @@ function buildWorkbook(guests: Guest[], sheetName: string) {
 export function exportGuestsToExcel(
   guests: Guest[],
   filename = 'guest-list.xlsx',
-  sheetName = 'DanhSachKhachMoi'
+  sheetName = EXCEL_SHEET_NAME
 ) {
   const workbook = buildWorkbook(guests, sheetName)
   XLSX.writeFile(workbook, filename)
@@ -93,11 +56,7 @@ export function exportSummaryReport(guests: Guest[], filename = 'bao-cao-tong-ho
   ]
 
   const workbook = XLSX.utils.book_new()
-  XLSX.utils.book_append_sheet(
-    workbook,
-    XLSX.utils.json_to_sheet(summaryRows),
-    'TongQuan'
-  )
+  XLSX.utils.book_append_sheet(workbook, XLSX.utils.json_to_sheet(summaryRows), 'TongQuan')
   XLSX.utils.book_append_sheet(workbook, XLSX.utils.json_to_sheet(bySide), 'TheoBen')
   XLSX.utils.book_append_sheet(
     workbook,
@@ -111,62 +70,22 @@ export function exportGuestsBySide(guests: Guest[], side: GuestSide) {
   const filename = side === 'Nhà trai' ? 'danh-sach-nha-trai.xlsx' : 'danh-sach-nha-gai.xlsx'
   exportGuestsToExcel(
     guests.filter((g) => g.side === side),
-    filename,
-    'DanhSachKhachMoi'
+    filename
   )
 }
 
 export function exportConfirmedGuests(guests: Guest[]) {
   exportGuestsToExcel(
     guests.filter((g) => g.status === 'Sẽ đến'),
-    'danh-sach-se-den.xlsx',
-    'DanhSachKhachMoi'
+    'danh-sach-se-den.xlsx'
   )
 }
 
 export function exportUnrespondedGuests(guests: Guest[]) {
   exportGuestsToExcel(
     guests.filter((g) => g.status === 'Chưa mời' || g.status === 'Đã mời'),
-    'danh-sach-chua-phan-hoi.xlsx',
-    'DanhSachKhachMoi'
+    'danh-sach-chua-phan-hoi.xlsx'
   )
-}
-
-function normalizeEnum<T extends string>(value: unknown, allowed: readonly T[], fallback: T): T {
-  const str = String(value ?? '').trim()
-  return (allowed as readonly string[]).includes(str) ? (str as T) : fallback
-}
-
-function normalizePhone(value: unknown): string {
-  if (typeof value === 'number') return String(value)
-  return String(value ?? '').trim()
-}
-
-/** Số người: integer >= 1. Blank, 0, negative, or non-numeric all fall back to 1. */
-function normalizePartySize(value: unknown): number {
-  const raw = Number(value)
-  return Number.isFinite(raw) && raw >= 1 ? Math.round(raw) : 1
-}
-
-/** Bàn: integer >= 1 if present and valid, otherwise unassigned. */
-function normalizeTable(value: unknown): number | null {
-  const raw = Number(value)
-  return Number.isFinite(raw) && raw >= 1 ? Math.round(raw) : null
-}
-
-function rowToGuestDraft(row: Record<string, unknown>): GuestImportDraft {
-  const status = normalizeEnum<GuestStatus>(row['Xác nhận'], GUEST_STATUSES, 'Chưa mời')
-  return {
-    name: String(row['Tên khách'] ?? '').trim(),
-    phone: normalizePhone(row['SĐT']),
-    side: normalizeEnum<GuestSide>(row['Bên'], GUEST_SIDES, 'Nhà trai'),
-    group: normalizeEnum<GuestGroup>(row['Nhóm'], GUEST_GROUPS, 'Khác'),
-    partySize: normalizePartySize(row['Số người']),
-    status,
-    // Only a confirmed guest may hold a table seat.
-    table: status === 'Sẽ đến' ? normalizeTable(row['Bàn']) : null,
-    note: String(row['Ghi chú'] ?? '').trim(),
-  }
 }
 
 export async function importGuestsFromExcelFile(file: File): Promise<GuestImportDraft[]> {
@@ -175,7 +94,5 @@ export async function importGuestsFromExcelFile(file: File): Promise<GuestImport
   const sheetName = workbook.SheetNames[0]
   const sheet = workbook.Sheets[sheetName]
   const rows = XLSX.utils.sheet_to_json<Record<string, unknown>>(sheet, { defval: '' })
-  return rows
-    .map(rowToGuestDraft)
-    .filter((draft) => draft.name.length > 0)
+  return rows.map(rowToGuestDraft).filter((draft) => draft.name.length > 0)
 }

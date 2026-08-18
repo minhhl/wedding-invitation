@@ -5,6 +5,8 @@ export const GUEST_GROUPS = [
   'Họ hàng',
   'Bạn bè',
   'Đồng nghiệp',
+  'Đồng nghiệp FPT',
+  'Đồng nghiệp BB',
   'Đối tác',
   'Hàng xóm',
   'Khác',
