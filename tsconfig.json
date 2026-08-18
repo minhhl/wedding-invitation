@@ -43,6 +43,9 @@
       "@/hooks/*": [
         "./src/hooks/*"
       ],
+      "@/store/*": [
+        "./src/store/*"
+      ],
       "@/config/*": [
         "./src/config/*"
       ],

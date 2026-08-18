@@ -2,77 +2,20 @@
 
 @theme {
   /* Palette */
-  --color-wedding-ivory: #f7f4ef;
-  --color-wedding-champagne: #d9c2a3;
-  --color-wedding-beige: #eae1d6;
-  --color-wedding-gold: #b89a68;
-  --color-wedding-brown: #3d3024;
-  --color-wedding-ink: #1a1a1a;
-  --color-wedding-white: #ffffff;
+  --color-background: #faf8f5;
+  --color-champagne: #c9a977;
+  --color-champagne-dark: #ad8a5c;
+  --color-champagne-light: #e6d9c3;
+  --color-text: #4a4a4a;
+  --color-ink: #2b2b2b;
+  --color-white: #ffffff;
+  --color-ivory-gold: #dcc9a3;
 
   /* Typography */
-  --font-playfair: var(--next-playfair), Georgia, serif;
-  --font-cormorant: var(--next-cormorant), Georgia, serif;
-  --font-sans: var(--next-inter), system-ui, sans-serif;
-
-  /* Motion */
-  --animate-fade-in: fadeIn 1.2s ease-in-out;
-  --animate-fade-up: fadeUp 1.2s ease-in-out;
-  --animate-scale-in: scaleIn 1s ease-in-out;
-  --animate-blur-in: blurIn 1.4s ease-in-out;
-  --animate-float: float 8s ease-in-out infinite;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(24px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes scaleIn {
-  from {
-    opacity: 0;
-    transform: scale(0.96);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes blurIn {
-  from {
-    opacity: 0;
-    filter: blur(12px);
-  }
-  to {
-    opacity: 1;
-    filter: blur(0px);
-  }
-}
-
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-14px);
-  }
+  --font-heading: var(--next-cormorant), 'Cormorant Garamond', Georgia, serif;
+  --font-script: var(--next-great-vibes), 'Great Vibes', cursive;
+  --font-body: var(--next-montserrat), Montserrat, system-ui, sans-serif;
+  --font-editorial: var(--next-playfair), 'Playfair Display', Georgia, serif;
 }
 
 html {
@@ -82,12 +25,10 @@ html {
 }
 
 body {
-  font-family: var(--font-sans);
-  background-color: var(--color-wedding-ivory);
-  color: var(--color-wedding-ink);
+  font-family: var(--font-body);
+  background-color: var(--color-background);
+  color: var(--color-text);
   overflow-x: hidden;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch' result='t'/%3E%3CfeColorMatrix in='t' type='matrix' values='0 0 0 0 0.24 0 0 0 0 0.19 0 0 0 0 0.14 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size: 240px 240px;
 }
 
 /* Custom scrollbar */
@@ -96,154 +37,110 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--color-wedding-ivory);
+  background: var(--color-background);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-wedding-champagne);
+  background: var(--color-champagne);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-wedding-gold);
+  background: var(--color-champagne-dark);
 }
 
-/* Heading styles — Playfair Display, editorial scale */
+/* Editorial display type — the couple's names, the largest mark on the page */
+.display-name {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  line-height: 1.15;
+}
+
 .heading-1 {
-  font-family: var(--font-playfair);
-  font-size: clamp(2.5rem, 5vw, 3.5rem);
-  font-weight: 600;
-  letter-spacing: -0.01em;
+  font-family: var(--font-heading);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  font-size: clamp(2.75rem, 8vw, 5.5rem);
   line-height: 1.1;
-}
-
-@media (min-width: 768px) {
-  .heading-1 {
-    font-size: clamp(3.5rem, 7vw, 4.5rem);
-  }
 }
 
 .heading-2 {
-  font-family: var(--font-playfair);
-  font-size: clamp(2rem, 4vw, 2.75rem);
-  font-weight: 600;
-  letter-spacing: -0.01em;
-}
-
-@media (min-width: 768px) {
-  .heading-2 {
-    font-size: clamp(2.5rem, 5vw, 3.25rem);
-  }
+  font-family: var(--font-heading);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  font-size: clamp(2.25rem, 5vw, 3.25rem);
+  line-height: 1.15;
 }
 
 .heading-3 {
-  font-family: var(--font-playfair);
+  font-family: var(--font-heading);
+  font-weight: 500;
   font-size: clamp(1.5rem, 3vw, 2rem);
-  font-weight: 600;
 }
 
-@media (min-width: 768px) {
-  .heading-3 {
-    font-size: clamp(1.75rem, 4vw, 2.25rem);
-  }
-}
-
-.heading-4 {
-  font-family: var(--font-playfair);
-  font-size: clamp(1.2rem, 2.5vw, 1.5rem);
-  font-weight: 600;
-}
-
-@media (min-width: 768px) {
-  .heading-4 {
-    font-size: clamp(1.4rem, 3vw, 1.75rem);
-  }
-}
-
-/* Couple names — the single largest, most deliberate mark on the page */
-.display-name {
-  font-family: var(--font-cormorant);
-  font-weight: 300;
-  letter-spacing: 0.07em;
-  font-size: clamp(3rem, 10vw, 6.5rem);
-  line-height: 1.1;
-}
-
-/* Accent glyphs ("&", ornamental marks) */
-.accent-text {
-  font-family: var(--font-cormorant);
-  font-style: italic;
+/* Script signature accent */
+.script-text {
+  font-family: var(--font-script);
   font-weight: 400;
-  font-size: clamp(1.75rem, 4vw, 2.5rem);
-  color: var(--color-wedding-gold);
 }
 
 /* Eyebrow / overline labels */
-.subtle-text {
-  color: var(--color-wedding-gold);
-  font-size: 0.75rem;
-  letter-spacing: 0.25em;
+.eyebrow {
+  color: var(--color-champagne-dark);
+  font-size: 0.72rem;
+  letter-spacing: 0.32em;
   text-transform: uppercase;
-  font-family: var(--font-sans);
+  font-family: var(--font-body);
   font-weight: 500;
-}
-
-/* Glassmorphism panel — reserved for true glass moments (lightbox, overlays) */
-.glassmorphism {
-  background: rgba(247, 244, 239, 0.7);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(184, 154, 104, 0.25);
 }
 
 .smooth-transition {
   transition: all 500ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/*
-  Paper card — a physical object resting on a surface, not a UI panel.
-  Warm off-white cardstock, a hairline edge, and a soft ambient shadow
-  built from several low layers instead of one flat drop-shadow.
-*/
-.paper-card {
-  position: relative;
-  background: linear-gradient(180deg, #fffdfa 0%, #faf6ee 100%);
-  border: 1px solid rgba(184, 154, 104, 0.22);
-  border-radius: 2px;
-  box-shadow:
-    0 1px 1px rgba(61, 48, 36, 0.05),
-    0 10px 24px -14px rgba(61, 48, 36, 0.28),
-    0 28px 56px -32px rgba(61, 48, 36, 0.22);
+/* Champagne gold button — the single call-to-action color on the page */
+.btn-champagne {
+  background-color: var(--color-champagne);
+  color: var(--color-white);
+  transition:
+    background-color 400ms cubic-bezier(0.4, 0, 0.2, 1),
+    transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Brushed champagne metal — a moving sheen instead of a flat fill */
-.brushed-gold {
-  background-image: linear-gradient(
-    115deg,
-    #a3855a 0%,
-    #cbaa77 20%,
-    #ecdcb8 38%,
-    #b89a68 56%,
-    #d9c2a3 74%,
-    #a3855a 100%
-  );
-  background-size: 220% 100%;
-  background-position: 0% 0%;
-  color: #fffdf8;
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.35),
-    0 10px 24px -10px rgba(61, 48, 36, 0.45);
-  transition: background-position 900ms cubic-bezier(0.4, 0, 0.2, 1);
+.btn-champagne:hover {
+  background-color: var(--color-champagne-dark);
 }
 
-.brushed-gold:hover {
-  background-position: 100% 0%;
+/* Polaroid photo — white mat border, soft shadow, gentle tilt */
+.polaroid {
+  background: var(--color-white);
+  padding: 0.9rem 0.9rem 3rem;
+  box-shadow:
+    0 1px 1px rgba(43, 43, 43, 0.06),
+    0 24px 48px -24px rgba(43, 43, 43, 0.35);
 }
 
-/* Photo frame — a printed photograph on a mat, not a bare grid tile */
-.photo-frame {
-  background: #fffdfa;
-  padding: 0.5rem;
+/* Consistent warm tone across grouped photography */
+.photo-tone {
+  filter: saturate(0.92) sepia(0.06) brightness(1.02);
+}
+
+/* Soft printed-paper backdrop — static, no motion, just a whisper of sheen */
+.silk-bg {
+  background: radial-gradient(120% 90% at 50% 0%, #fffdf9 0%, var(--color-background) 55%, #f2e9d8 100%);
+}
+
+/* Very light champagne glow for outline buttons on paper-invitation sections */
+.champagne-glow {
+  transition:
+    box-shadow 500ms cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 500ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.champagne-glow:hover {
+  border-color: var(--color-champagne);
   box-shadow:
-    0 1px 1px rgba(61, 48, 36, 0.06),
-    0 16px 32px -18px rgba(61, 48, 36, 0.32);
+    0 0 0 1px rgba(201, 169, 119, 0.3),
+    0 10px 28px -14px rgba(201, 169, 119, 0.55);
 }

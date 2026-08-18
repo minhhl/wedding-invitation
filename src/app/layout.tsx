@@ -1,15 +1,9 @@
 import type { Metadata, Viewport } from 'next'
-import { Playfair_Display, Cormorant_Garamond, Inter } from 'next/font/google'
+import { Cormorant_Garamond, Great_Vibes, Montserrat, Playfair_Display } from 'next/font/google'
 import '../styles/globals.css'
 import { ogImage } from '@/lib/images'
 import { SmoothScroll } from '@/components/SmoothScroll'
 import { groomName, brideName } from '@/lib/weddingData'
-
-const playfair = Playfair_Display({
-  subsets: ['latin', 'vietnamese'],
-  variable: '--next-playfair',
-  display: 'swap',
-})
 
 const cormorant = Cormorant_Garamond({
   subsets: ['latin', 'vietnamese'],
@@ -18,9 +12,24 @@ const cormorant = Cormorant_Garamond({
   display: 'swap',
 })
 
-const inter = Inter({
+const greatVibes = Great_Vibes({
+  subsets: ['latin'],
+  weight: '400',
+  variable: '--next-great-vibes',
+  display: 'swap',
+})
+
+const montserrat = Montserrat({
   subsets: ['latin', 'vietnamese'],
-  variable: '--next-inter',
+  variable: '--next-montserrat',
+  display: 'swap',
+})
+
+const playfair = Playfair_Display({
+  subsets: ['latin'],
+  weight: ['400', '500'],
+  style: ['normal', 'italic'],
+  variable: '--next-playfair',
   display: 'swap',
 })
 
@@ -42,12 +51,15 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  themeColor: '#3d3024',
+  themeColor: '#c9a977',
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="vi" className={`${playfair.variable} ${cormorant.variable} ${inter.variable}`}>
+    <html
+      lang="vi"
+      className={`${cormorant.variable} ${greatVibes.variable} ${montserrat.variable} ${playfair.variable}`}
+    >
       <body>
         <SmoothScroll>{children}</SmoothScroll>
       </body>

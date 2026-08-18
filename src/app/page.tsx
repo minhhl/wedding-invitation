@@ -1,49 +1,24 @@
-'use client'
-
-import { Suspense, useState } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
-import { InvitationCover } from '@/components/InvitationCover'
-import { HeroSection } from '@/components/HeroSection'
-import { Countdown } from '@/components/Countdown'
-import { FamilyIntroduction } from '@/components/FamilyIntroduction'
-import { PhotoGallery } from '@/components/PhotoGallery'
-import { WeddingEventsInfo } from '@/components/WeddingEventsInfo'
-import { EventTimeline } from '@/components/EventTimeline'
-import { RSVPForm } from '@/components/RSVPForm'
-import { GuestBook } from '@/components/GuestBook'
-import { ClosingMessage } from '@/components/ClosingMessage'
-import { Footer } from '@/components/Footer'
+import { LoadingGate } from '@/components/LoadingGate'
+import { Header } from '@/components/Header'
+import { SaveTheDate } from '@/components/SaveTheDate'
+import { WeddingDayTimeline } from '@/components/WeddingDayTimeline'
+import { DreamSection } from '@/components/DreamSection'
+import { PolaroidCollection } from '@/components/PolaroidCollection'
+import { RSVPSection } from '@/components/RSVPSection'
+import { ThankYouFooter } from '@/components/ThankYouFooter'
 
 export default function Home() {
-  const [isOpen, setIsOpen] = useState(false)
-
   return (
-    <main className="min-h-screen bg-wedding-ivory">
-      <AnimatePresence mode="wait">
-        {!isOpen ? (
-          <Suspense fallback={null} key="cover">
-            <InvitationCover onOpen={() => setIsOpen(true)} />
-          </Suspense>
-        ) : (
-          <motion.div
-            key="content"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1.2, ease: 'easeInOut' }}
-          >
-            <HeroSection />
-            <Countdown />
-            <FamilyIntroduction />
-            <PhotoGallery />
-            <WeddingEventsInfo />
-            <EventTimeline />
-            <RSVPForm />
-            <GuestBook />
-            <ClosingMessage />
-            <Footer />
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </main>
+    <LoadingGate>
+      <main className="min-h-screen bg-background">
+        <Header />
+        <SaveTheDate />
+        <WeddingDayTimeline />
+        <DreamSection />
+        <PolaroidCollection />
+        <RSVPSection />
+        <ThankYouFooter />
+      </main>
+    </LoadingGate>
   )
 }

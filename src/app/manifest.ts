@@ -10,8 +10,8 @@ export default function manifest(): MetadataRoute.Manifest {
     description: `Trân trọng kính mời bạn đến tham dự lễ thành hôn của ${coupleName}`,
     start_url: '/',
     display: 'standalone',
-    background_color: '#f7f4ef',
-    theme_color: '#3d3024',
+    background_color: '#faf8f5',
+    theme_color: '#c9a977',
     icons: [
       {
         src: '/icon',
