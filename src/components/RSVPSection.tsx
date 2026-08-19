@@ -28,7 +28,9 @@ export function RSVPSection() {
           <p className="eyebrow mb-4">RSVP</p>
           <h2 className="heading-2 mb-4 text-ink">Rất mong được đón tiếp bạn.</h2>
           <p className="mx-auto max-w-sm font-body text-sm leading-relaxed text-text/80">
-            Vui lòng xác nhận tham dự trực tiếp qua điện thoại hoặc tin nhắn với cô dâu chú rể.
+            Vui lòng xác nhận sự tham dự của bạn để chúng mình chuẩn bị đón tiếp một cách chu đáo
+            nhất. Trân trọng cảm ơn! Bạn có thể xác nhận trực tiếp qua điện thoại hoặc tin nhắn
+            với cô dâu chú rể.
           </p>
         </div>
       </section>
@@ -96,7 +98,11 @@ function RSVPForm() {
           className="mb-12 text-center"
         >
           <p className="eyebrow mb-4">RSVP</p>
-          <h2 className="heading-2 text-ink">Rất mong được đón tiếp bạn.</h2>
+          <h2 className="heading-2 mb-4 text-ink">Rất mong được đón tiếp bạn.</h2>
+          <p className="mx-auto max-w-sm font-body text-sm leading-relaxed text-text/80">
+            Vui lòng xác nhận sự tham dự của bạn để chúng mình chuẩn bị đón tiếp một cách chu đáo
+            nhất. Trân trọng cảm ơn!
+          </p>
         </motion.div>
 
         <motion.form

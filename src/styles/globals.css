@@ -14,6 +14,7 @@
   /* Typography */
   --font-heading: var(--next-cormorant), 'Cormorant Garamond', Georgia, serif;
   --font-script: var(--next-great-vibes), 'Great Vibes', cursive;
+  --font-script-flourish: var(--next-alex-brush), 'Alex Brush', cursive;
   --font-body: var(--next-montserrat), Montserrat, system-ui, sans-serif;
   --font-editorial: var(--next-playfair), 'Playfair Display', Georgia, serif;
 }
@@ -82,6 +83,12 @@ body {
 /* Script signature accent */
 .script-text {
   font-family: var(--font-script);
+  font-weight: 400;
+}
+
+/* Looser brush script — venue names, gallery headline */
+.script-flourish {
+  font-family: var(--font-script-flourish);
   font-weight: 400;
 }
 

@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Cormorant_Garamond, Great_Vibes, Montserrat, Playfair_Display } from 'next/font/google'
+import { Alex_Brush, Cormorant_Garamond, Great_Vibes, Montserrat, Playfair_Display } from 'next/font/google'
 import '../styles/globals.css'
 import { ogImage } from '@/lib/images'
 import { SmoothScroll } from '@/components/SmoothScroll'
@@ -33,6 +33,13 @@ const playfair = Playfair_Display({
   display: 'swap',
 })
 
+const alexBrush = Alex_Brush({
+  subsets: ['latin'],
+  weight: '400',
+  variable: '--next-alex-brush',
+  display: 'swap',
+})
+
 export const metadata: Metadata = {
   metadataBase: process.env.NEXT_PUBLIC_SITE_URL
     ? new URL(process.env.NEXT_PUBLIC_SITE_URL)
@@ -58,7 +65,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="vi"
-      className={`${cormorant.variable} ${greatVibes.variable} ${montserrat.variable} ${playfair.variable}`}
+      className={`${cormorant.variable} ${greatVibes.variable} ${montserrat.variable} ${playfair.variable} ${alexBrush.variable}`}
     >
       <body>
         <SmoothScroll>{children}</SmoothScroll>

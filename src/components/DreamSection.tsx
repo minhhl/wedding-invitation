@@ -1,6 +1,9 @@
 'use client'
 
+import Image from 'next/image'
 import { motion } from 'framer-motion'
+import { dreamPolaroidImage } from '@/lib/images'
+import { groomName, brideName } from '@/lib/weddingData'
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
@@ -82,6 +85,41 @@ export function DreamSection() {
           </p>
         </motion.div>
       </div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 24, rotate: -3 }}
+        whileInView={{ opacity: 1, y: 0, rotate: -2 }}
+        viewport={{ once: true, margin: '-10%' }}
+        transition={{ duration: 0.9, delay: 0.3, ease: EASE }}
+        className="polaroid relative z-10 mx-auto mt-20 w-[72%] max-w-[280px] md:mt-24"
+      >
+        <div className="relative aspect-square w-full overflow-hidden">
+          <Image
+            src={dreamPolaroidImage}
+            alt={`${groomName} & ${brideName}`}
+            fill
+            className="photo-tone object-cover"
+            sizes="(max-width: 768px) 72vw, 280px"
+          />
+        </div>
+        <p className="pt-4 text-center font-heading text-lg uppercase tracking-[0.15em] text-champagne">
+          Love Forever
+        </p>
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-10%' }}
+        transition={{ duration: 0.9, delay: 0.45, ease: EASE }}
+        className="relative z-10 mx-auto mt-16 flex max-w-xs flex-col items-center gap-5 text-center font-heading text-base uppercase tracking-[0.1em] text-ink/80 md:mt-20"
+      >
+        <span>Two hearts</span>
+        <span className="h-px w-8 bg-champagne/40" />
+        <span>One journey</span>
+        <span className="h-px w-8 bg-champagne/40" />
+        <span>A lifetime of love</span>
+      </motion.div>
 
       <svg
         viewBox="0 0 400 60"

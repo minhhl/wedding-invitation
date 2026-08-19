@@ -19,15 +19,20 @@ export const saveTheDateImages = [
   photo('HTC03120.jpg'),
 ]
 
-// Wedding Timeline — faint corner background photo
-export const timelineBackgroundImage = photo('HTC03199.jpg')
+// Invitation Card — faint corner background photo
+export const invitationBackgroundImage = photo('HTC03199.jpg')
 
-// Polaroid Collection — the site's photo album
-export const polaroidCollectionImages = [
-  { src: photo('HTC03983.jpg'), caption: 'Golden Hour' },
-  { src: photo('HTC04025.jpg'), caption: 'Quiet Moments' },
-  { src: photo('HTC04032.jpg'), caption: 'First Light' },
-  { src: photo('HTC04050.jpg'), caption: 'Together' },
+// Dream section — small polaroid-style photo beside the quote
+export const dreamPolaroidImage = photo('HTC02889.jpg')
+
+// Endless Romance gallery — two-up row followed by a 2x2 grid
+export const endlessRomanceImages = [
+  photo('HTC03983.jpg'),
+  photo('HTC04025.jpg'),
+  photo('HTC04032.jpg'),
+  photo('HTC04050.jpg'),
+  photo('HTC04088.jpg'),
+  photo('HTC04093.jpg'),
 ]
 
 // Thank You footer — wide closing photo
