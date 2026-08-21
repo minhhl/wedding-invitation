@@ -6,6 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { motion, AnimatePresence, type Variants } from 'framer-motion'
 import { Loader2, X } from 'lucide-react'
 import { rsvpSubmissionSchema, RsvpSubmissionFormData } from '@/lib/rsvpValidation'
+import { FloralCorner } from '@/components/decor/FloralCorner'
 
 const fieldClass =
   'peer w-full border-b border-champagne/40 bg-transparent px-1 pb-3 pt-5 font-body text-sm text-ink placeholder-transparent focus:border-champagne focus:outline-none focus:shadow-[0_10px_18px_-16px_rgba(201,169,119,0.9)] transition-[border-color,box-shadow] duration-300'
@@ -23,7 +24,8 @@ const isStaticExport = process.env.NEXT_PUBLIC_STATIC_EXPORT === 'true'
 export function RSVPSection() {
   if (isStaticExport) {
     return (
-      <section id="rsvp" className="relative bg-white py-20 md:py-28">
+      <section id="rsvp" className="relative overflow-hidden bg-white py-20 md:py-28">
+        <FloralCorner className="pointer-events-none absolute -right-6 -top-6 h-24 w-28 sm:h-28 sm:w-32" />
         <div className="mx-auto w-full max-w-xl px-5 text-center md:px-10">
           <p className="eyebrow mb-4">RSVP</p>
           <h2 className="heading-2 mb-4 text-ink">Rất mong được đón tiếp bạn.</h2>
@@ -88,7 +90,8 @@ function RSVPForm() {
   }
 
   return (
-    <section id="rsvp" className="relative bg-white py-20 md:py-28">
+    <section id="rsvp" className="relative overflow-hidden bg-white py-20 md:py-28">
+      <FloralCorner className="pointer-events-none absolute -right-6 -top-6 h-24 w-28 sm:h-28 sm:w-32" />
       <div className="mx-auto w-full max-w-xl px-5 md:px-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

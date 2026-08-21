@@ -4,6 +4,10 @@ import { motion } from 'framer-motion'
 import { MapPin } from 'lucide-react'
 import { weddingScheduleChapters, googleMapsDirectionsUrl } from '@/lib/weddingSchedule'
 import { groomName, brideName } from '@/lib/weddingData'
+import { PearlBorder } from '@/components/decor/PearlBorder'
+import { FloralCorner } from '@/components/decor/FloralCorner'
+import { WaxSeal } from '@/components/decor/WaxSeal'
+import { SatinRibbonBow } from '@/components/decor/SatinRibbon'
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
@@ -13,12 +17,9 @@ const receptionEvent = receptionChapter.events[receptionChapter.events.length - 
 
 // Vietnamese naming convention: the given name is the last word.
 const initial = (name: string) => name.trim().split(/\s+/).pop()?.[0] ?? name[0]
-const monogram = `${initial(groomName)} · ${initial(brideName)}`
 
 const WAVE_PATH =
   'M0 20 C 42 4, 82 4, 124 20 S 208 36, 250 20 S 332 4, 340 20 L340 28 L0 28 Z'
-
-const PEARL_POSITIONS = [10, 27, 50, 73, 90]
 
 function WaveCap({ flip }: { flip?: boolean }) {
   return (
@@ -62,6 +63,40 @@ function OrchidSprig({ className }: { className?: string }) {
   )
 }
 
+function LeafSprig({ className, flip }: { className?: string; flip?: boolean }) {
+  return (
+    <svg
+      viewBox="0 0 60 44"
+      className={className}
+      style={flip ? { transform: 'scaleX(-1)' } : undefined}
+      aria-hidden
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1"
+    >
+      <path d="M3 40 C 18 34, 32 22, 45 4" strokeLinecap="round" />
+      {[
+        [11, 33],
+        [19, 27],
+        [27, 20],
+        [34, 13],
+        [40, 7],
+      ].map(([cx, cy], i) => (
+        <ellipse
+          key={`${cx}-${cy}`}
+          cx={cx}
+          cy={cy}
+          rx="6"
+          ry="2.8"
+          transform={`rotate(${-38 + i * 3} ${cx} ${cy})`}
+          fill="currentColor"
+          fillOpacity="0.18"
+        />
+      ))}
+    </svg>
+  )
+}
+
 export function InvitationCard() {
   return (
     <section className="silk-bg relative overflow-hidden py-24 md:py-32">
@@ -73,20 +108,33 @@ export function InvitationCard() {
           transition={{ duration: 0.9, ease: EASE }}
           className="relative drop-shadow-[0_30px_60px_-40px_rgba(43,43,43,0.4)]"
         >
+          <PearlBorder className="z-20" />
+
+          <SatinRibbonBow className="absolute left-1/2 top-0 z-20 h-10 w-24 -translate-x-1/2 -translate-y-1/2 sm:h-12 sm:w-28" />
+
           <div className="relative">
             <WaveCap />
-            {PEARL_POSITIONS.map((left, i) => (
-              <span
-                key={left}
-                className="absolute top-0 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white shadow-[0_1px_3px_rgba(43,43,43,0.25)] sm:h-2.5 sm:w-2.5"
-                style={{ left: `${left}%`, opacity: 0.55 + (i % 2) * 0.45 }}
-              />
-            ))}
           </div>
 
-          <div className="bg-white px-8 py-8 text-center sm:px-12">
-            <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full border border-champagne/50">
-              <span className="script-text text-2xl text-champagne">{monogram}</span>
+          <div className="relative bg-white px-8 py-8 text-center sm:px-12">
+            <FloralCorner className="pointer-events-none absolute -left-3 -top-3 h-16 w-20 sm:h-20 sm:w-24" />
+            <FloralCorner
+              flip
+              className="pointer-events-none absolute -right-3 -top-3 h-16 w-20 sm:h-20 sm:w-24"
+            />
+
+            <div className="relative mx-auto flex h-20 w-36 items-center justify-center">
+              <LeafSprig
+                flip
+                className="absolute -left-3 -top-6 h-8 w-14 rotate-[10deg] text-champagne/70"
+              />
+              <div className="absolute left-0 flex h-20 w-20 items-center justify-center rounded-full border border-champagne/50">
+                <span className="font-heading text-2xl text-champagne">{initial(groomName)}</span>
+              </div>
+              <div className="absolute right-0 flex h-20 w-20 items-center justify-center rounded-full border border-champagne/50">
+                <span className="font-heading text-2xl text-champagne">{initial(brideName)}</span>
+              </div>
+              <LeafSprig className="absolute -right-3 -bottom-6 h-8 w-14 rotate-[10deg] text-champagne/70" />
             </div>
 
             <p className="mt-10 font-body text-xs leading-loose tracking-[0.15em] text-text/70 sm:text-sm">
@@ -127,6 +175,11 @@ export function InvitationCard() {
             </a>
 
             <OrchidSprig className="mx-auto mt-10 h-12 w-24 text-champagne/60" />
+
+            <WaxSeal
+              className="mx-auto mt-6 h-12 w-12"
+              initials={`${initial(groomName)}${initial(brideName)}`}
+            />
           </div>
 
           <WaveCap flip />

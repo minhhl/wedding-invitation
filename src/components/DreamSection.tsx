@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { dreamPolaroidImage } from '@/lib/images'
 import { groomName, brideName } from '@/lib/weddingData'
+import { FloralCorner } from '@/components/decor/FloralCorner'
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1]
 
@@ -40,10 +41,16 @@ const QUOTE_LINES = [
 export function DreamSection() {
   return (
     <section className="silk-bg relative overflow-hidden py-24 md:py-32">
+      <FloralCorner className="pointer-events-none absolute -left-4 -top-4 h-24 w-28 sm:h-32 sm:w-36" />
+      <FloralCorner
+        flip
+        className="pointer-events-none absolute -right-4 -top-4 h-24 w-28 sm:h-32 sm:w-36"
+      />
+
       <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-16 px-6 md:grid-cols-[3fr_2fr] md:gap-8 md:px-10">
         <div className="flex justify-center md:justify-start">
           <div
-            className="relative origin-top scale-[0.62] sm:scale-[0.78] md:scale-[0.92] lg:scale-105"
+            className="relative origin-top scale-[0.62] -mb-[213px] sm:scale-[0.78] sm:-mb-[123px] md:scale-[0.92] md:-mb-[45px] lg:mb-[28px] lg:scale-105"
             style={{ width: CANVAS_WIDTH, height: CANVAS_HEIGHT }}
           >
             {DREAM_LETTERS.map((letter, i) => (
