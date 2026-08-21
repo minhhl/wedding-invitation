@@ -1,64 +1,155 @@
 'use client'
 
-import Image from 'next/image'
-import { motion } from 'framer-motion'
+import { LadiCanvas, LadiGroup, LadiImage, LadiHeadline, LadiLine } from '@/components/ladi'
 import { saveTheDateImages } from '@/lib/images'
+import { plasterTexture, dreamWordmark } from '@/lib/decor'
 import { groomName, brideName, weddingDateParts } from '@/lib/weddingData'
+
+const SECTION_HEIGHT = 982
+
+const QUOTE_LINES = [
+  'Some dreams are meant to last forever, just like true love.',
+  'When two hearts stay faithful through every season,',
+  'forever becomes more than a promise — it becomes reality.',
+]
 
 export function SaveTheDate() {
   return (
-    <section className="bg-background py-20 md:py-28">
-      <div className="mx-auto w-[92%] max-w-md sm:max-w-xl md:max-w-3xl lg:max-w-4xl xl:max-w-5xl">
-        <div className="relative grid aspect-[3/4] grid-cols-2 grid-rows-2 gap-1.5 overflow-hidden sm:gap-2">
-          {saveTheDateImages.map((src, i) => (
-            <div key={src} className="relative overflow-hidden bg-champagne-light/30">
-              <Image
-                src={src}
-                alt={`${groomName} & ${brideName}`}
-                fill
-                priority={i === 0}
-                className="photo-tone object-cover"
-                sizes="(max-width: 640px) 50vw, (max-width: 1024px) 260px, 300px"
-              />
-            </div>
-          ))}
+    <section className="relative bg-white">
+      <LadiCanvas height={SECTION_HEIGHT}>
+        <LadiImage top={0} left={0.6} width={420} height={982} src={plasterTexture} alt="" />
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.92 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="absolute left-1/2 top-1/2 flex w-[30%] -translate-x-1/2 -translate-y-1/2 flex-col items-center border border-champagne/40 bg-white/95 px-4 py-6 text-center shadow-xl backdrop-blur-sm sm:w-[40%] md:w-[50%] lg:w-[58%] lg:px-6 lg:py-8"
+        <LadiImage top={0} left={11.6} width={195} height={293} src={saveTheDateImages[0]} alt={`${groomName} & ${brideName}`} priority />
+        <LadiImage top={0} left={215.4} width={195} height={293} src={saveTheDateImages[1]} alt={`${groomName} & ${brideName}`} />
+        <LadiImage top={301.4} left={11.6} width={195} height={293} src={saveTheDateImages[2]} alt={`${groomName} & ${brideName}`} />
+        <LadiImage top={301.4} left={215.4} width={195} height={293} src={saveTheDateImages[3]} alt={`${groomName} & ${brideName}`} />
+
+        {/* Center card, floating over where the four photos meet. */}
+        <div
+          style={{
+            position: 'absolute',
+            top: 101,
+            left: 159.5,
+            width: 103,
+            height: 395,
+            borderRadius: 5,
+            backgroundColor: 'var(--color-offwhite)',
+          }}
+        />
+
+        <LadiHeadline
+          top={122}
+          left={159}
+          width={104}
+          fontFamily="var(--font-heading)"
+          fontSize={13}
+          lineHeight={1.6}
+          letterSpacing={2}
+          color="#000"
+          textAlign="center"
+          textTransform="uppercase"
+        >
+          Save
+          <br />
+          the date
+        </LadiHeadline>
+
+        <div
+          style={{
+            position: 'absolute',
+            top: 186,
+            left: 172,
+            width: 79,
+            height: 199,
+            borderRadius: 5,
+            border: '1px solid var(--color-champagne)',
+          }}
+        />
+
+        <LadiGroup top={179} left={158} width={106} height={222}>
+          <LadiHeadline
+            top={0}
+            left={2}
+            width={104}
+            fontFamily="var(--font-heading)"
+            fontSize={44}
+            lineHeight={1.6}
+            letterSpacing={3}
+            color="var(--color-champagne)"
+            textAlign="center"
           >
-            <div className="heading-3 uppercase leading-[1.15] tracking-[0.1em] text-ink">
-              <div>Save</div>
-              <div>The</div>
-              <div>Date</div>
-            </div>
+            {weddingDateParts.day}
+          </LadiHeadline>
+          <LadiLine top={62} left={14.5} width={78} height={1} color="var(--color-champagne)" />
+          <LadiHeadline
+            top={68.5}
+            left={0}
+            width={104}
+            fontFamily="var(--font-heading)"
+            fontSize={44}
+            lineHeight={1.6}
+            letterSpacing={3}
+            color="var(--color-champagne)"
+            textAlign="center"
+          >
+            {weddingDateParts.month}
+          </LadiHeadline>
+          <LadiLine top={131.5} left={13} width={78} height={1} color="var(--color-champagne)" />
+          <LadiHeadline
+            top={142}
+            left={2}
+            width={104}
+            fontFamily="var(--font-heading)"
+            fontSize={44}
+            lineHeight={1.6}
+            letterSpacing={3}
+            color="var(--color-champagne)"
+            textAlign="center"
+          >
+            {weddingDateParts.year.slice(2)}
+          </LadiHeadline>
+        </LadiGroup>
 
-            <div className="my-4 flex flex-col items-center gap-1.5 sm:gap-2 md:my-5">
-              {[weddingDateParts.day, weddingDateParts.month, weddingDateParts.year.slice(2)].map(
-                (part) => (
-                  <span
-                    key={part}
-                    className="w-12 border border-champagne/50 py-1 font-heading text-sm text-champagne sm:w-14 sm:text-base lg:w-16 lg:text-lg"
-                  >
-                    {part}
-                  </span>
-                )
-              )}
-            </div>
+        <LadiHeadline
+          top={410}
+          left={159}
+          width={104}
+          fontFamily="var(--font-heading)"
+          fontSize={13}
+          lineHeight={1.6}
+          letterSpacing={2}
+          color="#000"
+          textAlign="center"
+          textTransform="uppercase"
+        >
+          {groomName}
+          <br />
+          &amp;
+          <br />
+          {brideName}
+        </LadiHeadline>
 
-            <div className="space-y-1 text-[0.55rem] font-medium uppercase tracking-[0.2em] text-text sm:text-[0.6rem] lg:text-[0.65rem]">
-              <div>{groomName}</div>
-              <div className="script-text text-base normal-case tracking-normal text-champagne">
-                &amp;
-              </div>
-              <div>{brideName}</div>
-            </div>
-          </motion.div>
-        </div>
-      </div>
+        <LadiImage top={647} left={49.7} width={234} height={302} src={dreamWordmark} alt="Dream" />
+
+        <LadiHeadline
+          top={677}
+          left={220}
+          width={165}
+          fontFamily="var(--font-heading)"
+          fontSize={13}
+          lineHeight={1.5}
+          color="var(--color-quote)"
+          textAlign="left"
+          fontStyle="italic"
+        >
+          {QUOTE_LINES.map((line, i) => (
+            <span key={line}>
+              {line}
+              {i < QUOTE_LINES.length - 1 && <br />}
+            </span>
+          ))}
+        </LadiHeadline>
+      </LadiCanvas>
     </section>
   )
 }

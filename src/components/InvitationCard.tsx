@@ -1,190 +1,200 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import { MapPin } from 'lucide-react'
+import { ChevronRight } from 'lucide-react'
+import { LadiCanvas, LadiGroup, LadiImage, LadiHeadline, LadiLine } from '@/components/ladi'
 import { weddingScheduleChapters, googleMapsDirectionsUrl } from '@/lib/weddingSchedule'
-import { groomName, brideName } from '@/lib/weddingData'
-import { PearlBorder } from '@/components/decor/PearlBorder'
-import { FloralCorner } from '@/components/decor/FloralCorner'
-import { WaxSeal } from '@/components/decor/WaxSeal'
-import { SatinRibbonBow } from '@/components/decor/SatinRibbon'
+import {
+  groomName,
+  brideName,
+  groomFather,
+  groomMother,
+  brideFather,
+  brideMother,
+  initial,
+} from '@/lib/weddingData'
+import { plasterTexture, invitationBg, paperCard, flowerBranch, pearl, logo } from '@/lib/decor'
 
-const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1]
+const SECTION_HEIGHT = 1027
 
 // The reception is the event guests actually need directions/timing for.
 const receptionChapter = weddingScheduleChapters[weddingScheduleChapters.length - 1]
 const receptionEvent = receptionChapter.events[receptionChapter.events.length - 1]
 
-// Vietnamese naming convention: the given name is the last word.
-const initial = (name: string) => name.trim().split(/\s+/).pop()?.[0] ?? name[0]
-
-const WAVE_PATH =
-  'M0 20 C 42 4, 82 4, 124 20 S 208 36, 250 20 S 332 4, 340 20 L340 28 L0 28 Z'
-
-function WaveCap({ flip }: { flip?: boolean }) {
-  return (
-    <svg
-      viewBox="0 0 340 28"
-      preserveAspectRatio="none"
-      className="block h-6 w-full text-white sm:h-7"
-      style={flip ? { transform: 'rotate(180deg)' } : undefined}
-      aria-hidden
-    >
-      <path d={WAVE_PATH} fill="currentColor" stroke="var(--color-champagne)" strokeWidth="1" strokeOpacity="0.4" />
-    </svg>
-  )
-}
-
-function OrchidSprig({ className }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 120 70"
-      className={className}
-      aria-hidden
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1"
-    >
-      <path d="M4 66 C 30 50, 46 40, 100 6" />
-      {[
-        [22, 55],
-        [38, 45],
-        [55, 34],
-        [72, 23],
-        [88, 13],
-      ].map(([cx, cy]) => (
-        <g key={`${cx}-${cy}`} transform={`translate(${cx} ${cy})`}>
-          <ellipse rx="6" ry="3.5" transform="rotate(-30)" />
-          <ellipse rx="6" ry="3.5" transform="rotate(30)" />
-          <circle r="1.4" fill="currentColor" stroke="none" />
-        </g>
-      ))}
-    </svg>
-  )
-}
-
-function LeafSprig({ className, flip }: { className?: string; flip?: boolean }) {
-  return (
-    <svg
-      viewBox="0 0 60 44"
-      className={className}
-      style={flip ? { transform: 'scaleX(-1)' } : undefined}
-      aria-hidden
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1"
-    >
-      <path d="M3 40 C 18 34, 32 22, 45 4" strokeLinecap="round" />
-      {[
-        [11, 33],
-        [19, 27],
-        [27, 20],
-        [34, 13],
-        [40, 7],
-      ].map(([cx, cy], i) => (
-        <ellipse
-          key={`${cx}-${cy}`}
-          cx={cx}
-          cy={cy}
-          rx="6"
-          ry="2.8"
-          transform={`rotate(${-38 + i * 3} ${cx} ${cy})`}
-          fill="currentColor"
-          fillOpacity="0.18"
-        />
-      ))}
-    </svg>
-  )
-}
-
 export function InvitationCard() {
   return (
-    <section className="silk-bg relative overflow-hidden py-24 md:py-32">
-      <div className="relative z-10 mx-auto w-[90%] max-w-md">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-10%' }}
-          transition={{ duration: 0.9, ease: EASE }}
-          className="relative drop-shadow-[0_30px_60px_-40px_rgba(43,43,43,0.4)]"
-        >
-          <PearlBorder className="z-20" />
+    <section className="relative bg-white">
+      <LadiCanvas height={SECTION_HEIGHT}>
+        <LadiImage top={0} left={0.5} width={419} height={1027} src={plasterTexture} alt="" />
+        <LadiImage top={0} left={0.3} width={420.6} height={993} src={invitationBg} alt="" />
+        <LadiImage top={221} left={9.9} width={400} height={567} src={paperCard} alt="" />
+        <LadiImage top={481} left={-88.8} width={250} height={358} src={flowerBranch} alt="" />
 
-          <SatinRibbonBow className="absolute left-1/2 top-0 z-20 h-10 w-24 -translate-x-1/2 -translate-y-1/2 sm:h-12 sm:w-28" />
+        <LadiGroup top={81} left={17.5} width={397} height={187}>
+          <LadiImage top={108} left={317.6} width={79.5} height={79} src={pearl} alt="" />
+          <LadiImage top={136.6} left={299.6} width={50} height={50} src={pearl} alt="" />
+          <LadiImage top={0} left={0} width={37.9} height={37.6} src={pearl} alt="" />
+        </LadiGroup>
 
-          <div className="relative">
-            <WaveCap />
-          </div>
+        <LadiGroup top={53} left={114} width={200} height={113} className="flex items-center justify-center">
+          <LadiImage top={0} left={0} width={200} height={113} src={logo} alt="" />
+          <LadiHeadline
+            top={17}
+            left={21}
+            width={72}
+            fontFamily="var(--font-heading)"
+            fontSize={60}
+            color="var(--color-champagne)"
+            textAlign="center"
+          >
+            {initial(groomName)}
+          </LadiHeadline>
+          <LadiHeadline
+            top={17}
+            left={98}
+            width={72}
+            fontFamily="var(--font-heading)"
+            fontSize={60}
+            color="var(--color-champagne)"
+            textAlign="center"
+          >
+            {initial(brideName)}
+          </LadiHeadline>
+        </LadiGroup>
 
-          <div className="relative bg-white px-8 py-8 text-center sm:px-12">
-            <FloralCorner className="pointer-events-none absolute -left-3 -top-3 h-16 w-20 sm:h-20 sm:w-24" />
-            <FloralCorner
-              flip
-              className="pointer-events-none absolute -right-3 -top-3 h-16 w-20 sm:h-20 sm:w-24"
-            />
-
-            <div className="relative mx-auto flex h-20 w-36 items-center justify-center">
-              <LeafSprig
-                flip
-                className="absolute -left-3 -top-6 h-8 w-14 rotate-[10deg] text-champagne/70"
-              />
-              <div className="absolute left-0 flex h-20 w-20 items-center justify-center rounded-full border border-champagne/50">
-                <span className="font-heading text-2xl text-champagne">{initial(groomName)}</span>
-              </div>
-              <div className="absolute right-0 flex h-20 w-20 items-center justify-center rounded-full border border-champagne/50">
-                <span className="font-heading text-2xl text-champagne">{initial(brideName)}</span>
-              </div>
-              <LeafSprig className="absolute -right-3 -bottom-6 h-8 w-14 rotate-[10deg] text-champagne/70" />
-            </div>
-
-            <p className="mt-10 font-body text-xs leading-loose tracking-[0.15em] text-text/70 sm:text-sm">
-              TRÂN TRỌNG KÍNH MỜI QUÝ KHÁCH
-              <br />
-              ĐẾN THAM DỰ BUỔI TIỆC CHUNG VUI CÙNG
-              <br />
-              GIA ĐÌNH CHÚNG TÔI
-            </p>
-
-            <p className="mt-8 text-xs uppercase tracking-[0.3em] text-text/50">
-              Tại nhà hàng tiệc cưới
-            </p>
-            <p className="script-flourish mt-2 text-4xl text-champagne sm:text-5xl">
-              {receptionEvent.venueName ?? receptionEvent.title}
-            </p>
-
-            <div className="mt-8 space-y-0.5 text-xs uppercase tracking-[0.18em] text-text/60">
-              {receptionEvent.addressLines.map((line) => (
-                <p key={line}>{line}</p>
-              ))}
-            </div>
-
-            <div className="mt-8 flex justify-center divide-x divide-champagne/30 border-y border-champagne/30 py-3 text-xs uppercase tracking-[0.2em] text-ink">
-              <span className="px-4">{receptionChapter.label}</span>
-              <span className="px-4">{receptionChapter.date}</span>
-              <span className="px-4">{receptionEvent.time}</span>
-            </div>
-
-            <a
-              href={googleMapsDirectionsUrl(receptionEvent.fullAddress)}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="champagne-glow mt-9 inline-flex items-center gap-1.5 border border-champagne/40 px-5 py-2.5 text-[0.65rem] uppercase tracking-[0.25em] text-ink"
+        <LadiGroup top={265} left={1.4} width={429} height={463}>
+          <LadiGroup top={0} left={5.7} width={420} height={463}>
+            <LadiHeadline
+              top={0}
+              left={43}
+              width={334}
+              fontFamily="var(--font-heading)"
+              fontSize={15}
+              lineHeight={1.6}
+              color="#000"
+              textAlign="center"
+              textTransform="uppercase"
             >
-              <MapPin size={13} strokeWidth={1.5} />
-              Chỉ Đường
-            </a>
+              Trân trọng kính mời quý khách
+              <br />
+              đến dự buổi tiệc chung vui cùng gia đình chúng tôi tại
+            </LadiHeadline>
 
-            <OrchidSprig className="mx-auto mt-10 h-12 w-24 text-champagne/60" />
+            <LadiGroup top={66.5} left={0} width={420} height={99}>
+              <LadiHeadline
+                top={0}
+                left={6}
+                width={408}
+                fontFamily="var(--font-script-flourish)"
+                fontSize={28}
+                lineHeight={1.6}
+                color="var(--color-champagne)"
+                textAlign="center"
+              >
+                {receptionEvent.venueName ?? receptionEvent.title}
+              </LadiHeadline>
+            </LadiGroup>
 
-            <WaxSeal
-              className="mx-auto mt-6 h-12 w-12"
-              initials={`${initial(groomName)}${initial(brideName)}`}
-            />
-          </div>
+            <LadiGroup top={412} left={153} width={124} height={55} className="flex flex-col items-center">
+              <a
+                href={googleMapsDirectionsUrl(receptionEvent.fullAddress)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex flex-col items-center gap-1 text-champagne"
+              >
+                <ChevronRight size={20} strokeWidth={1.5} style={{ transform: 'rotate(90deg)' }} />
+                <span
+                  style={{
+                    fontFamily: 'var(--font-heading)',
+                    fontSize: 19,
+                    lineHeight: 1.6,
+                    textAlign: 'center',
+                    textTransform: 'uppercase',
+                  }}
+                >
+                  chỉ đường
+                </span>
+              </a>
+            </LadiGroup>
+          </LadiGroup>
 
-          <WaveCap flip />
-        </motion.div>
-      </div>
+          <LadiGroup
+            top={209}
+            left={50}
+            width={321}
+            height={51}
+            className="flex items-center justify-between border-y border-black divide-x divide-black"
+          >
+            <span
+              className="flex-1 text-center"
+              style={{ fontFamily: 'var(--font-heading)', fontSize: 20, lineHeight: 1.6, color: '#000' }}
+            >
+              {receptionChapter.label}
+            </span>
+            <span
+              className="flex-1 text-center"
+              style={{ fontFamily: 'var(--font-heading)', fontSize: 20, lineHeight: 1.6, color: '#000' }}
+            >
+              {receptionChapter.date}
+            </span>
+            <span
+              className="flex-1 text-center"
+              style={{ fontFamily: 'var(--font-heading)', fontSize: 20, lineHeight: 1.6, color: '#000' }}
+            >
+              {receptionEvent.time}
+            </span>
+          </LadiGroup>
+
+          <LadiGroup top={313} left={0} width={429} height={58}>
+            <LadiHeadline
+              top={0}
+              left={0}
+              width={192}
+              fontFamily='"EB Garamond", serif'
+              fontSize={15}
+              lineHeight={1.3}
+              color="#000"
+              textAlign="right"
+            >
+              NHÀ TRAI
+              <br />
+              {groomFather}
+              <br />
+              {groomMother}
+            </LadiHeadline>
+            <LadiLine top={0} left={208.7} width={1} height={58} color="#000" />
+            <LadiHeadline
+              top={0}
+              left={237.25}
+              width={192}
+              fontFamily='"EB Garamond", serif'
+              fontSize={15}
+              lineHeight={1.3}
+              color="#000"
+              textAlign="left"
+            >
+              NHÀ GÁI
+              <br />
+              {brideFather}
+              <br />
+              {brideMother}
+            </LadiHeadline>
+          </LadiGroup>
+
+          <LadiHeadline
+            top={175}
+            left={2.3}
+            width={408}
+            fontFamily="var(--font-heading)"
+            fontSize={16}
+            lineHeight={1.2}
+            letterSpacing={1}
+            color="#000"
+            textAlign="center"
+          >
+            {receptionEvent.addressLines.join(', ')}
+          </LadiHeadline>
+        </LadiGroup>
+      </LadiCanvas>
     </section>
   )
 }

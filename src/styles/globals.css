@@ -1,22 +1,27 @@
 @import 'tailwindcss';
 
 @theme {
-  /* Palette */
+  /* Palette — extracted from the Ladipage reference template's inline styles
+     (rgb(203,157,69) gold, rgb(241,243,244) near-white, rgb(131,111,111)
+     muted quote tone), not approximated. */
   --color-background: #faf8f5;
-  --color-champagne: #c9a977;
-  --color-champagne-dark: #ad8a5c;
-  --color-champagne-light: #e6d9c3;
+  --color-champagne: #cb9d45;
+  --color-champagne-dark: #a9812f;
+  --color-champagne-light: #e3cb99;
   --color-text: #4a4a4a;
   --color-ink: #2b2b2b;
   --color-white: #ffffff;
   --color-ivory-gold: #dcc9a3;
+  --color-offwhite: #f1f3f4;
+  --color-quote: #836f6f;
 
-  /* Typography */
-  --font-heading: var(--next-cormorant), 'Cormorant Garamond', Georgia, serif;
-  --font-script: var(--next-great-vibes), 'Great Vibes', cursive;
-  --font-script-flourish: var(--next-alex-brush), 'Alex Brush', cursive;
-  --font-body: var(--next-montserrat), Montserrat, system-ui, sans-serif;
-  --font-editorial: var(--next-playfair), 'Playfair Display', Georgia, serif;
+  /* Typography — the 4 real fonts loaded in src/lib/fonts.ts, matched from
+     the reference template's own @font-face declarations. */
+  --font-heading: var(--font-arno-pro), Georgia, serif;
+  --font-script: var(--font-vip-hastegi), cursive;
+  --font-script-flourish: var(--font-ghiocity), cursive;
+  --font-body: var(--font-open-sans), system-ui, sans-serif;
+  --font-editorial: var(--font-ecatherina), Georgia, serif;
 }
 
 html {

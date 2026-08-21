@@ -1,70 +1,28 @@
 'use client'
 
-import Image from 'next/image'
-import { motion } from 'framer-motion'
+import { LadiCanvas, LadiImage } from '@/components/ladi'
 import { endlessRomanceImages } from '@/lib/images'
 import { groomName, brideName } from '@/lib/weddingData'
+import { plasterTexture, ornamentQuoteB } from '@/lib/decor'
 
-const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1]
+const SECTION_HEIGHT = 1237
+const [wide, left1, right1, right2, left2, right3] = endlessRomanceImages
 
 export function PolaroidCollection() {
-  const [wide, tall, ...grid] = endlessRomanceImages
-
   return (
-    <section className="bg-white py-20 md:py-28">
-      <motion.p
-        initial={{ opacity: 0, y: 16 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-10%' }}
-        transition={{ duration: 0.9, ease: EASE }}
-        className="script-flourish mb-10 text-center text-5xl text-champagne md:mb-14 md:text-6xl"
-      >
-        Endless Romance
-      </motion.p>
+    <section className="relative" style={{ backgroundColor: '#e6e1d4' }}>
+      <LadiCanvas height={SECTION_HEIGHT}>
+        <LadiImage top={-24} left={0.4} width={420} height={972} src={plasterTexture} alt="" />
 
-      <div className="mx-auto max-w-4xl px-4">
-        <div className="grid grid-cols-2 gap-1.5 sm:gap-2">
-          {[wide, tall].map((src, i) => (
-            <motion.div
-              key={src}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-10%' }}
-              transition={{ duration: 0.9, delay: i * 0.12, ease: EASE }}
-              className="relative aspect-[4/5] overflow-hidden bg-champagne-light/30"
-            >
-              <Image
-                src={src}
-                alt={`${groomName} & ${brideName}`}
-                fill
-                className="photo-tone object-cover"
-                sizes="(max-width: 768px) 50vw, 480px"
-              />
-            </motion.div>
-          ))}
-        </div>
+        <LadiImage top={12} left={14} width={393} height={410} src={wide} alt={`${groomName} & ${brideName}`} priority />
+        <LadiImage top={428} left={14} width={393} height={128} src={ornamentQuoteB} alt="" />
 
-        <div className="mt-1.5 grid grid-cols-2 gap-1.5 sm:mt-2 sm:gap-2 md:grid-cols-4">
-          {grid.map((src, i) => (
-            <motion.div
-              key={src}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-10%' }}
-              transition={{ duration: 0.9, delay: i * 0.1, ease: EASE }}
-              className="relative aspect-square overflow-hidden bg-champagne-light/30"
-            >
-              <Image
-                src={src}
-                alt={`${groomName} & ${brideName}`}
-                fill
-                className="photo-tone object-cover"
-                sizes="(max-width: 768px) 50vw, 240px"
-              />
-            </motion.div>
-          ))}
-        </div>
-      </div>
+        <LadiImage top={528} left={13.8} width={228} height={398.5} src={left1} alt={`${groomName} & ${brideName}`} />
+        <LadiImage top={528} left={248.8} width={158} height={194} src={right1} alt={`${groomName} & ${brideName}`} />
+        <LadiImage top={728} left={248.8} width={158} height={198.5} src={right2} alt={`${groomName} & ${brideName}`} />
+        <LadiImage top={933} left={13.8} width={193} height={245} src={left2} alt={`${groomName} & ${brideName}`} />
+        <LadiImage top={933} left={213.8} width={193} height={245} src={right3} alt={`${groomName} & ${brideName}`} />
+      </LadiCanvas>
     </section>
   )
 }

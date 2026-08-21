@@ -1,0 +1,2843 @@
+[
+ {
+  "id": "IMAGE23",
+  "tag": "div",
+  "parent": null,
+  "section": "SECTION1",
+  "top": -5,
+  "left": 0,
+  "width": 420.222,
+  "height": 677.6,
+  "bgImage": "https://w.ladicdn.com/s750x1100/691804d3a89f3900120ca482/bg-20260626095830-buoq-.png",
+  "font": {}
+ },
+ {
+  "id": "IMAGE8",
+  "tag": "div",
+  "parent": null,
+  "section": "SECTION1",
+  "top": -5,
+  "left": 0,
+  "width": 420.225,
+  "height": 677.6,
+  "bgImage": "https://w.ladicdn.com/s800x1050/691804d3a89f3900120ca482/snaptikvn_7655703032440589589_12-20260713152429-i7uwe.jpg",
+  "font": {}
+ },
+ {
+  "id": "BOX35",
+  "tag": "div",
+  "parent": null,
+  "section": "SECTION1",
+  "top": 436.6,
+  "left": 0,
+  "width": 419.559,
+  "height": 236,
+  "font": {}
+ },
+ {
+  "id": "HEADLINE29",
+  "tag": "div",
+  "parent": null,
+  "section": "SECTION1",
+  "top": 626.594,
+  "left": 121.105,
+  "width": 181,
+  "font": {
+   "family": "MUZUViWSVAtSEFTVEVHSSPVEY",
+   "size": "28",
+   "color": "rgb(241, 243, 244)",
+   "letterSpacing": "5",
+   "textAlign": "center",
+   "lineHeight": "1"
+  },
+  "animation": {
+   "name": "fadeInUp",
+   "delay": "0.5s",
+   "duration": "1s"
+  },
+  "text": "23.10.2026"
+ },
+ {
+  "id": "IMAGE29",
+  "tag": "div",
+  "parent": null,
+  "section": "SECTION1",
+  "top": 517.6,
+  "left": -472.307,
+  "width": 160,
+  "height": 160,
+  "bgImage": "https://w.ladicdn.com/s500x500/691804d3a89f3900120ca482/-20260629035747-9b7oj.png",
+  "font": {},
+  "animation": {
+   "name": "fadeInLeft",
+   "delay": "1s",
+   "duration": "1s"
+  }
+ },
+ {
+  "id": "GROUP83",
+  "tag": "div",
+  "parent": null,
+  "section": "SECTION1",
+  "top": 510.524,
+  "left": 66.52,
+  "width": 286.96,
+  "height": 116.07,
+  "font": {}
+ },
+ {
+  "id": "IMAGE107",
+  "tag": "div",
+  "parent": "GROUP83",
+  "section": "SECTION1",
+  "top": 48.0085,
+  "left": 0,
+  "width": 105.96,
+  "height": 54.061,
+  "bgImage": "https://w.ladicdn.com/s450x400/691804d3a89f3900120ca482/and-20260713100716-0a0ww.png",
+  "font": {},
+  "animation": {
+   "name": "fadeInUp",
+   "delay": "1s",
+   "duration": "1s"
+  }
+ },
+ {
+  "id": "HEADLINE131",
+  "tag": "div",
+  "parent": "GROUP83",
+  "section": "SECTION1",
+  "top": 0,
+  "left": 12.0505,
+  "width": 224,
+  "font": {
+   "family": "QXJubBybyMaWdodERpcBsYXkubRm",
+   "size": "45",
+   "color": "rgb(241, 243, 244)",
+   "textAlign": "left",
+   "lineHeight": "1.6"
+  },
+  "animation": {
+   "name": "fadeInLeft",
+   "delay": "1s",
+   "duration": "1s"
+  },
+  "text": "Tae Hyun"
+ },
+ {
+  "id": "HEADLINE132",
+  "tag": "div",
+  "parent": "GROUP83",
+  "section": "SECTION1",
+  "top": 44.0695,
+  "left": 106.96,
+  "width": 180,
+  "font": {
+   "family": "QXJubBybyMaWdodERpcBsYXkubRm",
+   "size": "45",
+   "color": "rgb(241, 243, 244)",
+   "textAlign": "left",
+   "lineHeight": "1.6"
+  },
+  "animation": {
+   "name": "fadeInRight",
+   "delay": "1s",
+   "duration": "1s"
+  },
+  "text": "vân anh"
+ },
+ {
+  "id": "IMAGE6",
+  "tag": "div",
+  "parent": null,
+  "section": "SECTION2",
+  "top": 0,
+  "left": 0.5585,
+  "width": 418.883,
+  "height": 1026.6,
+  "bgImage": "https://w.ladicdn.com/s750x1450/691804d3a89f3900120ca482/_0026_clear-white-plaster-texture-pattern-copy-11-20251020184301-fkysx-20260531144422-dm9aa.png",
+  "font": {}
+ },
+ {
+  "id": "IMAGE22",
+  "tag": "div",
+  "parent": null,
+  "section": "SECTION2",
+  "top": 0,
+  "left": 0.263,
+  "width": 420.583,
+  "height": 993.202,
+  "bgImage": "https://w.ladicdn.com/s750x1350/691804d3a89f3900120ca482/bg3-20260626095400-nxq2e.png",
+  "font": {}
+ },
+ {
+  "id": "IMAGE9",
+  "tag": "div",
+  "parent": null,
+  "section": "SECTION2",
+  "top": 221.159,
+  "left": 9.8755,
+  "width": 400.249,
+  "height": 566.752,
+  "bgImage": "https://w.ladicdn.com/s750x900/691804d3a89f3900120ca482/paper2-20260629070245-90xkp.png",
+  "font": {}
+ },
+ {
+  "id": "IMAGE16",
+  "tag": "div",
+  "parent": null,
+  "section": "SECTION2",
+  "top": 480.697,
+  "left": -88.7595,
+  "width": 250.278,
+  "height": 358.405,
+  "bgImage": "https://w.ladicdn.com/s600x700/691804d3a89f3900120ca482/hhoa3-20260629070235-n1ibs.png",
+  "font": {}
+ },
+ {
+  "id": "GROUP19",
+  "tag": "div",
+  "parent": null,
+  "section": "SECTION2",
+  "top": 81.402,
+  "left": 17.4542,
+  "width": 397.073,
+  "height": 186.996,
+  "font": {}
+ },
+ {
+  "id": "IMAGE13",
+  "tag": "div",
+  "parent": "GROUP19",
+  "section": "SECTION2",
+  "top": 108,
+  "left": 317.551,
+  "width": 79.5225,
+  "height": 78.996,
+  "bgImage": "https://w.ladicdn.com/s400x400/691804d3a89f3900120ca482/ngoctrai-20260624092841-gjwic.png",
+  "font": {}
+ },
+ {
+  "id": "IMAGE14",
+  "tag": "div",
+  "parent": "GROUP19",
+  "section": "SECTION2",
+  "top": 136.604,
+  "left": 299.551,
+  "width": 49.9306,
+  "height": 49.6,
+  "bgImage": "https://w.ladicdn.com/s350x350/691804d3a89f3900120ca482/ngoctrai-20260624092841-gjwic.png",
+  "font": {}
+ },
+ {
+  "id": "IMAGE17",
+  "tag": "div",
+  "parent": "GROUP19",
+  "section": "SECTION2",
+  "top": 0,
+  "left": 0,
+  "width": 37.8506,
+  "height": 37.6,
+  "bgImage": "https://w.ladicdn.com/s350x350/691804d3a89f3900120ca482/ngoctrai-20260624092841-gjwic.png",
+  "font": {}
+ },
+ {
+  "id": "BOX2",
+  "tag": "div",
+  "parent": null,
+  "section": "SECTION2",
+  "top": 10.398,
+  "left": -199.441,
+  "width": 200,
+  "height": 772,
+  "font": {}
+ },
+ {
+  "id": "GROUP13",
+  "tag": "div",
+  "parent": null,
+  "section": "SECTION2",
+  "top": 53.2744,
+  "left": 114,
+  "width": 200,
+  "height": 113.128,
+  "font": {},
+  "animation": {
+   "name": "fadeIn",
+   "delay": "2s",
+   "duration": "1s"
+  }
+ },
+ {
+  "id": "IMAGE27",
+  "tag": "div",
+  "parent": "GROUP13",
+  "section": "SECTION2",
+  "top": 0,
+  "left": 0,
+  "width": 200,
+  "height": 113.124,
+  "bgImage": "https://w.ladicdn.com/s550x450/691804d3a89f3900120ca482/logo-20260626104549-4tpqe.png",
+  "font": {},
+  "animation": {
+   "name": "fadeIn",
+   "delay": "1s",
+   "duration": "1s"
+  }
+ },
+ {
+  "id": "HEADLINE27",
+  "tag": "div",
+  "parent": "GROUP13",
+  "section": "SECTION2",
+  "top": 17.1276,
+  "left": 21.291,
+  "width": 72,
+  "font": {
+   "family": "QXJubBybyMaWdodERpcBsYXkubRm",
+   "size": "60",
+   "color": "rgb(203, 157, 69)",
+   "letterSpacing": "0",
+   "textAlign": "center",
+   "lineHeight": "1.6"
+  },
+  "animation": {
+   "name": "fadeInLeft",
+   "delay": "2s",
+   "duration": "1.25s"
+  },
+  "text": "t /"
+ },
+ {
+  "id": "HEADLINE28",
+  "tag": "div",
+  "parent": "GROUP13",
+  "section": "SECTION2",
+  "top": 17.1276,
+  "left": 98.291,
+  "width": 72,
+  "font": {
+   "family": "QXJubBybyMaWdodERpcBsYXkubRm",
+   "size": "60",
+   "color": "rgb(203, 157, 69)",
+   "letterSpacing": "0",
+   "textAlign": "center",
+   "lineHeight": "1.6"
+  },
+  "animation": {
+   "name": "fadeInLeft",
+   "delay": "2s",
+   "duration": "1.25s"
+  },
+  "text": "A /"
+ },
+ {
+  "id": "GROUP91",
+  "tag": "div",
+  "parent": null,
+  "section": "SECTION2",
+  "top": 265.046,
+  "left": 1.36585,
+  "width": 429.25,
+  "height": 463.11,
+  "font": {}
+ },
+ {
+  "id": "GROUP84",
+  "tag": "div",
+  "parent": "GROUP91",
+  "section": "SECTION2",
+  "top": 0,
+  "left": 5.7279,
+  "width": 420,
+  "height": 463.11,
+  "font": {}
+ },
+ {
+  "id": "HEADLINE133",
+  "tag": "div",
+  "parent": "GROUP84",
+  "section": "SECTION2",
+  "top": 0,
+  "left": 43,
+  "width": 334,
+  "font": {
+   "family": "QXJubBybyMaWdodERpcBsYXkubRm",
+   "size": "15",
+   "color": "rgb(0, 0, 0)",
+   "letterSpacing": "0",
+   "textAlign": "center",
+   "lineHeight": "1.6"
+  },
+  "animation": {
+   "name": "fadeInUp",
+   "delay": "1s",
+   "duration": "1.25s"
+  },
+  "text": "trân trọng kính mời quý khách ĐẾN DỰ BUỔI TIỆC CHUNG VUI CÙNG GIA ĐÌNH CHÚNG TÔI TẠI /"
+ },
+ {
+  "id": "GROUP85",
+  "tag": "a",
+  "parent": "GROUP84",
+  "section": "SECTION2",
+  "top": 412.11,
+  "left": 152.776,
+  "width": 124,
+  "height": 55,
+  "font": {},
+  "animation": {
+   "name": "pulse",
+   "delay": "1s",
+   "duration": "1s"
+  }
+ },
+ {
+  "id": "SHAPE4",
+  "tag": "div",
+  "parent": "GROUP85",
+  "section": "SECTION2",
+  "top": 0,
+  "left": 54.9997,
+  "width": 13.4566,
+  "height": 25,
+  "font": {}
+ },
+ {
+  "id": "HEADLINE134",
+  "tag": "div",
+  "parent": "GROUP85",
+  "section": "SECTION2",
+  "top": 25,
+  "left": 0,
+  "width": 124,
+  "font": {
+   "family": "QXJubBybyMaWdodERpcBsYXkubRm",
+   "size": "19",
+   "color": "rgb(203, 157, 69)",
+   "letterSpacing": "0",
+   "textAlign": "center",
+   "lineHeight": "1.6"
+  },
+  "animation": {
+   "name": "fadeInUp",
+   "delay": "1s",
+   "duration": "1s"
+  },
+  "text": "chỉ đường /"
+ },
+ {
+  "id": "GROUP86",
+  "tag": "div",
+  "parent": "GROUP84",
+  "section": "SECTION2",
+  "top": 66.5,
+  "left": 0,
+  "width": 420,
+  "height": 99,
+  "font": {},
+  "animation": {
+   "name": "fadeInRight",
+   "delay": "1s",
+   "duration": "1s"
+  }
+ },
+ {
+  "id": "HEADLINE135",
+  "tag": "div",
+  "parent": "GROUP86",
+  "section": "SECTION2",
+  "top": 0,
+  "left": 0,
+  "width": 408,
+  "font": {
+   "family": "RhJTNJVFlBTkRESElTVEhFUyJVEFMSUMuTRG",
+   "size": "28",
+   "color": "rgb(203, 157, 69)",
+   "letterSpacing": "0",
+   "textAlign": "center",
+   "lineHeight": "1.6"
+  },
+  "text": "The Mira Central Park /"
+ },
+ {
+  "id": "HEADLINE136",
+  "tag": "div",
+  "parent": "GROUP86",
+  "section": "SECTION2",
+  "top": 70,
+  "left": 12,
+  "width": 408,
+  "font": {
+   "family": "QXJubBybyMaWdodERpcBsYXkubRm",
+   "size": "24",
+   "color": "rgb(0, 0, 0)",
+   "letterSpacing": "1",
+   "textAlign": "center",
+   "lineHeight": "1.2"
+  },
+  "text": "SẢNH ROSE (Tầng Trệt) /"
+ },
+ {
+  "id": "HEADLINE137",
+  "tag": "div",
+  "parent": "GROUP84",
+  "section": "SECTION2",
+  "top": 266.11,
+  "left": 0.0091,
+  "width": 408,
+  "font": {
+   "family": "QXJubBybyMaWdodERpcBsYXkubRm",
+   "size": "16",
+   "color": "rgb(0, 0, 0)",
+   "letterSpacing": "1",
+   "textAlign": "center",
+   "lineHeight": "1.6"
+  },
+  "animation": {
+   "name": "fadeInRight",
+   "delay": "1s",
+   "duration": "1.25s"
+  },
+  "text": "(Nhằm ngày 20 tháng 06 năm Bính Ngọ) /"
+ },
+ {
+  "id": "GROUP87",
+  "tag": "div",
+  "parent": "GROUP91",
+  "section": "SECTION2",
+  "top": 209.428,
+  "left": 49.998,
+  "width": 320.587,
+  "height": 50.5833,
+  "font": {},
+  "animation": {
+   "name": "fadeInLeft",
+   "delay": "1s",
+   "duration": "1s"
+  }
+ },
+ {
+  "id": "HEADLINE138",
+  "tag": "div",
+  "parent": "GROUP87",
+  "section": "SECTION2",
+  "top": 12.3565,
+  "left": 0,
+  "width": 105,
+  "font": {
+   "family": "QXJubBybyMaWdodERpcBsYXkubRm",
+   "size": "20",
+   "color": "rgb(0, 0, 0)",
+   "textAlign": "center",
+   "lineHeight": "1.6"
+  },
+  "text": "Chủ nhật"
+ },
+ {
+  "id": "HEADLINE139",
+  "tag": "div",
+  "parent": "GROUP87",
+  "section": "SECTION2",
+  "top": 12.3565,
+  "left": 113.583,
+  "width": 110,
+  "font": {
+   "family": "QXJubBybyMaWdodERpcBsYXkubRm",
+   "size": "20",
+   "color": "rgb(0, 0, 0)",
+   "textAlign": "center",
+   "lineHeight": "1.6"
+  },
+  "text": "02 . 08 . 2026"
+ },
+ {
+  "id": "HEADLINE140",
+  "tag": "div",
+  "parent": "GROUP87",
+  "section": "SECTION2",
+  "top": 12.3565,
+  "left": 230.587,
+  "width": 90,
+  "font": {
+   "family": "QXJubBybyMaWdodERpcBsYXkubRm",
+   "size": "20",
+   "color": "rgb(0, 0, 0)",
+   "textAlign": "center",
+   "lineHeight": "1.6"
+  },
+  "text": "17:30"
+ },
+ {
+  "id": "LINE15",
+  "tag": "div",
+  "parent": "GROUP87",
+  "section": "SECTION2",
+  "top": 0,
+  "left": 21.5,
+  "width": 285,
+  "font": {}
+ },
+ {
+  "id": "LINE16",
+  "tag": "div",
+  "parent": "GROUP87",
+  "section": "SECTION2",
+  "top": 33.5833,
+  "left": 21.5,
+  "width": 285,
+  "font": {}
+ },
+ {
+  "id": "LINE17",
+  "tag": "div",
+  "parent": "GROUP87",
+  "section": "SECTION2",
+  "top": 8.1715,
+  "left": 223,
+  "height": 34,
+  "font": {}
+ },
+ {
+  "id": "LINE18",
+  "tag": "div",
+  "parent": "GROUP87",
+  "section": "SECTION2",
+  "top": 8.1715,
+  "left": 98.5227,
+  "height": 34,
+  "font": {}
+ },
+ {
+  "id": "GROUP90",
+  "tag": "div",
+  "parent": "GROUP91",
+  "section": "SECTION2",
+  "top": 313.155,
+  "left": 0,
+  "width": 429.25,
+  "height": 58,
+  "font": {}
+ },
+ {
+  "id": "HEADLINE143",
+  "tag": "div",
+  "parent": "GROUP90",
+  "section": "SECTION2",
+  "top": 0,
+  "left": 237.25,
+  "width": 192,
+  "font": {
+   "family": "\"EB Garamond\", serif",
+   "size": "15",
+   "color": "rgb(0, 0, 0)",
+   "letterSpacing": "0",
+   "textAlign": "left",
+   "lineHeight": "1.3"
+  },
+  "animation": {
+   "name": "fadeInRight",
+   "delay": "1s",
+   "duration": "1s"
+  },
+  "text": "NHÀ GÁI / Ông. Phạm Văn Trang / Bà. Nguyễn Thị Ngọc Bích /"
+ },
+ {
+  "id": "HEADLINE144",
+  "tag": "div",
+  "parent": "GROUP90",
+  "section": "SECTION2",
+  "top": 0,
+  "left": 0,
+  "width": 192,
+  "font": {
+   "family": "\"EB Garamond\", serif",
+   "size": "15",
+   "color": "rgb(0, 0, 0)",
+   "letterSpacing": "0",
+   "textAlign": "right",
+   "lineHeight": "1.3"
+  },
+  "animation": {
+   "name": "fadeInLeft",
+   "delay": "1s",
+   "duration": "1s"
+  },
+  "text": "NHÀ TRAI / Ông. Phạm Ngọc Tuấn / Bà. Nguyễn Thị Thành /"
+ },
+ {
+  "id": "LINE19",
+  "tag": "div",
+  "parent": "GROUP90",
+  "section": "SECTION2",
+  "top": 0,
+  "left": 208.703,
+  "height": 58,
+  "font": {},
+  "animation": {
+   "name": "fadeIn",
+   "delay": "1s",
+   "duration": "1s"
+  }
+ },
+ {
+  "id": "HEADLINE145",
+  "tag": "div",
+  "parent": "GROUP91",
+  "section": "SECTION2",
+  "top": 175.153,
+  "left": 2.3495,
+  "width": 408,
+  "font": {
+   "family": "QXJubBybyMaWdodERpcBsYXkubRm",
+   "size": "16",
+   "color": "rgb(0, 0, 0)",
+   "letterSpacing": "1",
+   "textAlign": "center",
+   "lineHeight": "1.2"
+  },
+  "animation": {
+   "name": "fadeInUp",
+   "delay": "1s",
+   "duration": "1s"
+  },
+  "text": "28/16 Nguyễn Ái Quốc, KP 4, Tam Hiệp, Đồng Nai /"
+ },
+ {
+  "id": "IMAGE21",
+  "tag": "div",
+  "parent": null,
+  "section": "SECTION3",
+  "top": 0,
+  "left": 0.559,
+  "width": 419.83,
+  "height": 981.6,
+  "bgImage": "https://w.ladicdn.com/s750x1300/691804d3a89f3900120ca482/_0026_clear-white-plaster-texture-pattern-copy-11-20251020184301-fkysx-20260531144422-dm9aa.png",
+  "font": {}
+ },
+ {
+  "id": "IMAGE38",
+  "tag": "div",
+  "parent": null,
+  "section": "SECTION3",
+  "top": 0,
+  "left": 11.597,
+  "width": 195.074,
+  "height": 292.611,
+  "bgImage": "https://w.ladicdn.com/s550x650/691804d3a89f3900120ca482/snaptikvn_7655703032440589589_5-20260713152425--mzio.jpg",
+  "font": {},
+  "animation": {
+   "name": "fadeInLeft",
+   "delay": "1s",
+   "duration": "1s"
+  }
+ },
+ {
+  "id": "IMAGE39",
+  "tag": "div",
+  "parent": null,
+  "section": "SECTION3",
+  "top": 0,
+  "left": 215.449,
+  "width": 195.074,
+  "height": 292.611,
+  "bgImage": "https://w.ladicdn.com/s550x700/691804d3a89f3900120ca482/snaptikvn_7655703032440589589_9-20260713152429-umq80.jpg",
+  "font": {},
+  "animation": {
+   "name": "fadeInRight",
+   "delay": "1s",
+   "duration": "1s"
+  }
+ },
+ {
+  "id": "IMAGE40",
+  "tag": "div",
+  "parent": null,
+  "section": "SECTION3",
+  "top": 301.389,
+  "left": 11.597,
+  "width": 195.074,
+  "height": 292.611,
+  "bgImage": "https://w.ladicdn.com/s550x650/691804d3a89f3900120ca482/snaptikvn_7655703032440589589_13-20260713152429-a_fxf.jpg",
+  "font": {},
+  "animation": {
+   "name": "fadeInLeft",
+   "delay": "1s",
+   "duration": "1s"
+  }
+ },
+ {
+  "id": "IMAGE41",
+  "tag": "div",
+  "parent": null,
+  "section": "SECTION3",
+  "top": 301.389,
+  "left": 215.449,
+  "width": 195.074,
+  "height": 292.611,
+  "bgImage": "https://w.ladicdn.com/s550x650/691804d3a89f3900120ca482/snaptikvn_7655703032440589589_11-20260713152429-wpqvk.jpg",
+  "font": {},
+  "animation": {
+   "name": "fadeInRight",
+   "delay": "1s",
+   "duration": "1s"
+  }
+ },
+ {
+  "id": "BOX5",
+  "tag": "div",
+  "parent": null,
+  "section": "SECTION3",
+  "top": 101.389,
+  "left": 159.518,
+  "width": 103.481,
+  "height": 395,
+  "font": {}
+ },
+ {
+  "id": "HEADLINE44",
+  "tag": "div",
+  "parent": null,
+  "section": "SECTION3",
+  "top": 122.389,
+  "left": 159.258,
+  "width": 104,
+  "font": {
+   "family": "QXJubBybyMaWdodERpcBsYXkubRm",
+   "size": "14",
+   "color": "rgb(0, 0, 0)",
+   "letterSpacing": "2",
+   "textAlign": "center",
+   "lineHeight": "1.6"
+  },
+  "animation": {
+   "name": "fadeInLeft",
+   "delay": "2s",
+   "duration": "1.25s"
+  },
+  "text": "save / the date /"
+ },
+ {
+  "id": "GROUP17",
+  "tag": "div",
+  "parent": null,
+  "section": "SECTION3",
+  "top": 179.389,
+  "left": 158,
+  "width": 106,
+  "height": 222.411,
+  "font": {}
+ },
+ {
+  "id": "HEADLINE45",
+  "tag": "div",
+  "parent": "GROUP17",
+  "section": "SECTION3",
+  "top": 0,
+  "left": 2,
+  "width": 104,
+  "font": {
+   "family": "QXJubBybyMaWdodERpcBsYXkubRm",
+   "size": "50",
+   "color": "rgb(203, 157, 69)",
+   "letterSpacing": "3",
+   "textAlign": "center",
+   "lineHeight": "1.6"
+  },
+  "animation": {
+   "name": "fadeInLeft",
+   "delay": "2s",
+   "duration": "1.25s"
+  },
+  "text": "23 /"
+ },
+ {
+  "id": "HEADLINE46",
+  "tag": "div",
+  "parent": "GROUP17",
+  "section": "SECTION3",
+  "top": 68.5,
+  "left": 0,
+  "width": 104,
+  "font": {
+   "family": "QXJubBybyMaWdodERpcBsYXkubRm",
+   "size": "50",
+   "color": "rgb(203, 157, 69)",
+   "letterSpacing": "3",
+   "textAlign": "center",
+   "lineHeight": "1.6"
+  },
+  "animation": {
+   "name": "fadeInLeft",
+   "delay": "2s",
+   "duration": "1.25s"
+  },
+  "text": "10 /"
+ },
+ {
+  "id": "HEADLINE47",
+  "tag": "div",
+  "parent": "GROUP17",
+  "section": "SECTION3",
+  "top": 142.411,
+  "left": 2,
+  "width": 104,
+  "font": {
+   "family": "QXJubBybyMaWdodERpcBsYXkubRm",
+   "size": "50",
+   "color": "rgb(203, 157, 69)",
+   "letterSpacing": "3",
+   "textAlign": "center",
+   "lineHeight": "1.6"
+  },
+  "animation": {
+   "name": "fadeInLeft",
+   "delay": "2s",
+   "duration": "1.25s"
+  },
+  "text": "26 /"
+ },
+ {
+  "id": "LINE6",
+  "tag": "div",
+  "parent": "GROUP17",
+  "section": "SECTION3",
+  "top": 62,
+  "left": 14.482,
+  "width": 78,
+  "font": {}
+ },
+ {
+  "id": "LINE7",
+  "tag": "div",
+  "parent": "GROUP17",
+  "section": "SECTION3",
+  "top": 131.5,
+  "left": 13,
+  "width": 78,
+  "font": {}
+ },
+ {
+  "id": "HEADLINE48",
+  "tag": "div",
+  "parent": null,
+  "section": "SECTION3",
+  "top": 410.389,
+  "left": 159,
+  "width": 104,
+  "font": {
+   "family": "QXJubBybyMaWdodERpcBsYXkubRm",
+   "size": "14",
+   "color": "rgb(0, 0, 0)",
+   "letterSpacing": "2",
+   "textAlign": "center",
+   "lineHeight": "1.6"
+  },
+  "animation": {
+   "name": "fadeInLeft",
+   "delay": "2s",
+   "duration": "1.25s"
+  },
+  "text": "Tae Hyun / & / Vân Anh /"
+ },
+ {
+  "id": "BOX6",
+  "tag": "div",
+  "parent": null,
+  "section": "SECTION3",
+  "top": 185.8,
+  "left": 172,
+  "width": 79,
+  "height": 199,
+  "font": {},
+  "animation": {
+   "name": "fadeIn",
+   "delay": "1s",
+   "duration": "1s"
+  }
+ },
+ {
+  "id": "IMAGE43",
+  "tag": "div",
+  "parent": null,
+  "section": "SECTION3",
+  "top": 647,
+  "left": 49.719,
+  "width": 234.161,
+  "height": 301.6,
+  "bgImage": "https://w.ladicdn.com/s550x650/691804d3a89f3900120ca482/text2-20260629052851-w8nq2.png",
+  "font": {},
+  "animation": {
+   "name": "fadeIn",
+   "delay": "1s",
+   "duration": "1s"
+  }
+ },
+ {
+  "id": "HEADLINE51",
+  "tag": "div",
+  "parent": null,
+  "section": "SECTION3",
+  "top": 677,
+  "left": 251,
+  "width": 132,
+  "font": {
+   "family": "QXJubBybyMaWdodERpcBsYXkubRm",
+   "size": "13",
+   "color": "rgb(131, 111, 111)",
+   "letterSpacing": "0",
+   "textAlign": "left",
+   "lineHeight": "1.5"
+  },
+  "animation": {
+   "name": "fadeInRight",
+   "delay": "2s",
+   "duration": "1.25s"
+  },
+  "text": "Some dreams are meant to last forever, just like true love. When two hearts stay faithful through every season, forever becomes more than / a promise—it becomes reality. /"
+ },
+ {
+  "id": "IMAGE89",
+  "tag": "div",
+  "parent": null,
+  "section": "SECTION8",
+  "top": 0,
+  "left": 0,
+  "width": 419.83,
+  "height": 759.199,
+  "bgImage": "https://w.ladicdn.com/s750x1400/691804d3a89f3900120ca482/_0026_clear-white-plaster-texture-pattern-copy-11-20251020184301-fkysx-20260531144422-dm9aa.png",
+  "font": {}
+ },
+ {
+  "id": "GROUP82",
+  "tag": "div",
+  "parent": null,
+  "section": "SECTION8",
+  "top": -36.532,
+  "left": -13.9518,
+  "width": 433.223,
+  "height": 795.731,
+  "font": {}
+ },
+ {
+  "id": "IMAGE90",
+  "tag": "div",
+  "parent": "GROUP82",
+  "section": "SECTION8",
+  "top": 0,
+  "left": 0,
+  "width": 433.223,
+  "height": 795.731,
+  "bgImage": "https://w.ladicdn.com/s800x1150/691804d3a89f3900120ca482/vai-20260629075836-izqoi.png",
+  "font": {}
+ },
+ {
+  "id": "GROUP67",
+  "tag": "div",
+  "parent": "GROUP82",
+  "section": "SECTION8",
+  "top": 36.532,
+  "left": 55.1658,
+  "width": 371.656,
+  "height": 422.2,
+  "font": {},
+  "animation": {
+   "name": "fadeInDown",
+   "delay": "1s",
+   "duration": "1s"
+  }
+ },
+ {
+  "id": "GROUP68",
+  "tag": "div",
+  "parent": "GROUP67",
+  "section": "SECTION8",
+  "top": 0,
+  "left": 0,
+  "width": 371.656,
+  "height": 422.2,
+  "font": {}
+ },
+ {
+  "id": "IMAGE91",
+  "tag": "div",
+  "parent": "GROUP68",
+  "section": "SECTION8",
+  "top": 22.4042,
+  "left": 38.48,
+  "width": 266.897,
+  "height": 262.107,
+  "bgImage": "https://w.ladicdn.com/s700x600/691804d3a89f3900120ca482/snaptikvn_7655703032440589589_2-20260713152425-idhhu.jpg",
+  "font": {}
+ },
+ {
+  "id": "IMAGE92",
+  "tag": "div",
+  "parent": "GROUP68",
+  "section": "SECTION8",
+  "top": 0,
+  "left": 0,
+  "width": 371.656,
+  "height": 422.2,
+  "bgImage": "https://w.ladicdn.com/s700x750/691804d3a89f3900120ca482/khung-anh-20260629081420-lqc1u.png",
+  "font": {}
+ },
+ {
+  "id": "HEADLINE117",
+  "tag": "div",
+  "parent": "GROUP67",
+  "section": "SECTION8",
+  "top": 307.4,
+  "left": 23.26,
+  "width": 302,
+  "font": {
+   "family": "QXJubBybyMaWdodERpcBsYXkubRm",
+   "size": "30",
+   "color": "rgb(203, 157, 69)",
+   "letterSpacing": "7",
+   "textAlign": "center",
+   "lineHeight": "1.2"
+  },
+  "animation": {
+   "name": "fadeInLeft",
+   "delay": "1s",
+   "duration": "1.25s"
+  },
+  "text": "love forever /"
+ },
+ {
+  "id": "IMAGE93",
+  "tag": "div",
+  "parent": null,
+  "section": "SECTION8",
+  "top": 298.408,
+  "left": 349.477,
+  "width": 79.5225,
+  "height": 78.996,
+  "bgImage": "https://w.ladicdn.com/s400x400/691804d3a89f3900120ca482/ngoctrai-20260624092841-gjwic.png",
+  "font": {}
+ },
+ {
+  "id": "IMAGE94",
+  "tag": "div",
+  "parent": null,
+  "section": "SECTION8",
+  "top": 138.2,
+  "left": 23.8684,
+  "width": 37.8506,
+  "height": 37.6,
+  "bgImage": "https://w.ladicdn.com/s350x350/691804d3a89f3900120ca482/ngoctrai-20260624092841-gjwic.png",
+  "font": {}
+ },
+ {
+  "id": "IMAGE95",
+  "tag": "div",
+  "parent": null,
+  "section": "SECTION8",
+  "top": 391.8,
+  "left": 5.2868,
+  "width": 49.9306,
+  "height": 49.6,
+  "bgImage": "https://w.ladicdn.com/s350x350/691804d3a89f3900120ca482/ngoctrai-20260624092841-gjwic.png",
+  "font": {}
+ },
+ {
+  "id": "IMAGE96",
+  "tag": "div",
+  "parent": null,
+  "section": "SECTION8",
+  "top": 107.648,
+  "left": 854.964,
+  "width": 64.7397,
+  "height": 66.5524,
+  "bgImage": "https://w.ladicdn.com/s400x400/691804d3a89f3900120ca482/hand-20260630021148-4jhg-.png",
+  "font": {},
+  "animation": {
+   "name": "fadeInDown",
+   "delay": "1s",
+   "duration": "1s"
+  }
+ },
+ {
+  "id": "GROUP69",
+  "tag": "div",
+  "parent": null,
+  "section": "SECTION8",
+  "top": -16.707,
+  "left": 675.045,
+  "width": 420.068,
+  "height": 125.121,
+  "font": {},
+  "animation": {
+   "name": "fadeInRight",
+   "delay": "1s",
+   "duration": "1s"
+  }
+ },
+ {
+  "id": "IMAGE97",
+  "tag": "div",
+  "parent": "GROUP69",
+  "section": "SECTION8",
+  "top": 0,
+  "left": 0,
+  "width": 420.068,
+  "height": 125.121,
+  "bgImage": "https://w.ladicdn.com/s750x450/691804d3a89f3900120ca482/1-20260630041821-q8x0g.png",
+  "font": {}
+ },
+ {
+  "id": "GROUP70",
+  "tag": "div",
+  "parent": "GROUP69",
+  "section": "SECTION8",
+  "top": 15.107,
+  "left": 47.118,
+  "width": 330.342,
+  "height": 100,
+  "font": {}
+ },
+ {
+  "id": "HEADLINE118",
+  "tag": "div",
+  "parent": "GROUP70",
+  "section": "SECTION8",
+  "top": 0,
+  "left": 4.3417,
+  "width": 326,
+  "font": {
+   "family": "QkhOIEJQIEVDQVRIRVJJTkEgTUVESVVNICgxKSPVEY",
+   "size": "20",
+   "color": "rgb(203, 157, 69)",
+   "letterSpacing": "0",
+   "textAlign": "center",
+   "lineHeight": "1.2"
+  },
+  "animation": {
+   "name": "fadeInLeft",
+   "delay": "2s",
+   "duration": "1.25s"
+  },
+  "text": "Gặp gỡ và bắt đầu /"
+ },
+ {
+  "id": "HEADLINE119",
+  "tag": "div",
+  "parent": "GROUP70",
+  "section": "SECTION8",
+  "top": 55,
+  "left": 0,
+  "width": 325,
+  "font": {
+   "family": "QXJubBybyMaWdodERpcBsYXkubRm",
+   "size": "16",
+   "color": "rgb(131, 111, 111)",
+   "letterSpacing": "0",
+   "textAlign": "center",
+   "lineHeight": "1.4"
+  },
+  "animation": {
+   "name": "fadeInLeft",
+   "delay": "2s",
+   "duration": "1.25s"
+  },
+  "text": "Một cuộc gặp gỡ tình cờ đã mở ra / câu chuyện của chúng ta /"
+ },
+ {
+  "id": "GROUP71",
+  "tag": "div",
+  "parent": null,
+  "section": "SECTION8",
+  "top": 164.319,
+  "left": 674.68,
+  "width": 420.068,
+  "height": 125.121,
+  "font": {},
+  "animation": {
+   "name": "fadeInLeft",
+   "delay": "1s",
+   "duration": "1s"
+  }
+ },
+ {
+  "id": "IMAGE98",
+  "tag": "div",
+  "parent": "GROUP71",
+  "section": "SECTION8",
+  "top": 0,
+  "left": 0,
+  "width": 420.068,
+  "height": 125.121,
+  "bgImage": "https://w.ladicdn.com/s750x450/691804d3a89f3900120ca482/1-20260630041821-q8x0g.png",
+  "font": {}
+ },
+ {
+  "id": "GROUP72",
+  "tag": "div",
+  "parent": "GROUP71",
+  "section": "SECTION8",
+  "top": 19.277,
+  "left": 47.2371,
+  "width": 325.055,
+  "height": 96.607,
+  "font": {}
+ },
+ {
+  "id": "HEADLINE120",
+  "tag": "div",
+  "parent": "GROUP72",
+  "section": "SECTION8",
+  "top": 0,
+  "left": 0,
+  "width": 325,
+  "font": {
+   "family": "QkhOIEJQIEVDQVRIRVJJTkEgTUVESVVNICgxKSPVEY",
+   "size": "20",
+   "color": "rgb(203, 157, 69)",
+   "letterSpacing": "0",
+   "textAlign": "center",
+   "lineHeight": "1.2"
+  },
+  "animation": {
+   "name": "fadeInLeft",
+   "delay": "2s",
+   "duration": "1.25s"
+  },
+  "text": "Đồng hành & yêu thương /"
+ },
+ {
+  "id": "HEADLINE121",
+  "tag": "div",
+  "parent": "GROUP72",
+  "section": "SECTION8",
+  "top": 51.607,
+  "left": 0.0545,
+  "width": 325,
+  "font": {
+   "family": "QXJubBybyMaWdodERpcBsYXkubRm",
+   "size": "16",
+   "color": "rgb(131, 111, 111)",
+   "letterSpacing": "0",
+   "textAlign": "center",
+   "lineHeight": "1.4"
+  },
+  "animation": {
+   "name": "fadeInLeft",
+   "delay": "2s",
+   "duration": "1.25s"
+  },
+  "text": "Cùng nhau vượt qua thử thách / chia sẻ niềm vui, nỗi buồn /"
+ },
+ {
+  "id": "IMAGE99",
+  "tag": "div",
+  "parent": null,
+  "section": "SECTION8",
+  "top": 399.602,
+  "left": 558.873,
+  "width": 329.688,
+  "height": 92.1945,
+  "bgImage": "https://w.ladicdn.com/s650x400/691804d3a89f3900120ca482/dresscode-20260630043903-azcgk.png",
+  "font": {},
+  "animation": {
+   "name": "fadeInUp",
+   "delay": "1s",
+   "duration": "1s"
+  }
+ },
+ {
+  "id": "GROUP73",
+  "tag": "div",
+  "parent": null,
+  "section": "SECTION8",
+  "top": 470.795,
+  "left": 614.68,
+  "width": 256.385,
+  "height": 55,
+  "font": {},
+  "animation": {
+   "name": "fadeInUp",
+   "delay": "1s",
+   "duration": "1s"
+  }
+ },
+ {
+  "id": "BOX31",
+  "tag": "div",
+  "parent": "GROUP73",
+  "section": "SECTION8",
+  "top": 0,
+  "left": 0,
+  "width": 55.0001,
+  "height": 55,
+  "font": {}
+ },
+ {
+  "id": "BOX32",
+  "tag": "div",
+  "parent": "GROUP73",
+  "section": "SECTION8",
+  "top": 0,
+  "left": 67.692,
+  "width": 55.0001,
+  "height": 55,
+  "font": {}
+ },
+ {
+  "id": "BOX33",
+  "tag": "div",
+  "parent": "GROUP73",
+  "section": "SECTION8",
+  "top": 0,
+  "left": 134.539,
+  "width": 55.0001,
+  "height": 55,
+  "font": {}
+ },
+ {
+  "id": "BOX34",
+  "tag": "div",
+  "parent": "GROUP73",
+  "section": "SECTION8",
+  "top": 0,
+  "left": 201.385,
+  "width": 55.0001,
+  "height": 55,
+  "font": {}
+ },
+ {
+  "id": "HEADLINE122",
+  "tag": "div",
+  "parent": null,
+  "section": "SECTION8",
+  "top": 431.2,
+  "left": 51.6602,
+  "width": 302,
+  "font": {
+   "family": "QXJubBybyMaWdodERpcBsYXkubRm",
+   "size": "24",
+   "color": "rgb(131, 111, 111)",
+   "letterSpacing": "0",
+   "textAlign": "center",
+   "lineHeight": "1.2"
+  },
+  "animation": {
+   "name": "fadeInRight",
+   "delay": "1s",
+   "duration": "1.25s"
+  },
+  "text": "Two hearts /"
+ },
+ {
+  "id": "HEADLINE123",
+  "tag": "div",
+  "parent": null,
+  "section": "SECTION8",
+  "top": 505.2,
+  "left": 51.6602,
+  "width": 302,
+  "font": {
+   "family": "QXJubBybyMaWdodERpcBsYXkubRm",
+   "size": "24",
+   "color": "rgb(131, 111, 111)",
+   "letterSpacing": "0",
+   "textAlign": "center",
+   "lineHeight": "1.2"
+  },
+  "animation": {
+   "name": "fadeInLeft",
+   "delay": "1s",
+   "duration": "1.25s"
+  },
+  "text": "One journey /"
+ },
+ {
+  "id": "HEADLINE124",
+  "tag": "div",
+  "parent": null,
+  "section": "SECTION8",
+  "top": 577.2,
+  "left": 51.6602,
+  "width": 302,
+  "font": {
+   "family": "QXJubBybyMaWdodERpcBsYXkubRm",
+   "size": "24",
+   "color": "rgb(131, 111, 111)",
+   "letterSpacing": "0",
+   "textAlign": "center",
+   "lineHeight": "1.2"
+  },
+  "animation": {
+   "name": "fadeInRight",
+   "delay": "1s",
+   "duration": "1.25s"
+  },
+  "text": "A lifetime of love /"
+ },
+ {
+  "id": "IMAGE100",
+  "tag": "div",
+  "parent": null,
+  "section": "SECTION8",
+  "top": 295.44,
+  "left": 849.658,
+  "width": 76.556,
+  "height": 50.2336,
+  "bgImage": "https://w.ladicdn.com/s400x400/691804d3a89f3900120ca482/nhan-20260630021148-gdgqm.png",
+  "font": {},
+  "animation": {
+   "name": "fadeInDown",
+   "delay": "1s",
+   "duration": "1s"
+  }
+ },
+ {
+  "id": "GROUP74",
+  "tag": "div",
+  "parent": null,
+  "section": "SECTION8",
+  "top": 345.674,
+  "left": 674.68,
+  "width": 420.068,
+  "height": 125.121,
+  "font": {},
+  "animation": {
+   "name": "fadeInRight",
+   "delay": "1s",
+   "duration": "1s"
+  }
+ },
+ {
+  "id": "IMAGE101",
+  "tag": "div",
+  "parent": "GROUP74",
+  "section": "SECTION8",
+  "top": 0,
+  "left": 0,
+  "width": 420.068,
+  "height": 125.121,
+  "bgImage": "https://w.ladicdn.com/s750x450/691804d3a89f3900120ca482/1-20260630041821-q8x0g.png",
+  "font": {}
+ },
+ {
+  "id": "GROUP75",
+  "tag": "div",
+  "parent": "GROUP74",
+  "section": "SECTION8",
+  "top": 18.226,
+  "left": 47.3135,
+  "width": 326,
+  "height": 97,
+  "font": {}
+ },
+ {
+  "id": "HEADLINE125",
+  "tag": "div",
+  "parent": "GROUP75",
+  "section": "SECTION8",
+  "top": 0,
+  "left": 0,
+  "width": 326,
+  "font": {
+   "family": "QkhOIEJQIEVDQVRIRVJJTkEgTUVESVVNICgxKSPVEY",
+   "size": "20",
+   "color": "rgb(203, 157, 69)",
+   "letterSpacing": "0",
+   "textAlign": "center",
+   "lineHeight": "1.2"
+  },
+  "animation": {
+   "name": "fadeInLeft",
+   "delay": "2s",
+   "duration": "1.25s"
+  },
+  "text": "Cùng nhau hạnh phúc /"
+ },
+ {
+  "id": "HEADLINE126",
+  "tag": "div",
+  "parent": "GROUP75",
+  "section": "SECTION8",
+  "top": 52,
+  "left": 0,
+  "width": 325,
+  "font": {
+   "family": "QXJubBybyMaWdodERpcBsYXkubRm",
+   "size": "16",
+   "color": "rgb(131, 111, 111)",
+   "letterSpacing": "0",
+   "textAlign": "center",
+   "lineHeight": "1.4"
+  },
+  "animation": {
+   "name": "fadeInLeft",
+   "delay": "2s",
+   "duration": "1.25s"
+  },
+  "text": "Sẵn sàng bước sang một chương mới / VỀ CHUNG MỘT NHÀ /"
+ },
+ {
+  "id": "LINE12",
+  "tag": "div",
+  "parent": null,
+  "section": "SECTION8",
+  "top": 386.343,
+  "left": 198.564,
+  "height": 30,
+  "font": {},
+  "animation": {
+   "name": "fadeInDown",
+   "delay": "1s",
+   "duration": "1s"
+  }
+ },
+ {
+  "id": "LINE13",
+  "tag": "div",
+  "parent": null,
+  "section": "SECTION8",
+  "top": 466.343,
+  "left": 198.479,
+  "height": 30,
+  "font": {},
+  "animation": {
+   "name": "fadeInDown",
+   "delay": "1s",
+   "duration": "1s"
+  }
+ },
+ {
+  "id": "LINE14",
+  "tag": "div",
+  "parent": null,
+  "section": "SECTION8",
+  "top": 543.343,
+  "left": 198.2,
+  "height": 30,
+  "font": {},
+  "animation": {
+   "name": "fadeInDown",
+   "delay": "1s",
+   "duration": "1s"
+  }
+ },
+ {
+  "id": "SHAPE3",
+  "tag": "div",
+  "parent": null,
+  "section": "SECTION8",
+  "top": 616.553,
+  "left": 200.617,
+  "width": 13.8422,
+  "height": 14.6462,
+  "font": {},
+  "animation": {
+   "name": "fadeInDown",
+   "delay": "1s",
+   "duration": "1s"
+  }
+ },
+ {
+  "id": "GROUP76",
+  "tag": "div",
+  "parent": null,
+  "section": "SECTION8",
+  "top": 358.072,
+  "left": -582.476,
+  "width": 256.391,
+  "height": 175.255,
+  "font": {}
+ },
+ {
+  "id": "GROUP77",
+  "tag": "div",
+  "parent": "GROUP76",
+  "section": "SECTION8",
+  "top": 0,
+  "left": 0,
+  "width": 256.391,
+  "height": 58.876,
+  "font": {},
+  "animation": {
+   "name": "fadeInLeft",
+   "delay": "1s",
+   "duration": "1s"
+  }
+ },
+ {
+  "id": "IMAGE102",
+  "tag": "div",
+  "parent": "GROUP77",
+  "section": "SECTION8",
+  "top": 0,
+  "left": 0,
+  "width": 76.8282,
+  "height": 50.4123,
+  "bgImage": "https://w.ladicdn.com/s400x400/691804d3a89f3900120ca482/nhan2-20260630023139-asmrw.png",
+  "font": {},
+  "animation": {
+   "name": "fadeIn",
+   "delay": "1s",
+   "duration": "1s"
+  }
+ },
+ {
+  "id": "GROUP78",
+  "tag": "div",
+  "parent": "GROUP77",
+  "section": "SECTION8",
+  "top": 2.876,
+  "left": 119.391,
+  "width": 137,
+  "height": 56,
+  "font": {}
+ },
+ {
+  "id": "HEADLINE127",
+  "tag": "div",
+  "parent": "GROUP78",
+  "section": "SECTION8",
+  "top": 0,
+  "left": 0,
+  "width": 96,
+  "font": {
+   "family": "QXJubBybyMaWdodERpcBsYXkubRm",
+   "size": "20",
+   "color": "rgb(61, 54, 54)",
+   "letterSpacing": "2",
+   "textAlign": "left",
+   "lineHeight": "1.6"
+  },
+  "animation": {
+   "name": "fadeInRight",
+   "delay": "1s",
+   "duration": "1s"
+  },
+  "text": "16:30"
+ },
+ {
+  "id": "HEADLINE128",
+  "tag": "div",
+  "parent": "GROUP78",
+  "section": "SECTION8",
+  "top": 30,
+  "left": 0,
+  "width": 137,
+  "font": {
+   "family": "QXJubBybyMaWdodERpcBsYXkubRm",
+   "size": "16",
+   "color": "rgb(131, 111, 111)",
+   "textAlign": "left",
+   "lineHeight": "1.6"
+  },
+  "animation": {
+   "name": "fadeInLeft",
+   "delay": "1s",
+   "duration": "1s"
+  },
+  "text": "đón khách"
+ },
+ {
+  "id": "IMAGE103",
+  "tag": "div",
+  "parent": "GROUP77",
+  "section": "SECTION8",
+  "top": 22.9617,
+  "left": 80.315,
+  "width": 29.7973,
+  "height": 29.6,
+  "bgImage": "https://w.ladicdn.com/s350x350/691804d3a89f3900120ca482/ngoctrai-20260624092841-gjwic.png",
+  "font": {}
+ },
+ {
+  "id": "GROUP79",
+  "tag": "div",
+  "parent": "GROUP76",
+  "section": "SECTION8",
+  "top": 119.255,
+  "left": 7.019,
+  "width": 249.372,
+  "height": 56,
+  "font": {},
+  "animation": {
+   "name": "fadeInRight",
+   "delay": "1s",
+   "duration": "1s"
+  }
+ },
+ {
+  "id": "IMAGE104",
+  "tag": "div",
+  "parent": "GROUP79",
+  "section": "SECTION8",
+  "top": 5,
+  "left": 0,
+  "width": 62.7903,
+  "height": 45.238,
+  "bgImage": "https://w.ladicdn.com/s400x350/691804d3a89f3900120ca482/an-20260630023253-cn5bl.png",
+  "font": {},
+  "animation": {
+   "name": "fadeIn",
+   "delay": "1s",
+   "duration": "1s"
+  }
+ },
+ {
+  "id": "GROUP80",
+  "tag": "div",
+  "parent": "GROUP79",
+  "section": "SECTION8",
+  "top": 0,
+  "left": 112.372,
+  "width": 137,
+  "height": 56,
+  "font": {}
+ },
+ {
+  "id": "HEADLINE129",
+  "tag": "div",
+  "parent": "GROUP80",
+  "section": "SECTION8",
+  "top": 0,
+  "left": 0,
+  "width": 96,
+  "font": {
+   "family": "QXJubBybyMaWdodERpcBsYXkubRm",
+   "size": "20",
+   "color": "rgb(61, 54, 54)",
+   "letterSpacing": "2",
+   "textAlign": "left",
+   "lineHeight": "1.6"
+  },
+  "animation": {
+   "name": "fadeInRight",
+   "delay": "1s",
+   "duration": "1s"
+  },
+  "text": "17:00"
+ },
+ {
+  "id": "HEADLINE130",
+  "tag": "div",
+  "parent": "GROUP80",
+  "section": "SECTION8",
+  "top": 30,
+  "left": 0,
+  "width": 137,
+  "font": {
+   "family": "QXJubBybyMaWdodERpcBsYXkubRm",
+   "size": "16",
+   "color": "rgb(131, 111, 111)",
+   "textAlign": "left",
+   "lineHeight": "1.6"
+  },
+  "animation": {
+   "name": "fadeInLeft",
+   "delay": "1s",
+   "duration": "1s"
+  },
+  "text": "khai tiệc"
+ },
+ {
+  "id": "IMAGE105",
+  "tag": "div",
+  "parent": "GROUP79",
+  "section": "SECTION8",
+  "top": 18.7913,
+  "left": 73.296,
+  "width": 29.7973,
+  "height": 29.6,
+  "bgImage": "https://w.ladicdn.com/s350x350/691804d3a89f3900120ca482/ngoctrai-20260624092841-gjwic.png",
+  "font": {}
+ },
+ {
+  "id": "IMAGE53",
+  "tag": "div",
+  "parent": null,
+  "section": "SECTION5",
+  "top": 1,
+  "left": 0.3645,
+  "width": 419.83,
+  "height": 835.6,
+  "bgImage": "https://w.ladicdn.com/s750x1300/691804d3a89f3900120ca482/_0026_clear-white-plaster-texture-pattern-copy-11-20251020184301-fkysx-20260531144422-dm9aa.png",
+  "font": {}
+ },
+ {
+  "id": "GROUP46",
+  "tag": "div",
+  "parent": null,
+  "section": "SECTION5",
+  "top": 736.6,
+  "left": 80.9999,
+  "width": 256.385,
+  "height": 55,
+  "font": {},
+  "animation": {
+   "name": "fadeInUp",
+   "delay": "1s",
+   "duration": "1s"
+  }
+ },
+ {
+  "id": "BOX17",
+  "tag": "div",
+  "parent": "GROUP46",
+  "section": "SECTION5",
+  "top": 0,
+  "left": 0,
+  "width": 55.0001,
+  "height": 55,
+  "font": {}
+ },
+ {
+  "id": "BOX18",
+  "tag": "div",
+  "parent": "GROUP46",
+  "section": "SECTION5",
+  "top": 0,
+  "left": 67.692,
+  "width": 55.0001,
+  "height": 55,
+  "font": {}
+ },
+ {
+  "id": "BOX19",
+  "tag": "div",
+  "parent": "GROUP46",
+  "section": "SECTION5",
+  "top": 0,
+  "left": 134.539,
+  "width": 55.0001,
+  "height": 55,
+  "font": {}
+ },
+ {
+  "id": "BOX20",
+  "tag": "div",
+  "parent": "GROUP46",
+  "section": "SECTION5",
+  "top": 0,
+  "left": 201.385,
+  "width": 55.0001,
+  "height": 55,
+  "font": {}
+ },
+ {
+  "id": "GROUP81",
+  "tag": "div",
+  "parent": null,
+  "section": "SECTION5",
+  "top": 5.299,
+  "left": 0,
+  "width": 429.915,
+  "height": 565.701,
+  "font": {}
+ },
+ {
+  "id": "BOX16",
+  "tag": "div",
+  "parent": "GROUP81",
+  "section": "SECTION5",
+  "top": 109.701,
+  "left": 266.639,
+  "width": 153.361,
+  "height": 456,
+  "font": {}
+ },
+ {
+  "id": "GROUP41",
+  "tag": "div",
+  "parent": "GROUP81",
+  "section": "SECTION5",
+  "top": 109.701,
+  "left": 0,
+  "width": 266.639,
+  "height": 456,
+  "font": {}
+ },
+ {
+  "id": "IMAGE54",
+  "tag": "div",
+  "parent": "GROUP41",
+  "section": "SECTION5",
+  "top": 0,
+  "left": 0,
+  "width": 266.365,
+  "height": 456,
+  "bgImage": "https://w.ladicdn.com/s750x1000/691804d3a89f3900120ca482/snaptikvn_7655703032440589589_6-20260713152425-ku2wc.jpg",
+  "font": {}
+ },
+ {
+  "id": "BOX14",
+  "tag": "div",
+  "parent": "GROUP41",
+  "section": "SECTION5",
+  "top": 0,
+  "left": 0,
+  "width": 266.639,
+  "height": 456,
+  "font": {}
+ },
+ {
+  "id": "GROUP62",
+  "tag": "div",
+  "parent": "GROUP81",
+  "section": "SECTION5",
+  "top": 137.27,
+  "left": 173.524,
+  "width": 256.391,
+  "height": 400.757,
+  "font": {}
+ },
+ {
+  "id": "GROUP42",
+  "tag": "div",
+  "parent": "GROUP62",
+  "section": "SECTION5",
+  "top": 0,
+  "left": 10.673,
+  "width": 233.718,
+  "height": 57.127,
+  "font": {},
+  "animation": {
+   "name": "fadeInRight",
+   "delay": "1s",
+   "duration": "1s"
+  }
+ },
+ {
+  "id": "IMAGE58",
+  "tag": "div",
+  "parent": "GROUP42",
+  "section": "SECTION5",
+  "top": 0,
+  "left": 0,
+  "width": 55.4813,
+  "height": 50.2548,
+  "bgImage": "https://w.ladicdn.com/s400x400/691804d3a89f3900120ca482/oto-20260630023124-wxmn3.png",
+  "font": {},
+  "animation": {
+   "name": "fadeIn",
+   "delay": "1s",
+   "duration": "1s"
+  }
+ },
+ {
+  "id": "GROUP34",
+  "tag": "div",
+  "parent": "GROUP42",
+  "section": "SECTION5",
+  "top": 1.127,
+  "left": 108.718,
+  "width": 125,
+  "height": 56,
+  "font": {}
+ },
+ {
+  "id": "HEADLINE101",
+  "tag": "div",
+  "parent": "GROUP34",
+  "section": "SECTION5",
+  "top": 0,
+  "left": 0,
+  "width": 96,
+  "font": {
+   "family": "QXJubBybyMaWdodERpcBsYXkubRm",
+   "size": "20",
+   "color": "rgb(61, 54, 54)",
+   "letterSpacing": "2",
+   "textAlign": "left",
+   "lineHeight": "1.6"
+  },
+  "animation": {
+   "name": "fadeInRight",
+   "delay": "1s",
+   "duration": "1s"
+  },
+  "text": "14h30"
+ },
+ {
+  "id": "HEADLINE102",
+  "tag": "div",
+  "parent": "GROUP34",
+  "section": "SECTION5",
+  "top": 30,
+  "left": 0,
+  "width": 125,
+  "font": {
+   "family": "QXJubBybyMaWdodERpcBsYXkubRm",
+   "size": "16",
+   "color": "rgb(131, 111, 111)",
+   "textAlign": "left",
+   "lineHeight": "1.6"
+  },
+  "animation": {
+   "name": "fadeInLeft",
+   "delay": "1s",
+   "duration": "1s"
+  },
+  "text": "rước dâu"
+ },
+ {
+  "id": "IMAGE62",
+  "tag": "div",
+  "parent": "GROUP42",
+  "section": "SECTION5",
+  "top": 14.327,
+  "left": 69.642,
+  "width": 29.7973,
+  "height": 29.6,
+  "bgImage": "https://w.ladicdn.com/s350x350/691804d3a89f3900120ca482/ngoctrai-20260624092841-gjwic.png",
+  "font": {}
+ },
+ {
+  "id": "GROUP43",
+  "tag": "div",
+  "parent": "GROUP62",
+  "section": "SECTION5",
+  "top": 106.45,
+  "left": 0,
+  "width": 256.391,
+  "height": 58.876,
+  "font": {},
+  "animation": {
+   "name": "fadeInLeft",
+   "delay": "1s",
+   "duration": "1s"
+  }
+ },
+ {
+  "id": "IMAGE59",
+  "tag": "div",
+  "parent": "GROUP43",
+  "section": "SECTION5",
+  "top": 0,
+  "left": 0,
+  "width": 76.8282,
+  "height": 50.4123,
+  "bgImage": "https://w.ladicdn.com/s400x400/691804d3a89f3900120ca482/nhan2-20260630023139-asmrw.png",
+  "font": {},
+  "animation": {
+   "name": "fadeIn",
+   "delay": "1s",
+   "duration": "1s"
+  }
+ },
+ {
+  "id": "GROUP36",
+  "tag": "div",
+  "parent": "GROUP43",
+  "section": "SECTION5",
+  "top": 2.876,
+  "left": 119.391,
+  "width": 137,
+  "height": 56,
+  "font": {}
+ },
+ {
+  "id": "HEADLINE103",
+  "tag": "div",
+  "parent": "GROUP36",
+  "section": "SECTION5",
+  "top": 0,
+  "left": 0,
+  "width": 96,
+  "font": {
+   "family": "QXJubBybyMaWdodERpcBsYXkubRm",
+   "size": "20",
+   "color": "rgb(61, 54, 54)",
+   "letterSpacing": "2",
+   "textAlign": "left",
+   "lineHeight": "1.6"
+  },
+  "animation": {
+   "name": "fadeInRight",
+   "delay": "1s",
+   "duration": "1s"
+  },
+  "text": "16h30"
+ },
+ {
+  "id": "HEADLINE104",
+  "tag": "div",
+  "parent": "GROUP36",
+  "section": "SECTION5",
+  "top": 30,
+  "left": 0,
+  "width": 137,
+  "font": {
+   "family": "QXJubBybyMaWdodERpcBsYXkubRm",
+   "size": "16",
+   "color": "rgb(131, 111, 111)",
+   "textAlign": "left",
+   "lineHeight": "1.6"
+  },
+  "animation": {
+   "name": "fadeInLeft",
+   "delay": "1s",
+   "duration": "1s"
+  },
+  "text": "lễ thành hôn"
+ },
+ {
+  "id": "IMAGE63",
+  "tag": "div",
+  "parent": "GROUP43",
+  "section": "SECTION5",
+  "top": 22.9617,
+  "left": 80.315,
+  "width": 29.7973,
+  "height": 29.6,
+  "bgImage": "https://w.ladicdn.com/s350x350/691804d3a89f3900120ca482/ngoctrai-20260624092841-gjwic.png",
+  "font": {}
+ },
+ {
+  "id": "GROUP44",
+  "tag": "div",
+  "parent": "GROUP62",
+  "section": "SECTION5",
+  "top": 225.705,
+  "left": 7.019,
+  "width": 249.372,
+  "height": 56,
+  "font": {},
+  "animation": {
+   "name": "fadeInRight",
+   "delay": "1s",
+   "duration": "1s"
+  }
+ },
+ {
+  "id": "IMAGE60",
+  "tag": "div",
+  "parent": "GROUP44",
+  "section": "SECTION5",
+  "top": 5,
+  "left": 0,
+  "width": 62.7903,
+  "height": 45.238,
+  "bgImage": "https://w.ladicdn.com/s400x350/691804d3a89f3900120ca482/an-20260630023253-cn5bl.png",
+  "font": {},
+  "animation": {
+   "name": "fadeIn",
+   "delay": "1s",
+   "duration": "1s"
+  }
+ },
+ {
+  "id": "GROUP38",
+  "tag": "div",
+  "parent": "GROUP44",
+  "section": "SECTION5",
+  "top": 0,
+  "left": 112.372,
+  "width": 137,
+  "height": 56,
+  "font": {}
+ },
+ {
+  "id": "HEADLINE105",
+  "tag": "div",
+  "parent": "GROUP38",
+  "section": "SECTION5",
+  "top": 0,
+  "left": 0,
+  "width": 96,
+  "font": {
+   "family": "QXJubBybyMaWdodERpcBsYXkubRm",
+   "size": "20",
+   "color": "rgb(61, 54, 54)",
+   "letterSpacing": "2",
+   "textAlign": "left",
+   "lineHeight": "1.6"
+  },
+  "animation": {
+   "name": "fadeInRight",
+   "delay": "1s",
+   "duration": "1s"
+  },
+  "text": "18h30"
+ },
+ {
+  "id": "HEADLINE106",
+  "tag": "div",
+  "parent": "GROUP38",
+  "section": "SECTION5",
+  "top": 30,
+  "left": 0,
+  "width": 137,
+  "font": {
+   "family": "QXJubBybyMaWdodERpcBsYXkubRm",
+   "size": "16",
+   "color": "rgb(131, 111, 111)",
+   "textAlign": "left",
+   "lineHeight": "1.6"
+  },
+  "animation": {
+   "name": "fadeInLeft",
+   "delay": "1s",
+   "duration": "1s"
+  },
+  "text": "khai tiệc"
+ },
+ {
+  "id": "IMAGE64",
+  "tag": "div",
+  "parent": "GROUP44",
+  "section": "SECTION5",
+  "top": 18.7913,
+  "left": 73.296,
+  "width": 29.7973,
+  "height": 29.6,
+  "bgImage": "https://w.ladicdn.com/s350x350/691804d3a89f3900120ca482/ngoctrai-20260624092841-gjwic.png",
+  "font": {}
+ },
+ {
+  "id": "GROUP45",
+  "tag": "div",
+  "parent": "GROUP62",
+  "section": "SECTION5",
+  "top": 330.25,
+  "left": 10.435,
+  "width": 245.956,
+  "height": 70.507,
+  "font": {},
+  "animation": {
+   "name": "fadeInLeft",
+   "delay": "1s",
+   "duration": "1s"
+  }
+ },
+ {
+  "id": "IMAGE61",
+  "tag": "div",
+  "parent": "GROUP45",
+  "section": "SECTION5",
+  "top": 0,
+  "left": 0,
+  "width": 55.9581,
+  "height": 70.507,
+  "bgImage": "https://w.ladicdn.com/s400x400/691804d3a89f3900120ca482/khieu-vu-20260630023359-jnyhd.png",
+  "font": {},
+  "animation": {
+   "name": "fadeIn",
+   "delay": "1s",
+   "duration": "1s"
+  }
+ },
+ {
+  "id": "GROUP40",
+  "tag": "div",
+  "parent": "GROUP45",
+  "section": "SECTION5",
+  "top": 10,
+  "left": 108.956,
+  "width": 137,
+  "height": 56,
+  "font": {}
+ },
+ {
+  "id": "HEADLINE107",
+  "tag": "div",
+  "parent": "GROUP40",
+  "section": "SECTION5",
+  "top": 0,
+  "left": 0,
+  "width": 96,
+  "font": {
+   "family": "QXJubBybyMaWdodERpcBsYXkubRm",
+   "size": "20",
+   "color": "rgb(61, 54, 54)",
+   "letterSpacing": "2",
+   "textAlign": "left",
+   "lineHeight": "1.6"
+  },
+  "animation": {
+   "name": "fadeInRight",
+   "delay": "1s",
+   "duration": "1s"
+  },
+  "text": "21h30"
+ },
+ {
+  "id": "HEADLINE108",
+  "tag": "div",
+  "parent": "GROUP40",
+  "section": "SECTION5",
+  "top": 30,
+  "left": 0,
+  "width": 137,
+  "font": {
+   "family": "QXJubBybyMaWdodERpcBsYXkubRm",
+   "size": "16",
+   "color": "rgb(131, 111, 111)",
+   "textAlign": "left",
+   "lineHeight": "1.6"
+  },
+  "animation": {
+   "name": "fadeInLeft",
+   "delay": "1s",
+   "duration": "1s"
+  },
+  "text": "âm nhạc"
+ },
+ {
+  "id": "IMAGE65",
+  "tag": "div",
+  "parent": "GROUP45",
+  "section": "SECTION5",
+  "top": 29.331,
+  "left": 69.88,
+  "width": 29.7973,
+  "height": 29.6,
+  "bgImage": "https://w.ladicdn.com/s350x350/691804d3a89f3900120ca482/ngoctrai-20260624092841-gjwic.png",
+  "font": {}
+ },
+ {
+  "id": "IMAGE82",
+  "tag": "div",
+  "parent": "GROUP81",
+  "section": "SECTION5",
+  "top": 0,
+  "left": 15.5045,
+  "width": 387.376,
+  "height": 101.301,
+  "bgImage": "https://w.ladicdn.com/s700x450/691804d3a89f3900120ca482/timeline-20260630043524-sbdwa.png",
+  "font": {},
+  "animation": {
+   "name": "fadeInUp",
+   "delay": "1s",
+   "duration": "1s"
+  }
+ },
+ {
+  "id": "IMAGE83",
+  "tag": "div",
+  "parent": null,
+  "section": "SECTION5",
+  "top": 622.6,
+  "left": 51.193,
+  "width": 329.688,
+  "height": 92.1945,
+  "bgImage": "https://w.ladicdn.com/s650x400/691804d3a89f3900120ca482/dresscode-20260630043903-azcgk.png",
+  "font": {},
+  "animation": {
+   "name": "fadeInUp",
+   "delay": "1s",
+   "duration": "1s"
+  }
+ },
+ {
+  "id": "IMAGE66",
+  "tag": "div",
+  "parent": null,
+  "section": "SECTION6",
+  "top": -24,
+  "left": 0.3645,
+  "width": 419.83,
+  "height": 971.6,
+  "bgImage": "https://w.ladicdn.com/s750x1300/691804d3a89f3900120ca482/_0026_clear-white-plaster-texture-pattern-copy-11-20251020184301-fkysx-20260531144422-dm9aa.png",
+  "font": {}
+ },
+ {
+  "id": "BOX21",
+  "tag": "div",
+  "parent": null,
+  "section": "SECTION6",
+  "top": 0,
+  "left": -0.439,
+  "width": 420.878,
+  "height": 1237,
+  "font": {}
+ },
+ {
+  "id": "IMAGE67",
+  "tag": "div",
+  "parent": null,
+  "section": "SECTION6",
+  "top": 12.334,
+  "left": 13.9255,
+  "width": 393,
+  "height": 410,
+  "bgImage": "https://w.ladicdn.com/s950x750/691804d3a89f3900120ca482/snaptikvn_7655703032440589589_1-20260713152425-nvpk_.jpg",
+  "font": {},
+  "animation": {
+   "name": "fadeIn",
+   "delay": "1s",
+   "duration": "1s"
+  }
+ },
+ {
+  "id": "IMAGE68",
+  "tag": "div",
+  "parent": null,
+  "section": "SECTION6",
+  "top": 528.334,
+  "left": 13.78,
+  "width": 228,
+  "height": 398.5,
+  "bgImage": "https://w.ladicdn.com/s600x700/691804d3a89f3900120ca482/snaptikvn_7655703032440589589_10-20260713152429-yaxl0.jpg",
+  "font": {},
+  "animation": {
+   "name": "fadeInLeft",
+   "delay": "1s",
+   "duration": "1s"
+  }
+ },
+ {
+  "id": "IMAGE69",
+  "tag": "div",
+  "parent": null,
+  "section": "SECTION6",
+  "top": 528.334,
+  "left": 248.779,
+  "width": 158,
+  "height": 194,
+  "bgImage": "https://w.ladicdn.com/s500x550/691804d3a89f3900120ca482/snaptikvn_7655703032440589589_7-20260713152424-rtamn.jpg",
+  "font": {},
+  "animation": {
+   "name": "fadeInRight",
+   "delay": "1s",
+   "duration": "1s"
+  }
+ },
+ {
+  "id": "IMAGE70",
+  "tag": "div",
+  "parent": null,
+  "section": "SECTION6",
+  "top": 933.334,
+  "left": 13.78,
+  "width": 193,
+  "height": 245,
+  "bgImage": "https://w.ladicdn.com/s750x950/691804d3a89f3900120ca482/snaptikvn_7655703032440589589_15-20260713152429-n6okv.jpg",
+  "font": {},
+  "animation": {
+   "name": "fadeInLeft",
+   "delay": "1s",
+   "duration": "1s"
+  }
+ },
+ {
+  "id": "IMAGE71",
+  "tag": "div",
+  "parent": null,
+  "section": "SECTION6",
+  "top": 728.334,
+  "left": 248.779,
+  "width": 158,
+  "height": 198.5,
+  "bgImage": "https://w.ladicdn.com/s500x550/691804d3a89f3900120ca482/snaptikvn_7655703032440589589_3-20260713152425-q6i7v.jpg",
+  "font": {},
+  "animation": {
+   "name": "fadeInRight",
+   "delay": "1s",
+   "duration": "1s"
+  }
+ },
+ {
+  "id": "IMAGE72",
+  "tag": "div",
+  "parent": null,
+  "section": "SECTION6",
+  "top": 933.334,
+  "left": 213.779,
+  "width": 193,
+  "height": 245,
+  "bgImage": "https://w.ladicdn.com/s750x950/691804d3a89f3900120ca482/snaptikvn_7655703032440589589_15-20260713152429-n6okv.jpg",
+  "font": {},
+  "animation": {
+   "name": "fadeInRight",
+   "delay": "1s",
+   "duration": "1s"
+  }
+ },
+ {
+  "id": "IMAGE76",
+  "tag": "div",
+  "parent": null,
+  "section": "SECTION6",
+  "top": 428.292,
+  "left": 13.925,
+  "width": 393,
+  "height": 127.764,
+  "bgImage": "https://w.ladicdn.com/s700x450/691804d3a89f3900120ca482/text5-20260630034802-eupjd.png",
+  "font": {},
+  "animation": {
+   "name": "fadeInDown",
+   "delay": "1s",
+   "duration": "1s"
+  }
+ },
+ {
+  "id": "IMAGE77",
+  "tag": "div",
+  "parent": null,
+  "section": "SECTION7",
+  "top": 0,
+  "left": 0,
+  "width": 419.83,
+  "height": 781.6,
+  "bgImage": "https://w.ladicdn.com/s750x1300/691804d3a89f3900120ca482/_0026_clear-white-plaster-texture-pattern-copy-11-20251020184301-fkysx-20260531144422-dm9aa.png",
+  "font": {}
+ },
+ {
+  "id": "GROUP49",
+  "tag": "div",
+  "parent": null,
+  "section": "SECTION7",
+  "top": 34.9641,
+  "left": 25.375,
+  "width": 369.25,
+  "height": 421.5,
+  "font": {}
+ },
+ {
+  "id": "HEADLINE112",
+  "tag": "div",
+  "parent": "GROUP49",
+  "section": "SECTION7",
+  "top": 0,
+  "left": 7.625,
+  "width": 354,
+  "font": {
+   "family": "QXJubBybyMaWdodERpcBsYXkubRm",
+   "size": "17",
+   "color": "rgb(131, 111, 111)",
+   "letterSpacing": "0",
+   "textAlign": "center",
+   "lineHeight": "1.6"
+  },
+  "animation": {
+   "name": "fadeInUp",
+   "delay": "1s",
+   "duration": "1s"
+  },
+  "text": "Vui lòng xác nhận sự tham dự của bạn để chúng mình chuẩn bị đón tiếp một cách chu đáo nhất. / Trân trọng cảm ơn! /"
+ },
+ {
+  "id": "FORM2",
+  "tag": "div",
+  "parent": "GROUP49",
+  "section": "SECTION7",
+  "top": 89.5005,
+  "left": 0,
+  "width": 369.25,
+  "height": 332,
+  "font": {},
+  "animation": {
+   "name": "fadeInUp",
+   "delay": "1s",
+   "duration": "1s"
+  }
+ },
+ {
+  "id": "BUTTON2",
+  "tag": "div",
+  "parent": "FORM2",
+  "section": "SECTION7",
+  "top": 292,
+  "left": 0,
+  "width": 369.25,
+  "height": 40,
+  "font": {}
+ },
+ {
+  "id": "BUTTON_TEXT2",
+  "tag": "div",
+  "parent": "BUTTON2",
+  "section": "SECTION7",
+  "top": 9,
+  "left": 0,
+  "width": 369,
+  "font": {
+   "family": "QXJubBybyMaWdodERpcBsYXkubRm",
+   "size": "23",
+   "color": "rgb(255, 255, 255)",
+   "textAlign": "center",
+   "lineHeight": "1.6"
+  }
+ },
+ {
+  "id": "FORM_ITEM2",
+  "tag": "div",
+  "parent": "FORM2",
+  "section": "SECTION7",
+  "top": 0,
+  "left": 0,
+  "width": 369.25,
+  "height": 35,
+  "font": {}
+ },
+ {
+  "id": "FORM_ITEM3",
+  "tag": "div",
+  "parent": "FORM2",
+  "section": "SECTION7",
+  "top": 45,
+  "left": 0,
+  "width": 369.25,
+  "height": 100,
+  "font": {}
+ },
+ {
+  "id": "FORM_ITEM4",
+  "tag": "div",
+  "parent": "FORM2",
+  "section": "SECTION7",
+  "top": 155,
+  "left": 0,
+  "width": 369.25,
+  "height": 35,
+  "font": {}
+ },
+ {
+  "id": "FORM_ITEM5",
+  "tag": "div",
+  "parent": "FORM2",
+  "section": "SECTION7",
+  "top": 200,
+  "left": 0,
+  "width": 369.25,
+  "height": 35,
+  "font": {}
+ },
+ {
+  "id": "FORM_ITEM6",
+  "tag": "div",
+  "parent": "FORM2",
+  "section": "SECTION7",
+  "top": 245,
+  "left": 0,
+  "width": 369.25,
+  "height": 35,
+  "font": {}
+ },
+ {
+  "id": "IMAGE78",
+  "tag": "div",
+  "parent": null,
+  "section": "SECTION7",
+  "top": 506.731,
+  "left": 0,
+  "width": 420,
+  "height": 274.869,
+  "bgImage": "https://w.ladicdn.com/s750x950/691804d3a89f3900120ca482/snaptikvn_7655703032440589589_11-20260713152429-wpqvk.jpg",
+  "font": {}
+ },
+ {
+  "id": "HEADLINE113",
+  "tag": "div",
+  "parent": null,
+  "section": "SECTION7",
+  "top": 622.898,
+  "left": 14.915,
+  "width": 390,
+  "font": {
+   "family": "QXJubBybyMaWdodERpcBsYXkubRm",
+   "size": "16",
+   "color": "rgb(255, 255, 255)",
+   "letterSpacing": "0",
+   "textAlign": "center",
+   "lineHeight": "1.4"
+  },
+  "animation": {
+   "name": "fadeInUp",
+   "delay": "1s",
+   "duration": "1s"
+  },
+  "text": "Hẹn gặp bạn trong ngày đặc biệt nhất của chúng mình. / Sẽ thật hạnh phúc khi có bạn ở đó, cùng sẻ chia niềm vui và chứng kiến khoảnh khắc ý nghĩa này của chúng mình. /"
+ },
+ {
+  "id": "HEADLINE114",
+  "tag": "div",
+  "parent": null,
+  "section": "SECTION7",
+  "top": 697.898,
+  "left": 0,
+  "width": 390,
+  "font": {
+   "family": "QkhOIEJQIEVDQVRIRVJJTkEgTUVESVVNICgxKSPVEY",
+   "size": "27",
+   "color": "rgb(255, 255, 255)",
+   "letterSpacing": "0",
+   "textAlign": "center",
+   "lineHeight": "1.7"
+  },
+  "animation": {
+   "name": "fadeInUp",
+   "delay": "1s",
+   "duration": "1s"
+  },
+  "text": "Thank you! /"
+ },
+ {
+  "id": "POPUP1",
+  "tag": "div",
+  "parent": null,
+  "section": "SECTION_POPUP",
+  "top": 0,
+  "left": 0,
+  "width": 420,
+  "height": 431,
+  "font": {}
+ },
+ {
+  "id": "IMAGE87",
+  "tag": "div",
+  "parent": "POPUP1",
+  "section": "SECTION_POPUP",
+  "top": 129.4,
+  "left": 0,
+  "width": 420,
+  "height": 301.6,
+  "bgImage": "https://w.ladicdn.com/s750x650/691804d3a89f3900120ca482/_0026_clear-white-plaster-texture-pattern-copy-11-20251020184301-fkysx-20260531144422-dm9aa.png",
+  "font": {}
+ },
+ {
+  "id": "HEADLINE115",
+  "tag": "div",
+  "parent": "POPUP1",
+  "section": "SECTION_POPUP",
+  "top": 299.5,
+  "left": 20,
+  "width": 392,
+  "font": {
+   "family": "QXJubBybyMaWdodERpcBsYXkubRm",
+   "size": "17",
+   "color": "rgb(131, 111, 111)",
+   "textAlign": "left",
+   "lineHeight": "1.6"
+  },
+  "text": "Cảm ơn bạn đã dành thời gian phản hồi! / Chúng mình vô cùng trân quý sự quan tâm của bạn /"
+ },
+ {
+  "id": "HEADLINE116",
+  "tag": "div",
+  "parent": "POPUP1",
+  "section": "SECTION_POPUP",
+  "top": 361.5,
+  "left": 105,
+  "width": 199,
+  "font": {
+   "family": "QkhOIEJQIEVDQVRIRVJJTkEgTUVESVVNICgxKSPVEY",
+   "size": "22",
+   "color": "rgb(131, 111, 111)",
+   "textAlign": "center",
+   "lineHeight": "1.6"
+  },
+  "text": "Thank you! /"
+ },
+ {
+  "id": "IMAGE106",
+  "tag": "div",
+  "parent": "POPUP1",
+  "section": "SECTION_POPUP",
+  "top": 0,
+  "left": 0,
+  "width": 420,
+  "height": 280,
+  "bgImage": "https://w.ladicdn.com/s750x600/691804d3a89f3900120ca482/snaptikvn_7655703032440589589_2-20260713152425-idhhu.jpg",
+  "font": {}
+ }
+]

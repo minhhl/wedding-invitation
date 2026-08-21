@@ -17,8 +17,8 @@ export interface ScheduleChapter {
 
 export const weddingScheduleChapters: ScheduleChapter[] = [
   {
-    label: 'Saturday',
-    date: '19 September 2026',
+    label: 'Thứ Bảy',
+    date: '19/09/2026',
     events: [
       {
         icon: 'dove',
@@ -41,8 +41,8 @@ export const weddingScheduleChapters: ScheduleChapter[] = [
     ],
   },
   {
-    label: 'Sunday',
-    date: '20 September 2026',
+    label: 'Chủ Nhật',
+    date: '20/09/2026',
     events: [
       {
         icon: 'rings',

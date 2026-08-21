@@ -1,68 +1,90 @@
 'use client'
 
 import Image from 'next/image'
-import { motion } from 'framer-motion'
+import { LadiCanvas, LadiImage, LadiHeadline } from '@/components/ladi'
 import { headerImage } from '@/lib/images'
+import { heroBg, ampersand } from '@/lib/decor'
 import { groomName, brideName, weddingDateParts } from '@/lib/weddingData'
+
+const SECTION_HEIGHT = 673
 
 export function Header() {
   return (
-    <section className="relative h-[100svh] w-full overflow-hidden bg-ink">
-      <motion.div
-        initial={{ scale: 1.08 }}
-        animate={{ scale: 1 }}
-        transition={{ duration: 2.4, ease: [0.22, 1, 0.36, 1] }}
-        className="absolute inset-0"
-      >
-        <Image
-          src={headerImage}
-          alt={`${groomName} & ${brideName}`}
-          fill
-          priority
-          className="object-cover"
-          sizes="100vw"
+    <section className="relative bg-ink">
+      <LadiCanvas height={SECTION_HEIGHT}>
+        {/* Satin texture base — the real photo covers almost all of it, this
+            shows only at the sliver of a fringe (matches the reference site,
+            which layers a texture fallback underneath the cover photo). */}
+        <LadiImage top={-5} left={0} width={420} height={678} src={heroBg} alt="" />
+
+        <div style={{ position: 'absolute', top: -5, left: 0, width: 420, height: 678, overflow: 'hidden' }}>
+          <Image
+            src={headerImage}
+            alt={`${groomName} & ${brideName}`}
+            fill
+            priority
+            sizes="420px"
+            style={{ objectFit: 'cover', objectPosition: 'center 30%' }}
+          />
+        </div>
+
+        {/* Bottom gradient for text legibility over the photo. */}
+        <div
+          style={{
+            position: 'absolute',
+            top: 436.6,
+            left: 0,
+            width: 419.6,
+            height: 236,
+            background: 'linear-gradient(rgba(253,251,251,0) 0%, rgba(0,0,0,0.53) 100%)',
+          }}
         />
-      </motion.div>
 
-      <div className="absolute inset-0 bg-gradient-to-t from-ink/60 via-ink/10 to-transparent" />
-
-      <div className="relative z-10 flex h-full flex-col items-center justify-end pb-16 text-center text-white md:pb-24">
-        <motion.p
-          initial={{ opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 1, ease: [0.22, 1, 0.36, 1] }}
-          className="display-name text-[clamp(2.25rem,9vw,5.5rem)] uppercase"
+        {/* Names stacked and centered (rather than the source's fixed
+            side-by-side boxes) since the real names run longer than the
+            template's short placeholder names and would otherwise wrap and
+            overlap in a narrow fixed-width box. */}
+        <LadiHeadline
+          top={493}
+          left={10}
+          width={400}
+          fontFamily="var(--font-heading)"
+          fontSize={32}
+          lineHeight={1.3}
+          color="var(--color-offwhite)"
+          textTransform="uppercase"
+          textAlign="center"
         >
           {groomName}
-        </motion.p>
-
-        <motion.p
-          initial={{ opacity: 0, scale: 0.85 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.65, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="script-text my-1 text-[clamp(1.5rem,4vw,2.5rem)] text-champagne-light sm:my-2"
-        >
-          &amp;
-        </motion.p>
-
-        <motion.p
-          initial={{ opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.7, duration: 1, ease: [0.22, 1, 0.36, 1] }}
-          className="display-name text-[clamp(2.25rem,9vw,5.5rem)] uppercase"
+        </LadiHeadline>
+        <LadiImage top={542} left={175} width={70} height={36} src={ampersand} alt="" />
+        <LadiHeadline
+          top={577}
+          left={10}
+          width={400}
+          fontFamily="var(--font-heading)"
+          fontSize={32}
+          lineHeight={1.3}
+          color="var(--color-offwhite)"
+          textTransform="uppercase"
+          textAlign="center"
         >
           {brideName}
-        </motion.p>
+        </LadiHeadline>
 
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2, duration: 1 }}
-          className="mt-7 text-xs tracking-[0.35em] text-white/85 sm:mt-8 md:text-sm"
+        <LadiHeadline
+          top={627}
+          left={121}
+          width={181}
+          fontFamily="var(--font-script)"
+          fontSize={28}
+          color="var(--color-offwhite)"
+          letterSpacing={5}
+          textAlign="center"
         >
           {weddingDateParts.day}.{weddingDateParts.month}.{weddingDateParts.year}
-        </motion.p>
-      </div>
+        </LadiHeadline>
+      </LadiCanvas>
     </section>
   )
 }

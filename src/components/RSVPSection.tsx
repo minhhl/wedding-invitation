@@ -1,12 +1,15 @@
 'use client'
 
 import { useState } from 'react'
+import Image from 'next/image'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { motion, AnimatePresence, type Variants } from 'framer-motion'
 import { Loader2, X } from 'lucide-react'
 import { rsvpSubmissionSchema, RsvpSubmissionFormData } from '@/lib/rsvpValidation'
-import { FloralCorner } from '@/components/decor/FloralCorner'
+import { plasterTexture } from '@/lib/decor'
+import { footerImage } from '@/lib/images'
+import { groomName, brideName } from '@/lib/weddingData'
 
 const fieldClass =
   'peer w-full border-b border-champagne/40 bg-transparent px-1 pb-3 pt-5 font-body text-sm text-ink placeholder-transparent focus:border-champagne focus:outline-none focus:shadow-[0_10px_18px_-16px_rgba(201,169,119,0.9)] transition-[border-color,box-shadow] duration-300'
@@ -21,12 +24,31 @@ const selectClass =
 // doesn't exist there — fall back to a message instead of a dead form.
 const isStaticExport = process.env.NEXT_PUBLIC_STATIC_EXPORT === 'true'
 
+function ClosingPhoto() {
+  return (
+    <div className="relative mt-16 h-[275px] w-full overflow-hidden md:mt-20">
+      <Image src={footerImage} alt={`${groomName} & ${brideName}`} fill className="photo-tone object-cover" sizes="100vw" />
+      <div className="absolute inset-0 bg-ink/45" />
+      <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center text-white">
+        <p className="max-w-md font-heading text-sm leading-relaxed md:text-base">
+          Hẹn gặp bạn trong ngày đặc biệt nhất của chúng mình. Sẽ thật hạnh phúc khi có bạn ở đó,
+          cùng sẻ chia niềm vui và chứng kiến khoảnh khắc ý nghĩa này của chúng mình.
+        </p>
+        <p className="mt-5 font-editorial text-3xl">Thank you!</p>
+      </div>
+    </div>
+  )
+}
+
 export function RSVPSection() {
   if (isStaticExport) {
     return (
-      <section id="rsvp" className="relative overflow-hidden bg-white py-20 md:py-28">
-        <FloralCorner className="pointer-events-none absolute -right-6 -top-6 h-24 w-28 sm:h-28 sm:w-32" />
-        <div className="mx-auto w-full max-w-xl px-5 text-center md:px-10">
+      <section id="rsvp" className="relative overflow-hidden bg-white">
+        <div
+          className="pointer-events-none absolute inset-0 opacity-40"
+          style={{ backgroundImage: `url(${plasterTexture})`, backgroundSize: 'cover' }}
+        />
+        <div className="relative mx-auto w-full max-w-xl px-5 py-20 text-center md:px-10 md:py-28">
           <p className="eyebrow mb-4">RSVP</p>
           <h2 className="heading-2 mb-4 text-ink">Rất mong được đón tiếp bạn.</h2>
           <p className="mx-auto max-w-sm font-body text-sm leading-relaxed text-text/80">
@@ -35,6 +57,7 @@ export function RSVPSection() {
             với cô dâu chú rể.
           </p>
         </div>
+        <ClosingPhoto />
       </section>
     )
   }
@@ -90,9 +113,12 @@ function RSVPForm() {
   }
 
   return (
-    <section id="rsvp" className="relative overflow-hidden bg-white py-20 md:py-28">
-      <FloralCorner className="pointer-events-none absolute -right-6 -top-6 h-24 w-28 sm:h-28 sm:w-32" />
-      <div className="mx-auto w-full max-w-xl px-5 md:px-10">
+    <section id="rsvp" className="relative overflow-hidden bg-white">
+      <div
+        className="pointer-events-none absolute inset-0 opacity-40"
+        style={{ backgroundImage: `url(${plasterTexture})`, backgroundSize: 'cover' }}
+      />
+      <div className="relative mx-auto w-full max-w-xl px-5 py-20 md:px-10 md:py-28">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -236,6 +262,8 @@ function RSVPForm() {
         </motion.form>
       </div>
 
+      <ClosingPhoto />
+
       <AnimatePresence>
         {showThankYou && (
           <motion.div
@@ -253,20 +281,30 @@ function RSVPForm() {
               exit={{ opacity: 0, scale: 0.92, y: 12 }}
               transition={{ duration: 0.5, ease: 'easeOut' }}
               onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-sm bg-white px-8 py-12 text-center shadow-2xl"
+              className="relative w-full max-w-sm overflow-hidden bg-white text-center shadow-2xl"
             >
               <button
                 onClick={() => setShowThankYou(false)}
                 aria-label="Đóng"
-                className="absolute right-4 top-4 text-text/50 transition-colors hover:text-champagne"
+                className="absolute right-4 top-4 z-10 text-white/80 transition-colors hover:text-white"
               >
                 <X size={20} />
               </button>
-              <p className="script-text mb-4 text-4xl text-champagne">Thank You</p>
-              <h3 className="heading-3 mb-3 text-ink">Cảm Ơn Bạn</h3>
-              <p className="mx-auto max-w-xs font-body text-sm leading-relaxed text-text/80">
-                Cảm ơn bạn đã xác nhận tham dự. Thông tin của bạn đang chờ gia đình xác nhận.
-              </p>
+              <div className="relative h-40 w-full">
+                <Image src={footerImage} alt={`${groomName} & ${brideName}`} fill className="photo-tone object-cover" sizes="384px" />
+              </div>
+              <div
+                className="px-8 py-10"
+                style={{ backgroundImage: `url(${plasterTexture})`, backgroundSize: 'cover' }}
+              >
+                <p className="font-body text-sm leading-relaxed" style={{ color: 'var(--color-quote)' }}>
+                  Cảm ơn bạn đã dành thời gian phản hồi! Chúng mình vô cùng trân quý sự quan tâm của
+                  bạn
+                </p>
+                <p className="mt-4 font-editorial text-2xl" style={{ color: 'var(--color-quote)' }}>
+                  Thank you!
+                </p>
+              </div>
             </motion.div>
           </motion.div>
         )}

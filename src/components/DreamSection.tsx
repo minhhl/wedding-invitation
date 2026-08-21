@@ -1,145 +1,84 @@
 'use client'
 
-import Image from 'next/image'
-import { motion } from 'framer-motion'
+import { ChevronDown } from 'lucide-react'
+import { LadiCanvas, LadiGroup, LadiImage, LadiHeadline, LadiLine } from '@/components/ladi'
 import { dreamPolaroidImage } from '@/lib/images'
 import { groomName, brideName } from '@/lib/weddingData'
-import { FloralCorner } from '@/components/decor/FloralCorner'
+import { fabricDrape, photoFrame, pearl } from '@/lib/decor'
 
-const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1]
-
-interface DreamLetter {
-  char: string
-  top: number
-  left: number
-  size: number
-  rotate: number
-}
-
-// Fixed design canvas (px) — scaled as a whole via the wrapper below, so the
-// hand-tuned overlap between letters stays identical at every breakpoint.
-const CANVAS_WIDTH = 330
-const CANVAS_HEIGHT = 560
-
-const DREAM_LETTERS: DreamLetter[] = [
-  { char: 'D', top: 0, left: 0, size: 210, rotate: -2 },
-  { char: 'R', top: 14, left: 118, size: 185, rotate: 3 },
-  { char: 'E', top: 158, left: -12, size: 210, rotate: -1.5 },
-  { char: 'A', top: 182, left: 128, size: 195, rotate: 2.5 },
-  { char: 'M', top: 342, left: 8, size: 235, rotate: -1.5 },
-]
-
-const QUOTE_LINES = [
-  'Some dreams are meant to last forever,',
-  'just like true love.',
-  'When two hearts stay faithful',
-  'through every season,',
-  'forever becomes more than a promise —',
-  'it becomes reality.',
-]
+const SECTION_HEIGHT = 759
 
 export function DreamSection() {
   return (
-    <section className="silk-bg relative overflow-hidden py-24 md:py-32">
-      <FloralCorner className="pointer-events-none absolute -left-4 -top-4 h-24 w-28 sm:h-32 sm:w-36" />
-      <FloralCorner
-        flip
-        className="pointer-events-none absolute -right-4 -top-4 h-24 w-28 sm:h-32 sm:w-36"
-      />
+    <section className="relative bg-white">
+      <LadiCanvas height={SECTION_HEIGHT}>
+        <LadiImage top={-37} left={-14} width={433} height={796} src={fabricDrape} alt="" />
 
-      <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-16 px-6 md:grid-cols-[3fr_2fr] md:gap-8 md:px-10">
-        <div className="flex justify-center md:justify-start">
-          <div
-            className="relative origin-top scale-[0.62] -mb-[213px] sm:scale-[0.78] sm:-mb-[123px] md:scale-[0.92] md:-mb-[45px] lg:mb-[28px] lg:scale-105"
-            style={{ width: CANVAS_WIDTH, height: CANVAS_HEIGHT }}
+        <LadiGroup top={37} left={55} width={372} height={422}>
+          <LadiImage top={22} left={38} width={267} height={262} src={dreamPolaroidImage} alt={`${groomName} & ${brideName}`} />
+          <LadiImage top={0} left={0} width={372} height={422} src={photoFrame} alt="" />
+          <LadiHeadline
+            top={307}
+            left={23}
+            width={302}
+            fontFamily="var(--font-heading)"
+            fontSize={30}
+            lineHeight={1.2}
+            letterSpacing={7}
+            color="var(--color-champagne)"
+            textAlign="center"
+            textTransform="uppercase"
           >
-            {DREAM_LETTERS.map((letter, i) => (
-              <motion.span
-                key={letter.char}
-                initial={{ opacity: 0, y: 30, scale: 0.9 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                viewport={{ once: true, margin: '-10%' }}
-                transition={{ duration: 1, delay: i * 0.15, ease: EASE }}
-                className="absolute font-editorial leading-none"
-                style={{
-                  top: letter.top,
-                  left: letter.left,
-                  fontSize: letter.size,
-                  color: 'var(--color-ivory-gold)',
-                  transform: `rotate(${letter.rotate}deg)`,
-                }}
-              >
-                {letter.char}
-              </motion.span>
-            ))}
-          </div>
+            Love forever
+          </LadiHeadline>
+        </LadiGroup>
+
+        <LadiImage top={298} left={349} width={80} height={79} src={pearl} alt="" />
+        <LadiImage top={138} left={24} width={38} height={38} src={pearl} alt="" />
+        <LadiImage top={392} left={5} width={50} height={50} src={pearl} alt="" />
+
+        <LadiLine top={386} left={210} width={1} height={220} color="var(--color-champagne)" />
+        <div style={{ position: 'absolute', top: 606, left: 200.6, color: 'var(--color-champagne)' }}>
+          <ChevronDown size={15} strokeWidth={2} />
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-10%' }}
-          transition={{ duration: 0.9, delay: 0.5, ease: EASE }}
-          className="text-center md:text-left"
+        <LadiHeadline
+          top={431}
+          left={52}
+          width={302}
+          fontFamily="var(--font-heading)"
+          fontSize={24}
+          lineHeight={1.2}
+          color="var(--color-quote)"
+          textAlign="center"
         >
-          <p className="font-editorial text-base italic leading-loose text-text/75 sm:text-lg">
-            {QUOTE_LINES.map((line, i) => (
-              <span key={line}>
-                {line}
-                {i < QUOTE_LINES.length - 1 && <br />}
-              </span>
-            ))}
-          </p>
-        </motion.div>
-      </div>
-
-      <motion.div
-        initial={{ opacity: 0, y: 24, rotate: -3 }}
-        whileInView={{ opacity: 1, y: 0, rotate: -2 }}
-        viewport={{ once: true, margin: '-10%' }}
-        transition={{ duration: 0.9, delay: 0.3, ease: EASE }}
-        className="polaroid relative z-10 mx-auto mt-20 w-[72%] max-w-[280px] md:mt-24"
-      >
-        <div className="relative aspect-square w-full overflow-hidden">
-          <Image
-            src={dreamPolaroidImage}
-            alt={`${groomName} & ${brideName}`}
-            fill
-            className="photo-tone object-cover"
-            sizes="(max-width: 768px) 72vw, 280px"
-          />
-        </div>
-        <p className="pt-4 text-center font-heading text-lg uppercase tracking-[0.15em] text-champagne">
-          Love Forever
-        </p>
-      </motion.div>
-
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-10%' }}
-        transition={{ duration: 0.9, delay: 0.45, ease: EASE }}
-        className="relative z-10 mx-auto mt-16 flex max-w-xs flex-col items-center gap-5 text-center font-heading text-base uppercase tracking-[0.1em] text-ink/80 md:mt-20"
-      >
-        <span>Two hearts</span>
-        <span className="h-px w-8 bg-champagne/40" />
-        <span>One journey</span>
-        <span className="h-px w-8 bg-champagne/40" />
-        <span>A lifetime of love</span>
-      </motion.div>
-
-      <svg
-        viewBox="0 0 400 60"
-        preserveAspectRatio="none"
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-12 w-full text-white md:h-16"
-        aria-hidden
-      >
-        <path
-          d="M0 30 C 60 10, 120 50, 200 30 S 340 10, 400 30 L 400 60 L 0 60 Z"
-          fill="currentColor"
-          opacity="0.65"
-        />
-      </svg>
+          Two hearts
+        </LadiHeadline>
+        <LadiHeadline
+          top={505}
+          left={52}
+          width={302}
+          fontFamily="var(--font-heading)"
+          fontSize={24}
+          lineHeight={1.2}
+          color="var(--color-quote)"
+          textAlign="center"
+        >
+          One journey
+        </LadiHeadline>
+        <LadiHeadline
+          top={577}
+          left={52}
+          width={302}
+          fontFamily="var(--font-heading)"
+          fontSize={24}
+          lineHeight={1.2}
+          color="var(--color-quote)"
+          textAlign="center"
+        >
+          A lifetime of love
+        </LadiHeadline>
+      </LadiCanvas>
     </section>
   )
 }

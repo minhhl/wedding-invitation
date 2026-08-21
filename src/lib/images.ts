@@ -25,6 +25,9 @@ export const invitationBackgroundImage = photo('HTC03199.jpg')
 // Dream section — small polaroid-style photo beside the quote
 export const dreamPolaroidImage = photo('HTC02889.jpg')
 
+// Wedding-day timeline — tall photo beside the schedule list
+export const timelinePhoto = photo('HTC03262.jpg')
+
 // Endless Romance gallery — two-up row followed by a 2x2 grid
 export const endlessRomanceImages = [
   photo('HTC03983.jpg'),

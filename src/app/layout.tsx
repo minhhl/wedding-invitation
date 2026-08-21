@@ -1,44 +1,15 @@
 import type { Metadata, Viewport } from 'next'
-import { Alex_Brush, Cormorant_Garamond, Great_Vibes, Montserrat, Playfair_Display } from 'next/font/google'
 import '../styles/globals.css'
 import { ogImage } from '@/lib/images'
 import { SmoothScroll } from '@/components/SmoothScroll'
 import { groomName, brideName } from '@/lib/weddingData'
-
-const cormorant = Cormorant_Garamond({
-  subsets: ['latin', 'vietnamese'],
-  weight: ['300', '400', '500', '600'],
-  variable: '--next-cormorant',
-  display: 'swap',
-})
-
-const greatVibes = Great_Vibes({
-  subsets: ['latin'],
-  weight: '400',
-  variable: '--next-great-vibes',
-  display: 'swap',
-})
-
-const montserrat = Montserrat({
-  subsets: ['latin', 'vietnamese'],
-  variable: '--next-montserrat',
-  display: 'swap',
-})
-
-const playfair = Playfair_Display({
-  subsets: ['latin'],
-  weight: ['400', '500'],
-  style: ['normal', 'italic'],
-  variable: '--next-playfair',
-  display: 'swap',
-})
-
-const alexBrush = Alex_Brush({
-  subsets: ['latin'],
-  weight: '400',
-  variable: '--next-alex-brush',
-  display: 'swap',
-})
+import {
+  arnoProLightDisplay,
+  vipHastegi,
+  bhnEcatherina,
+  ghiocityItalic,
+  openSans,
+} from '@/lib/fonts'
 
 export const metadata: Metadata = {
   metadataBase: process.env.NEXT_PUBLIC_SITE_URL
@@ -58,15 +29,20 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  themeColor: '#c9a977',
+  themeColor: '#CB9D45',
 }
+
+const fontVariables = [
+  arnoProLightDisplay.variable,
+  vipHastegi.variable,
+  bhnEcatherina.variable,
+  ghiocityItalic.variable,
+  openSans.variable,
+].join(' ')
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html
-      lang="vi"
-      className={`${cormorant.variable} ${greatVibes.variable} ${montserrat.variable} ${playfair.variable} ${alexBrush.variable}`}
-    >
+    <html lang="vi" className={fontVariables}>
       <body>
         <SmoothScroll>{children}</SmoothScroll>
       </body>
