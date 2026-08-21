@@ -26,8 +26,8 @@ const isStaticExport = process.env.NEXT_PUBLIC_STATIC_EXPORT === 'true'
 
 function ClosingPhoto() {
   return (
-    <div className="relative mt-16 h-[275px] w-full overflow-hidden md:mt-20">
-      <Image src={footerImage} alt={`${groomName} & ${brideName}`} fill className="photo-tone object-cover" sizes="100vw" />
+    <div className="relative mx-auto mt-16 h-[275px] w-full max-w-[420px] overflow-hidden md:mt-20">
+      <Image src={footerImage} alt={`${groomName} & ${brideName}`} fill className="photo-tone object-cover" sizes="420px" />
       <div className="absolute inset-0 bg-ink/45" />
       <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center text-white">
         <p className="max-w-md font-heading text-sm leading-relaxed md:text-base">

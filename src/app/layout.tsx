@@ -8,6 +8,7 @@ import {
   vipHastegi,
   bhnEcatherina,
   ghiocityItalic,
+  janeLotus,
   openSans,
 } from '@/lib/fonts'
 
@@ -37,6 +38,7 @@ const fontVariables = [
   vipHastegi.variable,
   bhnEcatherina.variable,
   ghiocityItalic.variable,
+  janeLotus.variable,
   openSans.variable,
 ].join(' ')
 

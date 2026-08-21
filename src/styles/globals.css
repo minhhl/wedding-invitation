@@ -14,12 +14,15 @@
   --color-ivory-gold: #dcc9a3;
   --color-offwhite: #f1f3f4;
   --color-quote: #836f6f;
+  /* Nude/taupe tone from the "tonewhitenude" reference — bride-card text. */
+  --color-taupe: #6f6969;
 
-  /* Typography — the 4 real fonts loaded in src/lib/fonts.ts, matched from
-     the reference template's own @font-face declarations. */
+  /* Typography — the 5 real fonts loaded in src/lib/fonts.ts, matched from
+     the reference templates' own @font-face declarations. */
   --font-heading: var(--font-arno-pro), Georgia, serif;
   --font-script: var(--font-vip-hastegi), cursive;
   --font-script-flourish: var(--font-ghiocity), cursive;
+  --font-bride-script: var(--font-janelotus), cursive;
   --font-body: var(--font-open-sans), system-ui, sans-serif;
   --font-editorial: var(--font-ecatherina), Georgia, serif;
 }

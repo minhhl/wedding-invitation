@@ -10,8 +10,9 @@ const [wide, left1, right1, right2, left2, right3] = endlessRomanceImages
 
 export function PolaroidCollection() {
   return (
-    <section className="relative" style={{ backgroundColor: '#e6e1d4' }}>
+    <section className="relative bg-background">
       <LadiCanvas height={SECTION_HEIGHT}>
+        <div style={{ position: 'absolute', inset: 0, backgroundColor: '#e6e1d4' }} />
         <LadiImage top={-24} left={0.4} width={420} height={972} src={plasterTexture} alt="" />
 
         <LadiImage top={12} left={14} width={393} height={410} src={wide} alt={`${groomName} & ${brideName}`} priority />

@@ -10,6 +10,7 @@ import {
   groomMother,
   brideFather,
   brideMother,
+  lunarDateLabelSunday,
   initial,
 } from '@/lib/weddingData'
 import { plasterTexture, invitationBg, paperCard, flowerBranch, pearl, logo } from '@/lib/decor'
@@ -82,11 +83,11 @@ export function InvitationCard() {
             <LadiGroup top={66.5} left={0} width={420} height={99}>
               <LadiHeadline
                 top={0}
-                left={6}
-                width={408}
+                left={35}
+                width={350}
                 fontFamily="var(--font-script-flourish)"
-                fontSize={28}
-                lineHeight={1.6}
+                fontSize={22}
+                lineHeight={1.4}
                 color="var(--color-champagne)"
                 textAlign="center"
               >
@@ -126,23 +127,37 @@ export function InvitationCard() {
           >
             <span
               className="flex-1 text-center"
-              style={{ fontFamily: 'var(--font-heading)', fontSize: 20, lineHeight: 1.6, color: '#000' }}
+              style={{ fontFamily: 'var(--font-heading)', fontSize: 16, lineHeight: 1.6, color: '#000', whiteSpace: 'nowrap' }}
             >
               {receptionChapter.label}
             </span>
             <span
               className="flex-1 text-center"
-              style={{ fontFamily: 'var(--font-heading)', fontSize: 20, lineHeight: 1.6, color: '#000' }}
+              style={{ fontFamily: 'var(--font-heading)', fontSize: 16, lineHeight: 1.6, color: '#000', whiteSpace: 'nowrap' }}
             >
               {receptionChapter.date}
             </span>
             <span
               className="flex-1 text-center"
-              style={{ fontFamily: 'var(--font-heading)', fontSize: 20, lineHeight: 1.6, color: '#000' }}
+              style={{ fontFamily: 'var(--font-heading)', fontSize: 16, lineHeight: 1.6, color: '#000', whiteSpace: 'nowrap' }}
             >
               {receptionEvent.time}
             </span>
           </LadiGroup>
+
+          <LadiHeadline
+            top={272}
+            left={0}
+            width={420}
+            fontFamily="var(--font-heading)"
+            fontSize={13}
+            lineHeight={1.6}
+            color="var(--color-quote)"
+            textAlign="center"
+            fontStyle="italic"
+          >
+            {lunarDateLabelSunday}
+          </LadiHeadline>
 
           <LadiGroup top={313} left={0} width={429} height={58}>
             <LadiHeadline

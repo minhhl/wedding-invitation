@@ -5,13 +5,11 @@ import { useLayoutEffect, useRef, useState } from 'react'
 const DESIGN_WIDTH = 420
 
 /**
- * Renders children on a fixed 420px-wide design canvas, then uniformly
- * scales the whole thing to fill the container width — edge to edge, on
- * every device — the same technique the Ladipage reference site uses (it
- * forces the viewport's `initial-scale` to `deviceWidth / 420`). We can't
- * touch the global viewport meta tag (that would also scale the unrelated
- * /guest-management admin), so this reproduces it locally with a CSS
- * transform instead, scoped to just the sections that use it.
+ * Renders children on a fixed 420px-wide design canvas, capped at that
+ * width and centered — matching the reference site's actual desktop
+ * behavior (a narrow mobile-width card centered on a plain background, not
+ * scaled up edge-to-edge). Only shrinks (never grows past 420px) so it
+ * still fits on viewports narrower than the design width.
  */
 export function LadiCanvas({
   height,
@@ -39,7 +37,14 @@ export function LadiCanvas({
     <div
       ref={containerRef}
       className={className}
-      style={{ position: 'relative', width: '100%', height: height * scale, overflow: 'hidden' }}
+      style={{
+        position: 'relative',
+        width: '100%',
+        maxWidth: DESIGN_WIDTH,
+        margin: '0 auto',
+        height: height * scale,
+        overflow: 'hidden',
+      }}
     >
       <div
         style={{

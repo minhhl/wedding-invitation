@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { LadiCanvas, LadiImage, LadiHeadline } from '@/components/ladi'
+import { LadiCanvas, LadiImage } from '@/components/ladi'
 import { headerImage } from '@/lib/images'
 import { heroBg, ampersand } from '@/lib/decor'
 import { groomName, brideName, weddingDateParts } from '@/lib/weddingData'
@@ -10,7 +10,7 @@ const SECTION_HEIGHT = 673
 
 export function Header() {
   return (
-    <section className="relative bg-ink">
+    <section className="relative bg-background">
       <LadiCanvas height={SECTION_HEIGHT}>
         {/* Satin texture base — the real photo covers almost all of it, this
             shows only at the sliver of a fringe (matches the reference site,
@@ -39,52 +39,37 @@ export function Header() {
             background: 'linear-gradient(rgba(253,251,251,0) 0%, rgba(0,0,0,0.53) 100%)',
           }}
         />
-
-        {/* Names stacked and centered (rather than the source's fixed
-            side-by-side boxes) since the real names run longer than the
-            template's short placeholder names and would otherwise wrap and
-            overlap in a narrow fixed-width box. */}
-        <LadiHeadline
-          top={493}
-          left={10}
-          width={400}
-          fontFamily="var(--font-heading)"
-          fontSize={32}
-          lineHeight={1.3}
-          color="var(--color-offwhite)"
-          textTransform="uppercase"
-          textAlign="center"
-        >
-          {groomName}
-        </LadiHeadline>
-        <LadiImage top={542} left={175} width={70} height={36} src={ampersand} alt="" />
-        <LadiHeadline
-          top={577}
-          left={10}
-          width={400}
-          fontFamily="var(--font-heading)"
-          fontSize={32}
-          lineHeight={1.3}
-          color="var(--color-offwhite)"
-          textTransform="uppercase"
-          textAlign="center"
-        >
-          {brideName}
-        </LadiHeadline>
-
-        <LadiHeadline
-          top={627}
-          left={121}
-          width={181}
-          fontFamily="var(--font-script)"
-          fontSize={28}
-          color="var(--color-offwhite)"
-          letterSpacing={5}
-          textAlign="center"
-        >
-          {weddingDateParts.day}.{weddingDateParts.month}.{weddingDateParts.year}
-        </LadiHeadline>
       </LadiCanvas>
+
+      {/* The name/date caption sits outside the scaled canvas on purpose: it
+          keeps a mobile-sized, capped-width text block at every viewport
+          instead of blowing up to match the canvas's edge-to-edge photo
+          scaling on wide screens. */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-[7%] flex justify-center px-6">
+        <div className="flex max-w-xs flex-col items-center text-center text-white">
+          <p
+            className="font-heading uppercase leading-tight"
+            style={{ fontSize: 'clamp(1.1rem, 4vw, 1.5rem)', letterSpacing: '0.04em' }}
+          >
+            {groomName}
+          </p>
+          <span className="relative my-1 h-6 w-16">
+            <Image src={ampersand} alt="&" fill className="object-contain" />
+          </span>
+          <p
+            className="font-heading uppercase leading-tight"
+            style={{ fontSize: 'clamp(1.1rem, 4vw, 1.5rem)', letterSpacing: '0.04em' }}
+          >
+            {brideName}
+          </p>
+          <p
+            className="mt-3 font-script"
+            style={{ fontSize: 'clamp(1rem, 3vw, 1.25rem)', letterSpacing: '0.15em' }}
+          >
+            {weddingDateParts.day}.{weddingDateParts.month}.{weddingDateParts.year}
+          </p>
+        </div>
+      </div>
     </section>
   )
 }
