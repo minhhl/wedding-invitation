@@ -24,7 +24,15 @@ export function InviteLinkGenerator() {
     const trimmedName = name.trim()
     if (!trimmedName) return
 
-    const url = new URL(`/nha-${side}`, window.location.origin)
+    // Use everything before "/guest-management" as the base, not just
+    // location.origin — under a basePath deploy (e.g. GitHub Pages at
+    // /wedding-invitation) the origin alone drops that prefix.
+    const guestManagementIndex = window.location.href.indexOf('/guest-management')
+    const base =
+      guestManagementIndex === -1
+        ? window.location.origin
+        : window.location.href.slice(0, guestManagementIndex)
+    const url = new URL(`/nha-${side}`, base)
     url.searchParams.set('name', trimmedName)
     setLink(url.toString())
     setCopied(false)
