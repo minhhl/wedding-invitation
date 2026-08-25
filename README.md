@@ -124,6 +124,75 @@ npm run build
 npm start
 ```
 
+## 🚀 Deployment
+
+### Option 1: Vercel (Recommended)
+1. Push your code to GitHub
+2. Connect your GitHub repo to [vercel.com](https://vercel.com)
+3. Add environment variables in Vercel dashboard
+4. Vercel will auto-deploy on every push
+
+### Option 2: Netlify
+1. Connect your GitHub repo to [netlify.com](https://netlify.com)
+2. Set build command: `npm run build`
+3. Set publish directory: `.next`
+4. Add environment variables in Netlify dashboard
+
+### Option 3: Docker
+```bash
+# Build Docker image
+docker build -t wedding-invitation .
+
+# Run container
+docker run -p 3000:3000 wedding-invitation
+
+# Or with Docker Compose
+docker-compose up
+```
+
+### Option 4: Traditional Server (Ubuntu/Debian)
+```bash
+# Install Node.js
+curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+sudo apt-get install -y nodejs
+
+# Clone and setup
+git clone <your-repo-url>
+cd wedding-invitation
+npm install
+npm run build
+
+# Use PM2 for process management
+npm install -g pm2
+pm2 start npm --name "wedding" -- start
+pm2 startup
+pm2 save
+```
+
+### Deployment Security Checklist
+- [ ] Never commit `.env.local` to the repository
+- [ ] Environment variables configured on the hosting platform
+- [ ] Supabase keys kept secret, RLS policies enabled where needed
+- [ ] HTTPS/SSL certificate enabled
+- [ ] Custom domain configured
+- [ ] Final testing on desktop and mobile before going live
+
+### Troubleshooting Deployment
+
+**Build errors**
+```bash
+rm -rf .next
+rm -rf node_modules package-lock.json
+npm install
+npm run build
+```
+
+**Supabase connection issues**
+1. Verify environment variables are correct
+2. Check the Supabase project is active
+3. Ensure tables exist in the database
+4. Check row-level security (RLS) policies if needed
+
 ## 📱 Features Breakdown
 
 ### Invitation Cover

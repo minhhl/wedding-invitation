@@ -147,8 +147,7 @@ wedding-invitation/
 ├── docker-compose.yml          # Docker compose
 ├── .dockerignore                # Docker ignore
 │
-├── README.md                   # Main documentation
-├── DEPLOYMENT.md               # Deployment guide
+├── README.md                   # Main documentation (incl. deployment guide)
 ├── FEATURES.md                 # Features guide
 └── package.json                # Dependencies
 ```
@@ -165,7 +164,7 @@ wedding-invitation/
 5. ✅ Choose custom colors/fonts (optional)
 
 ### Phase 2: Setup (Next Week)
-1. Create Supabase tables (SQL provided in DEPLOYMENT.md)
+1. Create Supabase tables (SQL provided in README.md)
 2. Update `.env.local` with real data
 3. Replace sample images with wedding photos
 4. Test RSVP form and guest book
@@ -329,8 +328,7 @@ npm run build
 
 ## 📚 Documentation Files
 
-- **README.md** - Project overview and quick start
-- **DEPLOYMENT.md** - Detailed deployment guide with all platforms
+- **README.md** - Project overview, quick start, and deployment guide with all platforms
 - **FEATURES.md** - Feature descriptions and customization guide
 - **.env.local.example** - Environment variable template
 
@@ -380,7 +378,7 @@ Your wedding invitation website is ready to use. Follow the "Next Steps" section
 ## 📞 Contact & Support
 
 For issues or questions:
-1. Check documentation files (README.md, DEPLOYMENT.md, FEATURES.md)
+1. Check documentation files (README.md, FEATURES.md)
 2. Review code comments in component files
 3. Check component examples in FEATURES.md
 4. Refer to technology documentation (links above)
