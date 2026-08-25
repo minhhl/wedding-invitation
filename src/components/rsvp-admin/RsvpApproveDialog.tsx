@@ -32,6 +32,7 @@ export function RsvpApproveDialog({ request, onOpenChange, onConfirm }: RsvpAppr
   const [guestQuery, setGuestQuery] = useState('')
   const [selectedGuestId, setSelectedGuestId] = useState<string | null>(null)
   const [tableInput, setTableInput] = useState('')
+  const [totalGuestsInput, setTotalGuestsInput] = useState('1')
   const [guests, setGuests] = useState<Guest[]>([])
   const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -39,11 +40,12 @@ export function RsvpApproveDialog({ request, onOpenChange, onConfirm }: RsvpAppr
   useEffect(() => {
     if (!request) return
     setMode('new')
-    setSide(GUEST_SIDES[0])
+    setSide(request.side || GUEST_SIDES[0])
     setGroup(GUEST_GROUPS[0])
     setGuestQuery('')
     setSelectedGuestId(null)
     setTableInput('')
+    setTotalGuestsInput('1')
     setError(null)
     fetch('/api/guests')
       .then((res) => (res.ok ? res.json() : { guests: [] }))
@@ -51,7 +53,8 @@ export function RsvpApproveDialog({ request, onOpenChange, onConfirm }: RsvpAppr
       .catch(() => setGuests([]))
   }, [request])
 
-  const totalGuests = (request?.guestCount ?? 0) + 1
+  const totalGuests = Number(totalGuestsInput)
+  const totalGuestsValid = Number.isInteger(totalGuests) && totalGuests >= 1 && totalGuests <= 20
 
   const matches = useMemo(() => {
     const q = guestQuery.trim().toLowerCase()
@@ -63,17 +66,18 @@ export function RsvpApproveDialog({ request, onOpenChange, onConfirm }: RsvpAppr
   const tableValid = table === null || (Number.isFinite(table) && table >= 1)
 
   const capacityPreview = useMemo(() => {
-    if (!request?.attending || table === null || !tableValid) return null
+    if (!request?.attending || table === null || !tableValid || !totalGuestsValid) return null
     const excludeId = mode === 'link' ? (selectedGuestId ?? undefined) : undefined
     const current = getTableTotal(guests, table, excludeId)
     const combined = current + totalGuests
     return { current, combined, overLimit: combined > TABLE_CAPACITY }
-  }, [request, table, tableValid, guests, mode, selectedGuestId, totalGuests])
+  }, [request, table, tableValid, totalGuestsValid, guests, mode, selectedGuestId, totalGuests])
 
   if (!request) return null
 
   const canSubmit =
     tableValid &&
+    (!request.attending || totalGuestsValid) &&
     !capacityPreview?.overLimit &&
     (mode === 'new' ? !!side && !!group : !!selectedGuestId)
 
@@ -81,10 +85,11 @@ export function RsvpApproveDialog({ request, onOpenChange, onConfirm }: RsvpAppr
     if (!request) return
     setSubmitting(true)
     setError(null)
+    const resolvedTotal = request.attending ? totalGuests : 1
     const payload: ApprovePayload =
       mode === 'new'
-        ? { mode: 'new', side, group, table }
-        : { mode: 'link', guestId: selectedGuestId as string, table }
+        ? { mode: 'new', side, group, totalGuests: resolvedTotal, table }
+        : { mode: 'link', guestId: selectedGuestId as string, totalGuests: resolvedTotal, table }
     const result = await onConfirm(payload)
     setSubmitting(false)
     if (!result.ok) {
@@ -100,11 +105,33 @@ export function RsvpApproveDialog({ request, onOpenChange, onConfirm }: RsvpAppr
         <DialogHeader>
           <DialogTitle>Tạo Guest Profile từ RSVP này?</DialogTitle>
           <DialogDescription>
-            {request.guestName} · {totalGuests} khách ({request.attending ? 'sẽ tham dự' : 'không tham dự'})
+            {request.guestName} · {request.side} ({request.attending ? 'sẽ tham dự' : 'không tham dự'})
           </DialogDescription>
         </DialogHeader>
 
         <div className="flex flex-col gap-4">
+          {request.companion && (
+            <p className="rounded-lg bg-zinc-800/60 px-3 py-2 text-xs text-zinc-400">
+              Đi cùng: <span className="text-zinc-200">{request.companion}</span>
+            </p>
+          )}
+
+          {request.attending && (
+            <div>
+              <label className="mb-1 block text-xs font-medium text-zinc-400">Tổng số khách (kể cả người đăng ký)</label>
+              <Input
+                type="number"
+                min={1}
+                max={20}
+                value={totalGuestsInput}
+                onChange={(e) => setTotalGuestsInput(e.target.value)}
+              />
+              {!totalGuestsValid && (
+                <p className="mt-1 text-xs text-red-400">Nhập số từ 1 đến 20.</p>
+              )}
+            </div>
+          )}
+
           <div className="flex flex-col gap-2">
             <label className="flex items-center gap-2 text-sm text-zinc-200">
               <input

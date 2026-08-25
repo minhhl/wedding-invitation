@@ -33,9 +33,8 @@ export function RsvpDetailDialog({
         {request && (
           <div className="flex flex-col">
             <Row label="Họ tên" value={request.guestName} />
-            <Row label="SĐT" value={request.phone} />
-            <Row label="Email" value={request.email} />
-            <Row label="Số người đi cùng" value={String(request.guestCount)} />
+            <Row label="Khách mời của" value={request.side} />
+            <Row label="Đi cùng" value={request.companion} />
             <Row label="Xác nhận tham dự" value={request.attending ? 'Sẽ tham dự' : 'Không tham dự'} />
             <Row label="Lời chúc" value={request.message} />
             <Row label="Ngày gửi RSVP" value={new Date(request.submittedAt).toLocaleString('vi-VN')} />

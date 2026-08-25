@@ -22,9 +22,8 @@ export async function POST(req: Request) {
     const request: RsvpRequest = {
       id: createId(),
       guestName: data.guestName,
-      phone: data.phone,
-      email: data.email || '',
-      guestCount: data.guestCount,
+      side: data.side,
+      companion: data.companion || '',
       message: data.message || '',
       attending: data.attending === 'yes',
       status: 'PENDING',

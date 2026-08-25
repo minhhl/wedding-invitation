@@ -4,8 +4,8 @@ import { useCallback, useEffect, useState } from 'react'
 import { RsvpRequest } from '@/types/rsvp'
 
 export type ApprovePayload =
-  | { mode: 'new'; side: string; group: string; table?: number | null }
-  | { mode: 'link'; guestId: string; table?: number | null }
+  | { mode: 'new'; side: string; group: string; totalGuests: number; table?: number | null }
+  | { mode: 'link'; guestId: string; totalGuests: number; table?: number | null }
 
 export function useRsvpRequests() {
   const [requests, setRequests] = useState<RsvpRequest[]>([])

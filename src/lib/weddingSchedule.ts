@@ -17,10 +17,10 @@ export interface ScheduleChapter {
 
 export const weddingScheduleChapters: ScheduleChapter[] = [
   {
-    label: 'Thứ Bảy',
-    date: '19/09/2026',
+    label: 'Chủ Nhật',
+    date: '20/09/2026',
     events: [
-      {
+       {
         icon: 'dove',
         time: '13:15',
         title: 'Lễ Vu Quy',
@@ -29,21 +29,6 @@ export const weddingScheduleChapters: ScheduleChapter[] = [
         startISO: '2026-09-19T13:15:00+07:00',
         endISO: '2026-09-19T15:15:00+07:00',
       },
-      {
-        icon: 'utensils',
-        time: '16:00',
-        title: 'Tiệc Nhà Gái',
-        addressLines: ['Thôn Hồng Tiến', 'Xã Hợp Thịnh', 'Bắc Ninh'],
-        fullAddress: 'Thôn Hồng Tiến, Xã Hợp Thịnh, Bắc Ninh',
-        startISO: '2026-09-19T16:00:00+07:00',
-        endISO: '2026-09-19T18:00:00+07:00',
-      },
-    ],
-  },
-  {
-    label: 'Chủ Nhật',
-    date: '20/09/2026',
-    events: [
       {
         icon: 'rings',
         time: '15:15',

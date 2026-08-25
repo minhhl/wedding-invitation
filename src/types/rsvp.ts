@@ -1,13 +1,14 @@
+import { GuestSide } from './guest'
+
 export const RSVP_STATUSES = ['PENDING', 'APPROVED', 'REJECTED'] as const
 export type RsvpStatus = (typeof RSVP_STATUSES)[number]
 
 export interface RsvpRequest {
   id: string
   guestName: string
-  phone: string
-  email: string
-  /** Companions only — does not include the requester themself. */
-  guestCount: number
+  side: GuestSide
+  /** Free-text answer to "who are you attending with?" — not a headcount. */
+  companion: string
   message: string
   attending: boolean
   status: RsvpStatus
@@ -24,9 +25,8 @@ export interface RsvpRequest {
 
 export interface RsvpSubmission {
   guestName: string
-  phone: string
-  email: string
-  guestCount: number
+  side: GuestSide
+  companion: string
   message: string
   attending: boolean
 }

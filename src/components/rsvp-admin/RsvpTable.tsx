@@ -43,8 +43,8 @@ export function RsvpTable({ requests, isAdmin, onView, onApprove, onReject }: Rs
           <thead className="sticky top-0 z-10 bg-zinc-900">
             <tr className="border-b border-zinc-800 text-left text-xs font-medium uppercase tracking-wide text-zinc-500">
               <th className="px-4 py-3 min-w-[180px]">Khách</th>
-              <th className="px-4 py-3 min-w-[140px]">Điện thoại</th>
-              <th className="px-4 py-3 min-w-[110px]">Người đi cùng</th>
+              <th className="px-4 py-3 min-w-[120px]">Bên</th>
+              <th className="px-4 py-3 min-w-[160px]">Người đi cùng</th>
               <th className="px-4 py-3 min-w-[110px]">Trạng thái</th>
               <th className="px-4 py-3 min-w-[160px]">Ngày đăng ký</th>
               <th className="px-4 py-3 min-w-[220px]">Action</th>
@@ -59,8 +59,8 @@ export function RsvpTable({ requests, isAdmin, onView, onApprove, onReject }: Rs
                     {r.attending ? 'Sẽ tham dự' : 'Không tham dự'}
                   </div>
                 </td>
-                <td className="px-4 py-3 text-zinc-300">{r.phone}</td>
-                <td className="px-4 py-3 text-zinc-300">{r.guestCount}</td>
+                <td className="px-4 py-3 text-zinc-300">{r.side}</td>
+                <td className="px-4 py-3 text-zinc-300">{r.companion || '—'}</td>
                 <td className="px-4 py-3">
                   <div className="flex flex-wrap items-center gap-1.5">
                     <span

@@ -32,14 +32,6 @@ export const ghiocityItalic = localFont({
   display: 'swap',
 })
 
-// Script font from the "tonewhitenude" reference — used for the couple's
-// names on the bride-side invitation card.
-export const janeLotus = localFont({
-  src: '../../assets/fonts/svn-janelotus-20260728033147-8ofpf.otf',
-  variable: '--font-janelotus',
-  display: 'swap',
-})
-
 // Body copy — the reference's global `body { font-family: "Open Sans" }`.
 export const openSans = Open_Sans({
   subsets: ['latin', 'vietnamese'],

@@ -37,12 +37,3 @@ export const dresscode = decor('dresscode.png')
 // Gold script "DREAM" wordmark — the save-the-date section's big backdrop word.
 export const dreamWordmark = decor('dream-wordmark.png')
 export const ornamentQuoteB = decor('ornament-quote-b.png')
-
-// From the "tonewhitenude" reference template — used for the bride-side
-// invitation card, which has its own distinct nude/taupe palette.
-export const brideCardPaper = decor('bride-card-paper.png')
-export const brideCardAmpersand = decor('bride-card-ampersand.png')
-export const brideCardOrchidCorner = decor('bride-card-orchid-corner.png')
-export const brideCardOrchidTop = decor('bride-card-orchid-top.png')
-export const brideCardMonogramFrame = decor('bride-card-monogram-frame.png')
-export const brideCardOrchidSpray = decor('bride-card-orchid-spray.png')

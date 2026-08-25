@@ -3,7 +3,15 @@ import { getServerSession } from '@/lib/serverSession'
 import { readRsvpRequestsFromDisk, writeRsvpRequestsToDisk } from '@/lib/rsvpFileStore'
 import { createGuestId, readGuestsFromDisk, writeGuestsToDisk } from '@/lib/guestFileStore'
 import { getTableTotal } from '@/lib/guestTable'
-import { Guest, GUEST_GROUPS, GUEST_SIDES, GuestGroup, GuestSide, TABLE_CAPACITY } from '@/types/guest'
+import {
+  Guest,
+  GUEST_GROUPS,
+  GUEST_SIDES,
+  GuestGroup,
+  GuestSide,
+  MAX_PARTY_SIZE,
+  TABLE_CAPACITY,
+} from '@/types/guest'
 
 // Role check (admin-only) is enforced by src/proxy.ts.
 export const dynamic = 'force-dynamic'
@@ -12,6 +20,11 @@ function parseTable(value: unknown): number | null {
   if (value === undefined || value === null || value === '') return null
   const n = Number(value)
   return Number.isFinite(n) && n >= 1 ? Math.round(n) : null
+}
+
+function parseTotalGuests(value: unknown): number | null {
+  const n = Number(value)
+  return Number.isFinite(n) && n >= 1 && n <= MAX_PARTY_SIZE ? Math.round(n) : null
 }
 
 export async function POST(request: Request, { params }: { params: Promise<{ id: string }> }) {
@@ -36,19 +49,24 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
     return NextResponse.json({ error: 'Yêu cầu RSVP này đã được xử lý.' }, { status: 409 })
   }
 
+  const totalGuests = parseTotalGuests(body.totalGuests)
+  if (rsvpRequest.attending && totalGuests === null) {
+    return NextResponse.json({ error: 'Vui lòng nhập tổng số khách hợp lệ.' }, { status: 400 })
+  }
+
   const guests = readGuestsFromDisk()
-  const totalGuests = 1 + rsvpRequest.guestCount
+  const partySize = totalGuests ?? 1
   const status = rsvpRequest.attending ? ('Sẽ đến' as const) : ('Không đến' as const)
   const table = rsvpRequest.attending ? parseTable(body.table) : null
 
   if (table !== null) {
     const excludeGuestId = mode === 'link' ? guestId : undefined
     const currentTotal = getTableTotal(guests, table, excludeGuestId)
-    const combined = currentTotal + totalGuests
+    const combined = currentTotal + partySize
     if (combined > TABLE_CAPACITY) {
       return NextResponse.json(
         {
-          error: `⚠ Bàn ${table} hiện có ${currentTotal} khách + RSVP mới ${totalGuests} khách = ${combined} khách. Vượt giới hạn ${TABLE_CAPACITY}. Vui lòng chọn bàn khác.`,
+          error: `⚠ Bàn ${table} hiện có ${currentTotal} khách + RSVP mới ${partySize} khách = ${combined} khách. Vượt giới hạn ${TABLE_CAPACITY}. Vui lòng chọn bàn khác.`,
         },
         { status: 400 }
       )
@@ -70,13 +88,15 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
     const newGuest: Guest = {
       id: createGuestId(),
       name: rsvpRequest.guestName,
-      phone: rsvpRequest.phone,
+      phone: '',
       side: side as GuestSide,
       group: group as GuestGroup,
-      partySize: totalGuests,
+      partySize,
       status,
       table,
-      note: rsvpRequest.message,
+      note: [rsvpRequest.companion && `Đi cùng: ${rsvpRequest.companion}`, rsvpRequest.message]
+        .filter(Boolean)
+        .join(' — '),
       source: 'RSVP',
     }
     guests.push(newGuest)
@@ -87,7 +107,7 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
       return NextResponse.json({ error: 'Không tìm thấy khách mời để liên kết.' }, { status: 404 })
     }
     existing.status = status
-    existing.partySize = totalGuests
+    existing.partySize = partySize
     existing.table = table
     linkedGuestId = existing.id
   }

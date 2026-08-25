@@ -8,14 +8,11 @@ export const brideFullName = process.env.NEXT_PUBLIC_BRIDE_FULL_NAME || 'Nguyễ
 // Parents' names for the invitation-details section.
 export const groomFather = process.env.NEXT_PUBLIC_GROOM_FATHER || 'Ông Hoàng Văn Lâm'
 export const groomMother = process.env.NEXT_PUBLIC_GROOM_MOTHER || 'Bà Lê Thị Hải'
-export const brideFather = process.env.NEXT_PUBLIC_BRIDE_FATHER || 'Cố phụ Nguyễn Thanh Tùng'
+export const brideFather = process.env.NEXT_PUBLIC_BRIDE_FATHER || 'Ông Nguyễn Thanh Tùng (Cố phụ)'
 export const brideMother = process.env.NEXT_PUBLIC_BRIDE_MOTHER || 'Bà Nguyễn Thị Quý'
 
-// Lunar calendar dates, shown alongside the solar wedding date — the two
-// ceremony days (19/09 and 20/09) fall on consecutive lunar days.
+// Lunar calendar date, shown alongside the solar wedding date.
 export const lunarDateLabelSunday = process.env.NEXT_PUBLIC_LUNAR_DATE || 'Tức ngày 10/8 năm Bính Ngọ'
-export const lunarDateLabelSaturday =
-  process.env.NEXT_PUBLIC_LUNAR_DATE_SATURDAY || 'Tức ngày 9/8 năm Bính Ngọ'
 
 // Vietnamese naming convention: the given name is the last word.
 export const initial = (name: string) => name.trim().split(/\s+/).pop()?.[0] ?? name[0]

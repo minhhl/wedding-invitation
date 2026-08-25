@@ -1,7 +1,9 @@
 'use client'
 
-import { ChevronRight } from 'lucide-react'
+import { useEffect, useState } from 'react'
+import { MapPin } from 'lucide-react'
 import { LadiCanvas, LadiGroup, LadiImage, LadiHeadline, LadiLine } from '@/components/ladi'
+import { PlasterBackground } from '@/components/PlasterBackground'
 import { weddingScheduleChapters, googleMapsDirectionsUrl } from '@/lib/weddingSchedule'
 import {
   groomName,
@@ -13,7 +15,7 @@ import {
   lunarDateLabelSunday,
   initial,
 } from '@/lib/weddingData'
-import { plasterTexture, invitationBg, paperCard, flowerBranch, pearl, logo } from '@/lib/decor'
+import { invitationBg, paperCard, flowerBranch, pearl, logo } from '@/lib/decor'
 
 const SECTION_HEIGHT = 1027
 
@@ -22,11 +24,18 @@ const receptionChapter = weddingScheduleChapters[weddingScheduleChapters.length 
 const receptionEvent = receptionChapter.events[receptionChapter.events.length - 1]
 
 export function InvitationCard() {
+  const [guestName, setGuestName] = useState<string | null>(null)
+
+  useEffect(() => {
+    const name = new URLSearchParams(window.location.search).get('name')
+    if (name?.trim()) setGuestName(name.trim())
+  }, [])
+
   return (
     <section className="relative bg-white">
       <LadiCanvas height={SECTION_HEIGHT}>
-        <LadiImage top={0} left={0.5} width={419} height={1027} src={plasterTexture} alt="" />
-        <LadiImage top={0} left={0.3} width={420.6} height={993} src={invitationBg} alt="" />
+        <PlasterBackground top={0} left={0.5} width={419} height={1027} />
+        <LadiImage top={-40} left={0.3} width={420.6} height={993} src={invitationBg} alt="" objectFit="fill" />
         <LadiImage top={221} left={9.9} width={400} height={567} src={paperCard} alt="" />
         <LadiImage top={481} left={-88.8} width={250} height={358} src={flowerBranch} alt="" />
 
@@ -62,47 +71,84 @@ export function InvitationCard() {
           </LadiHeadline>
         </LadiGroup>
 
-        <LadiGroup top={265} left={1.4} width={429} height={463}>
+        <LadiGroup top={273} left={1.4} width={429} height={463}>
           <LadiGroup top={0} left={5.7} width={420} height={463}>
-            <LadiHeadline
-              top={0}
-              left={43}
-              width={334}
-              fontFamily="var(--font-heading)"
-              fontSize={15}
-              lineHeight={1.6}
-              color="#000"
-              textAlign="center"
-              textTransform="uppercase"
-            >
-              Trân trọng kính mời quý khách
-              <br />
-              đến dự buổi tiệc chung vui cùng gia đình chúng tôi tại
-            </LadiHeadline>
+            <LadiGroup top={0} left={0} width={420} height={100}>
+              <LadiHeadline
+                top={0}
+                left={0}
+                width={420}
+                fontFamily="var(--font-heading)"
+                fontSize={15}
+                letterSpacing={2}
+                lineHeight={1.2}
+                color="#000"
+                textAlign="center"
+                textTransform="uppercase"
+              >
+                Trân trọng kính mời
+              </LadiHeadline>
+              <LadiHeadline
+                top={26}
+                left={0}
+                width={420}
+                fontFamily="var(--font-heading)"
+                fontSize={18}
+                fontStyle="italic"
+                lineHeight={1.4}
+                color="var(--color-quote)"
+                textAlign="center"
+              >
+                {guestName ?? 'Quý khách'}
+              </LadiHeadline>
+              <div
+                style={{
+                  position: 'absolute',
+                  top: 49,
+                  left: 110,
+                  width: 200,
+                  borderBottom: '1px dotted rgba(0,0,0,0.35)',
+                }}
+              />
+              <LadiHeadline
+                top={67}
+                left={95}
+                width={230}
+                fontFamily="var(--font-heading)"
+                fontSize={15}
+                lineHeight={1.1}
+                color="#000"
+                textAlign="center"
+              >
+                Đến dự bữa cơm thân mật chung <br /> vui cùng gia đình chúng tôi
+              </LadiHeadline>
+            </LadiGroup>
 
-            <LadiGroup top={66.5} left={0} width={420} height={99}>
+            <LadiGroup top={118} left={0} width={420} height={99}>
               <LadiHeadline
                 top={0}
                 left={35}
                 width={350}
-                fontFamily="var(--font-script-flourish)"
-                fontSize={22}
+                fontFamily="var(--font-heading)"
+                fontSize={20}
+                fontStyle="italic"
                 lineHeight={1.4}
                 color="var(--color-champagne)"
                 textAlign="center"
+                textTransform="uppercase"
               >
                 {receptionEvent.venueName ?? receptionEvent.title}
               </LadiHeadline>
             </LadiGroup>
 
-            <LadiGroup top={412} left={153} width={124} height={55} className="flex flex-col items-center">
+            <LadiGroup top={409} left={141} width={124} height={55} className="flex flex-col items-center">
               <a
                 href={googleMapsDirectionsUrl(receptionEvent.fullAddress)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex flex-col items-center gap-1 text-champagne"
               >
-                <ChevronRight size={20} strokeWidth={1.5} style={{ transform: 'rotate(90deg)' }} />
+                <MapPin size={20} strokeWidth={1.5} />
                 <span
                   style={{
                     fontFamily: 'var(--font-heading)',
@@ -119,34 +165,34 @@ export function InvitationCard() {
           </LadiGroup>
 
           <LadiGroup
-            top={209}
+            top={205}
             left={50}
             width={321}
             height={51}
-            className="flex items-center justify-between border-y border-black divide-x divide-black"
+            className="flex justify-between border-y border-champagne divide-x divide-champagne"
           >
             <span
-              className="flex-1 text-center"
-              style={{ fontFamily: 'var(--font-heading)', fontSize: 16, lineHeight: 1.6, color: '#000', whiteSpace: 'nowrap' }}
+              className="flex flex-1 items-center justify-center text-center"
+              style={{ fontFamily: 'var(--font-heading)', fontSize: 19, letterSpacing: 0.5, lineHeight: 1, color: 'var(--color-ink)', whiteSpace: 'nowrap', textTransform: 'uppercase' }}
             >
               {receptionChapter.label}
             </span>
             <span
-              className="flex-1 text-center"
-              style={{ fontFamily: 'var(--font-heading)', fontSize: 16, lineHeight: 1.6, color: '#000', whiteSpace: 'nowrap' }}
+              className="flex flex-1 items-center justify-center text-center"
+              style={{ fontFamily: 'var(--font-heading)', fontSize: 19, letterSpacing: 0.5, lineHeight: 1, color: 'var(--color-ink)', whiteSpace: 'nowrap', textTransform: 'uppercase' }}
             >
               {receptionChapter.date}
             </span>
             <span
-              className="flex-1 text-center"
-              style={{ fontFamily: 'var(--font-heading)', fontSize: 16, lineHeight: 1.6, color: '#000', whiteSpace: 'nowrap' }}
+              className="flex flex-1 items-center justify-center text-center"
+              style={{ fontFamily: 'var(--font-heading)', fontSize: 19, letterSpacing: 0.5, lineHeight: 1, color: 'var(--color-ink)', whiteSpace: 'nowrap', textTransform: 'uppercase' }}
             >
               {receptionEvent.time}
             </span>
           </LadiGroup>
 
           <LadiHeadline
-            top={272}
+            top={270}
             left={0}
             width={420}
             fontFamily="var(--font-heading)"
@@ -159,7 +205,7 @@ export function InvitationCard() {
             {lunarDateLabelSunday}
           </LadiHeadline>
 
-          <LadiGroup top={313} left={0} width={429} height={58}>
+          <LadiGroup top={311} left={0} width={429} height={80}>
             <LadiHeadline
               top={0}
               left={0}
@@ -174,13 +220,14 @@ export function InvitationCard() {
               <br />
               {groomFather}
               <br />
+              <br />
               {groomMother}
             </LadiHeadline>
-            <LadiLine top={0} left={208.7} width={1} height={58} color="#000" />
+            <LadiLine top={0} left={208.7} width={1} height={80} color="#000" />
             <LadiHeadline
               top={0}
-              left={237.25}
-              width={192}
+              left={225}
+              width={175}
               fontFamily='"EB Garamond", serif'
               fontSize={15}
               lineHeight={1.3}
@@ -196,13 +243,13 @@ export function InvitationCard() {
           </LadiGroup>
 
           <LadiHeadline
-            top={175}
+            top={162}
             left={2.3}
             width={408}
             fontFamily="var(--font-heading)"
-            fontSize={16}
-            lineHeight={1.2}
-            letterSpacing={1}
+            fontSize={18}
+            lineHeight={1.3}
+            letterSpacing={0.5}
             color="#000"
             textAlign="center"
           >

@@ -5,20 +5,18 @@ import Image from 'next/image'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { motion, AnimatePresence, type Variants } from 'framer-motion'
-import { Loader2, X } from 'lucide-react'
+import { ChevronDown, Loader2, X } from 'lucide-react'
 import { rsvpSubmissionSchema, RsvpSubmissionFormData } from '@/lib/rsvpValidation'
+import { PlasterBackground } from '@/components/PlasterBackground'
 import { plasterTexture } from '@/lib/decor'
 import { footerImage } from '@/lib/images'
 import { groomName, brideName } from '@/lib/weddingData'
+import { GUEST_SIDES } from '@/types/guest'
 
 const fieldClass =
-  'peer w-full border-b border-champagne/40 bg-transparent px-1 pb-3 pt-5 font-body text-sm text-ink placeholder-transparent focus:border-champagne focus:outline-none focus:shadow-[0_10px_18px_-16px_rgba(201,169,119,0.9)] transition-[border-color,box-shadow] duration-300'
+  'w-full rounded-xl border border-champagne/45 bg-white px-4 py-2.5 font-body text-sm text-ink placeholder:text-text/40 focus:border-champagne focus:outline-none focus:ring-1 focus:ring-champagne/30 transition-colors duration-300'
 
-const floatingLabelClass =
-  'pointer-events-none absolute left-1 top-5 text-sm text-text/45 transition-all duration-300 origin-left peer-focus:top-0 peer-focus:scale-[0.72] peer-focus:text-champagne peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:scale-[0.72] peer-[:not(:placeholder-shown)]:text-champagne-dark'
-
-const selectClass =
-  'w-full border-b border-champagne/40 bg-transparent px-1 py-3 font-body text-sm text-ink focus:border-champagne focus:outline-none focus:shadow-[0_10px_18px_-16px_rgba(201,169,119,0.9)] transition-[border-color,box-shadow] duration-300'
+const selectClass = `${fieldClass} appearance-none pr-9`
 
 // The GitHub Pages build is static-exported with no backend, so /api/rsvp
 // doesn't exist there — fall back to a message instead of a dead form.
@@ -26,15 +24,29 @@ const isStaticExport = process.env.NEXT_PUBLIC_STATIC_EXPORT === 'true'
 
 function ClosingPhoto() {
   return (
-    <div className="relative mx-auto mt-16 h-[275px] w-full max-w-[420px] overflow-hidden md:mt-20">
-      <Image src={footerImage} alt={`${groomName} & ${brideName}`} fill className="photo-tone object-cover" sizes="420px" />
-      <div className="absolute inset-0 bg-ink/45" />
-      <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center text-white">
-        <p className="max-w-md font-heading text-sm leading-relaxed md:text-base">
+    <div className="relative mx-auto h-[420px] w-full max-w-[420px] overflow-hidden bg-white">
+      <Image
+        src={footerImage}
+        alt={`${groomName} & ${brideName}`}
+        fill
+        className="photo-tone object-cover"
+        sizes="420px"
+      />
+      <div className="absolute inset-0" style={{ backgroundColor: 'rgba(0, 0, 0, 0.25)' }} />
+      <div className="absolute inset-0 flex flex-col items-center justify-end px-6 pb-20 text-center text-white">
+        <p
+          className="max-w-md font-heading text-sm leading-relaxed md:text-base"
+          style={{ textShadow: '0 1px 8px rgba(0, 0, 0, 0.45)' }}
+        >
           Hẹn gặp bạn trong ngày đặc biệt nhất của chúng mình. Sẽ thật hạnh phúc khi có bạn ở đó,
           cùng sẻ chia niềm vui và chứng kiến khoảnh khắc ý nghĩa này của chúng mình.
         </p>
-        <p className="mt-5 font-editorial text-3xl">Thank you!</p>
+        <p
+          className="mt-5 font-editorial text-3xl"
+          style={{ textShadow: '0 1px 8px rgba(0, 0, 0, 0.45)' }}
+        >
+          Thank you!
+        </p>
       </div>
     </div>
   )
@@ -44,14 +56,11 @@ export function RSVPSection() {
   if (isStaticExport) {
     return (
       <section id="rsvp" className="relative overflow-hidden bg-white">
-        <div
-          className="pointer-events-none absolute inset-0 opacity-40"
-          style={{ backgroundImage: `url(${plasterTexture})`, backgroundSize: 'cover' }}
-        />
-        <div className="relative mx-auto w-full max-w-xl px-5 py-20 text-center md:px-10 md:py-28">
+        <PlasterBackground className="pointer-events-none absolute inset-0 opacity-40" />
+        <div className="relative mx-auto w-full max-w-[420px] px-6 py-16 text-center md:py-20">
           <p className="eyebrow mb-4">RSVP</p>
           <h2 className="heading-2 mb-4 text-ink">Rất mong được đón tiếp bạn.</h2>
-          <p className="mx-auto max-w-sm font-body text-sm leading-relaxed text-text/80">
+          <p className="mx-auto font-body text-sm leading-relaxed text-text/80">
             Vui lòng xác nhận sự tham dự của bạn để chúng mình chuẩn bị đón tiếp một cách chu đáo
             nhất. Trân trọng cảm ơn! Bạn có thể xác nhận trực tiếp qua điện thoại hoặc tin nhắn
             với cô dâu chú rể.
@@ -77,7 +86,6 @@ function RSVPForm() {
     reset,
   } = useForm<RsvpSubmissionFormData>({
     resolver: zodResolver(rsvpSubmissionSchema),
-    defaultValues: { guestCount: 0 },
   })
 
   const onSubmit = async (data: RsvpSubmissionFormData) => {
@@ -114,23 +122,21 @@ function RSVPForm() {
 
   return (
     <section id="rsvp" className="relative overflow-hidden bg-white">
-      <div
+      <div className="relative mx-auto w-full max-w-[420px] px-6 py-16 md:py-20">
+        <div
         className="pointer-events-none absolute inset-0 opacity-40"
-        style={{ backgroundImage: `url(${plasterTexture})`, backgroundSize: 'cover' }}
+        style={{ backgroundImage: `url(${plasterTexture})`, backgroundRepeat: 'repeat', backgroundSize: '420px auto' }}
       />
-      <div className="relative mx-auto w-full max-w-xl px-5 py-20 md:px-10 md:py-28">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="mb-12 text-center"
+          className="mb-8 text-center"
         >
-          <p className="eyebrow mb-4">RSVP</p>
-          <h2 className="heading-2 mb-4 text-ink">Rất mong được đón tiếp bạn.</h2>
-          <p className="mx-auto max-w-sm font-body text-sm leading-relaxed text-text/80">
+          <p className="mx-auto font-body text-sm leading-relaxed text-text/80">
             Vui lòng xác nhận sự tham dự của bạn để chúng mình chuẩn bị đón tiếp một cách chu đáo
-            nhất. Trân trọng cảm ơn!
+            nhất. <br /> Trân trọng cảm ơn!
           </p>
         </motion.div>
 
@@ -140,102 +146,83 @@ function RSVPForm() {
           whileInView="visible"
           viewport={{ once: true }}
           onSubmit={handleSubmit(onSubmit)}
-          className="space-y-7"
+          className="space-y-4"
         >
-          <motion.div variants={itemVariants} className="relative">
+          <motion.div variants={itemVariants}>
             <input
               id="guestName"
               type="text"
-              placeholder="Họ và tên"
+              placeholder="Tên của bạn"
               {...register('guestName')}
               className={fieldClass}
             />
-            <label htmlFor="guestName" className={floatingLabelClass}>
-              Họ và tên
-            </label>
             {errors.guestName && (
               <p className="mt-2 text-xs text-red-500">{errors.guestName.message}</p>
             )}
           </motion.div>
 
-          <motion.div variants={itemVariants} className="grid grid-cols-1 gap-7 sm:grid-cols-2">
-            <div className="relative">
-              <input
-                id="phone"
-                type="tel"
-                placeholder="Số điện thoại"
-                {...register('phone')}
-                className={fieldClass}
-              />
-              <label htmlFor="phone" className={floatingLabelClass}>
-                Số điện thoại
-              </label>
-              {errors.phone && <p className="mt-2 text-xs text-red-500">{errors.phone.message}</p>}
-            </div>
-
-            <div className="relative">
-              <input
-                id="email"
-                type="email"
-                placeholder="Email (không bắt buộc)"
-                {...register('email')}
-                className={fieldClass}
-              />
-              <label htmlFor="email" className={floatingLabelClass}>
-                Email (không bắt buộc)
-              </label>
-              {errors.email && <p className="mt-2 text-xs text-red-500">{errors.email.message}</p>}
-            </div>
-          </motion.div>
-
-          <motion.div variants={itemVariants} className="grid grid-cols-1 gap-7 sm:grid-cols-2">
-            <div>
-              <label className="mb-2 block text-xs font-medium uppercase tracking-[0.2em] text-text/70">
-                Xác nhận tham dự
-              </label>
-              <select {...register('attending')} defaultValue="" className={selectClass}>
-                <option value="" disabled>
-                  Chọn phản hồi
-                </option>
-                <option value="yes">Tôi sẽ tham dự</option>
-                <option value="no">Rất tiếc không thể tham dự</option>
-              </select>
-              {errors.attending && (
-                <p className="mt-2 text-xs text-red-500">{errors.attending.message}</p>
-              )}
-            </div>
-
-            <div className="relative">
-              <input
-                id="guestCount"
-                type="number"
-                min={0}
-                max={20}
-                placeholder="0"
-                {...register('guestCount', { valueAsNumber: true })}
-                className={fieldClass}
-              />
-              <label htmlFor="guestCount" className={floatingLabelClass}>
-                Số người đi cùng
-              </label>
-              {errors.guestCount && (
-                <p className="mt-2 text-xs text-red-500">{errors.guestCount.message}</p>
-              )}
-            </div>
-          </motion.div>
-
-          <motion.div variants={itemVariants} className="relative">
+          <motion.div variants={itemVariants}>
             <textarea
               id="message"
-              placeholder="Lời chúc"
+              placeholder="Gửi lời chúc đến cô dâu chú rể"
               rows={4}
               {...register('message')}
               className={`${fieldClass} resize-none`}
             />
-            <label htmlFor="message" className={floatingLabelClass}>
-              Lời chúc
-            </label>
             {errors.message && <p className="mt-2 text-xs text-red-500">{errors.message.message}</p>}
+          </motion.div>
+
+          <motion.div variants={itemVariants} className="relative">
+            <select
+              id="attending"
+              {...register('attending')}
+              defaultValue=""
+              className={selectClass}
+            >
+              <option value="" disabled>
+                Xác nhận tham dự?
+              </option>
+              <option value="yes">Có, tôi sẽ tham dự</option>
+              <option value="no">Rất tiếc, tôi không thể tham dự</option>
+            </select>
+            <ChevronDown
+              size={16}
+              className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-text/50"
+            />
+            {errors.attending && (
+              <p className="mt-2 text-xs text-red-500">{errors.attending.message}</p>
+            )}
+          </motion.div>
+
+          <motion.div variants={itemVariants}>
+            <input
+              id="companion"
+              type="text"
+              placeholder="Bạn có tham dự cùng ai không?"
+              {...register('companion')}
+              className={fieldClass}
+            />
+            {errors.companion && (
+              <p className="mt-2 text-xs text-red-500">{errors.companion.message}</p>
+            )}
+          </motion.div>
+
+          <motion.div variants={itemVariants} className="relative">
+            <select id="side" {...register('side')} defaultValue="" className={selectClass}>
+              <option value="" disabled>
+                Bạn là khách mời của ai?
+              </option>
+              {GUEST_SIDES.map((side) => (
+                <option key={side} value={side}>
+                  {side}
+                </option>
+              ))}
+            </select>
+            <ChevronDown
+              size={16}
+              className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-text/50"
+            />
+            {errors.side && <p className="mt-2 text-xs text-red-500">{errors.side.message}</p>}
           </motion.div>
 
           {submitError && (
@@ -253,7 +240,7 @@ function RSVPForm() {
               disabled={isLoading}
               whileHover={{ scale: 1.01 }}
               whileTap={{ scale: 0.98 }}
-              className="btn-champagne inline-flex w-full items-center justify-center gap-2 py-4 text-xs font-semibold uppercase tracking-[0.3em] disabled:cursor-not-allowed disabled:opacity-60"
+              className="btn-champagne inline-flex w-full items-center justify-center gap-2 rounded-full py-3 text-xs font-semibold uppercase tracking-[0.3em] disabled:cursor-not-allowed disabled:opacity-60"
             >
               {isLoading && <Loader2 size={16} className="animate-spin" />}
               {isLoading ? 'Đang gửi...' : 'Xác nhận'}

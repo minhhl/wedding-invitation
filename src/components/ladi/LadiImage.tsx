@@ -17,25 +17,35 @@ export function LadiImage({
   alt = '',
   className,
   priority,
+  objectFit = 'cover',
   objectPosition = '0% 0%',
+  scale = 1,
   sizes,
+  zIndex,
 }: LadiBox & {
   src: string
   alt?: string
   className?: string
   priority?: boolean
+  objectFit?: React.CSSProperties['objectFit']
   objectPosition?: string
+  /** Zooms the image within its box via `transform: scale()`, box size unchanged. */
+  scale?: number
   sizes?: string
+  zIndex?: number
 }) {
   return (
-    <div className={className} style={{ position: 'absolute', top, left, width, height, overflow: 'hidden' }}>
+    <div
+      className={className}
+      style={{ position: 'absolute', top, left, width, height, overflow: 'hidden', zIndex }}
+    >
       <Image
         src={src}
         alt={alt}
         fill
         priority={priority}
         sizes={sizes ?? `${width}px`}
-        style={{ objectFit: 'cover', objectPosition }}
+        style={{ objectFit, objectPosition, transform: scale !== 1 ? `scale(${scale})` : undefined }}
       />
     </div>
   )

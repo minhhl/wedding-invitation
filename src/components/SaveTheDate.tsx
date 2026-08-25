@@ -1,8 +1,9 @@
 'use client'
 
 import { LadiCanvas, LadiGroup, LadiImage, LadiHeadline, LadiLine } from '@/components/ladi'
+import { PlasterBackground } from '@/components/PlasterBackground'
 import { saveTheDateImages } from '@/lib/images'
-import { plasterTexture, dreamWordmark } from '@/lib/decor'
+import { dreamWordmark } from '@/lib/decor'
 import { groomName, brideName, weddingDateParts } from '@/lib/weddingData'
 
 const SECTION_HEIGHT = 982
@@ -17,7 +18,7 @@ export function SaveTheDate() {
   return (
     <section className="relative bg-white">
       <LadiCanvas height={SECTION_HEIGHT}>
-        <LadiImage top={0} left={0.6} width={420} height={982} src={plasterTexture} alt="" />
+        <PlasterBackground top={0} left={0.6} width={420} height={982} />
 
         <LadiImage top={0} left={11.6} width={195} height={293} src={saveTheDateImages[0]} alt={`${groomName} & ${brideName}`} priority />
         <LadiImage top={0} left={215.4} width={195} height={293} src={saveTheDateImages[1]} alt={`${groomName} & ${brideName}`} />

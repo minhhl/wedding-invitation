@@ -10,7 +10,7 @@ const SECTION_HEIGHT = 673
 
 export function Header() {
   return (
-    <section className="relative bg-background">
+    <section className="relative bg-white">
       <LadiCanvas height={SECTION_HEIGHT}>
         {/* Satin texture base — the real photo covers almost all of it, this
             shows only at the sliver of a fringe (matches the reference site,
