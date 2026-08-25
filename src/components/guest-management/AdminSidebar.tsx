@@ -8,9 +8,7 @@ import {
   Users,
   Mail,
   MessageCircleHeart,
-  UtensilsCrossed,
   BarChart3,
-  Settings,
   ChevronDown,
   ChevronsLeft,
   ChevronsRight,
@@ -122,7 +120,6 @@ export function AdminSidebar() {
       children: [
         { label: 'Guest List', href: '/guest-management' },
         { label: 'Table Assignment', href: '/guest-management#guest-table' },
-        { label: 'Guest Groups', comingSoon: true },
       ],
     },
     {
@@ -132,8 +129,6 @@ export function AdminSidebar() {
       children: [
         { label: 'Wedding Invitations', href: '/', external: true },
         { label: 'Tạo Link Mời', href: '/guest-management/invite-links' },
-        { label: 'Announcement Cards (Báo Hỷ)', comingSoon: true },
-        { label: 'QR Check-in', comingSoon: true },
       ],
     },
     {
@@ -150,27 +145,7 @@ export function AdminSidebar() {
         { label: 'Rejected RSVP', href: '/guest-management/rsvp?status=REJECTED' },
       ],
     },
-    {
-      key: 'tables',
-      label: 'Banquet Tables',
-      icon: UtensilsCrossed,
-      children: [
-        { label: 'Table Layout', comingSoon: true },
-        { label: 'Table Capacity', href: '/guest-management#guest-table' },
-        { label: 'Seating Overview', comingSoon: true },
-      ],
-    },
-    {
-      key: 'reports',
-      label: 'Reports',
-      icon: BarChart3,
-      children: [
-        { label: 'Attendance Report', comingSoon: true },
-        { label: 'Gift Summary', comingSoon: true },
-        { label: 'RSVP Statistics', href: '/guest-management/rsvp' },
-      ],
-    },
-    { key: 'settings', label: 'Settings', icon: Settings, comingSoon: true },
+    { key: 'reports', label: 'RSVP Statistics', icon: BarChart3, href: '/guest-management/rsvp' },
   ]
 
   const navProps = { sections, pathname, statusParam, openSections, toggleSection }
