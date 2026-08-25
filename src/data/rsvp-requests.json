@@ -52,5 +52,22 @@
     "rejectionReason": null,
     "createdAt": "2026-08-16T20:43:18.477Z",
     "updatedAt": "2026-08-16T20:43:18.477Z"
+  },
+  {
+    "id": "rsvp-1787689327441-ii5le13l",
+    "guestName": "Minh Hoàng",
+    "side": "Nhà trai",
+    "companion": "",
+    "message": "",
+    "attending": true,
+    "status": "PENDING",
+    "submittedAt": "2026-08-25T20:22:07.441Z",
+    "approvedAt": null,
+    "approvedBy": null,
+    "linkedGuestId": null,
+    "creationMode": null,
+    "rejectionReason": null,
+    "createdAt": "2026-08-25T20:22:07.441Z",
+    "updatedAt": "2026-08-25T20:22:07.441Z"
   }
 ]

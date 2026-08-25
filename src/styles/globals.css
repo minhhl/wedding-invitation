@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@plugin 'tailwindcss-animate';
 
 @theme {
   /* Palette — extracted from the Ladipage reference template's inline styles

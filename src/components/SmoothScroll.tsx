@@ -1,10 +1,22 @@
 'use client'
 
 import { useEffect } from 'react'
+import { usePathname } from 'next/navigation'
 import Lenis from 'lenis'
 
+// The admin area (Guest Management, RSVP, login) is a dense data tool, not
+// the marketing invitation — it should scroll natively/instantly like a
+// normal app, not with the eased cinematic feel used on the public pages.
+const isAdminRoute = (pathname: string) =>
+  pathname.startsWith('/guest-management') || pathname.startsWith('/login')
+
 export function SmoothScroll({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname()
+  const skipLenis = isAdminRoute(pathname)
+
   useEffect(() => {
+    if (skipLenis) return
+
     const lenis = new Lenis({
       duration: 1.3,
       easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -23,7 +35,7 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
       cancelAnimationFrame(frameId)
       lenis.destroy()
     }
-  }, [])
+  }, [skipLenis])
 
   return <>{children}</>
 }

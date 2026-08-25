@@ -11,8 +11,17 @@ import { PlasterBackground } from '@/components/PlasterBackground'
 import { plasterTexture } from '@/lib/decor'
 import { footerImage } from '@/lib/images'
 import { groomName, brideName } from '@/lib/weddingData'
-import { GUEST_SIDES } from '@/types/guest'
+import { GUEST_SIDES, type GuestSide } from '@/types/guest'
 import { EASE } from '@/lib/motion'
+import type { InvitationSide } from '@/components/InvitationCard'
+
+// Maps the /nha-trai and /nha-gai routes' own "trai"/"gai" side to the
+// matching GUEST_SIDES option, so the RSVP form pre-selects who the guest
+// was invited by instead of leaving them to pick it themselves.
+const GUEST_SIDE_BY_INVITATION_SIDE: Record<InvitationSide, GuestSide> = {
+  trai: 'Nhà trai',
+  gai: 'Nhà gái',
+}
 
 const fieldClass =
   'w-full rounded-xl border border-champagne/45 bg-white px-4 py-2.5 font-body text-sm text-ink placeholder:text-text/40 focus:border-champagne focus:outline-none focus:ring-1 focus:ring-champagne/30 transition-colors duration-300'
@@ -53,7 +62,7 @@ function ClosingPhoto() {
   )
 }
 
-export function RSVPSection() {
+export function RSVPSection({ side }: { side?: InvitationSide } = {}) {
   if (isStaticExport) {
     return (
       <section id="rsvp" className="relative overflow-hidden bg-white">
@@ -72,10 +81,10 @@ export function RSVPSection() {
     )
   }
 
-  return <RSVPForm />
+  return <RSVPForm side={side} />
 }
 
-function RSVPForm() {
+function RSVPForm({ side }: { side?: InvitationSide }) {
   const [showThankYou, setShowThankYou] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [submitError, setSubmitError] = useState(false)
@@ -209,7 +218,12 @@ function RSVPForm() {
           </motion.div>
 
           <motion.div variants={itemVariants} className="relative">
-            <select id="side" {...register('side')} defaultValue="" className={selectClass}>
+            <select
+              id="side"
+              {...register('side')}
+              defaultValue={side ? GUEST_SIDE_BY_INVITATION_SIDE[side] : ''}
+              className={selectClass}
+            >
               <option value="" disabled>
                 Bạn là khách mời của ai?
               </option>

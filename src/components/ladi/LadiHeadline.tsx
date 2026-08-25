@@ -14,6 +14,7 @@ export function LadiHeadline({
   textAlign = 'center',
   textTransform,
   fontStyle,
+  fontWeight,
   className,
   children,
 }: LadiBox & {
@@ -25,6 +26,7 @@ export function LadiHeadline({
   textAlign?: CSSProperties['textAlign']
   textTransform?: CSSProperties['textTransform']
   fontStyle?: CSSProperties['fontStyle']
+  fontWeight?: CSSProperties['fontWeight']
   className?: string
   children: React.ReactNode
 }) {
@@ -41,6 +43,7 @@ export function LadiHeadline({
           textAlign,
           textTransform,
           fontStyle,
+          fontWeight,
           wordBreak: 'break-word',
         }}
       >

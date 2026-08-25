@@ -5,7 +5,7 @@ import { MapPin } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { LadiCanvas, LadiGroup, LadiImage, LadiHeadline, LadiLine } from '@/components/ladi'
 import { PlasterBackground } from '@/components/PlasterBackground'
-import { weddingScheduleChapters, googleMapsDirectionsUrl } from '@/lib/weddingSchedule'
+import { googleMapsDirectionsUrl } from '@/lib/weddingSchedule'
 import {
   groomName,
   brideName,
@@ -13,7 +13,6 @@ import {
   groomMother,
   brideFather,
   brideMother,
-  lunarDateLabelSunday,
   initial,
 } from '@/lib/weddingData'
 import { invitationBg, paperCard, flowerBranch, pearl, logo } from '@/lib/decor'
@@ -21,12 +20,87 @@ import { EASE, fadeUp, staggerContainer } from '@/lib/motion'
 
 const SECTION_HEIGHT = 1027
 
-// The reception is the event guests actually need directions/timing for.
-const receptionChapter = weddingScheduleChapters[weddingScheduleChapters.length - 1]
-const receptionEvent = receptionChapter.events[receptionChapter.events.length - 1]
+export type InvitationSide = 'trai' | 'gai'
 
-export function InvitationCard() {
+interface InvitationEventDetails {
+  chapterLabel: string
+  chapterDate: string
+  lunarDate: string
+  time: string
+  title: string
+  venueName?: string
+  addressLines: string[]
+  fullAddress: string
+}
+
+// Invitation-card-specific ceremony details, defined independently of
+// weddingScheduleChapters (the WeddingTimeline's own data) so editing one
+// can't accidentally affect the other. nhà trai's card points at the
+// reception (Tiệc Cưới) in Hà Nội, held Sunday 20/09; nhà gái's card points
+// at their own reception the day before, at the bride's family home in
+// Bắc Ninh — hence the different chapter/lunar dates too.
+const invitationEventBySide: Record<InvitationSide, InvitationEventDetails> = {
+  trai: {
+    chapterLabel: 'Chủ Nhật',
+    chapterDate: '20/09/2026',
+    lunarDate: 'Tức ngày 10/8 năm Bính Ngọ',
+    time: '17:00',
+    title: 'Tiệc Cưới',
+    venueName: 'Trung Tâm Hội Nghị 133',
+    addressLines: ['105 Đường Lý Sơn', 'Ngọc Thụy', 'Bồ Đề', 'Hà Nội'],
+    fullAddress: 'Trung Tâm Hội Nghị 133, 105 Đường Lý Sơn, Ngọc Thụy, Bồ Đề, Hà Nội',
+  },
+  gai: {
+    chapterLabel: 'Thứ Bảy',
+    chapterDate: '19/09/2026',
+    lunarDate: 'Tức ngày 9/8 năm Bính Ngọ',
+    time: '16:00',
+    title: 'Tiệc Cưới',
+    venueName: 'Tư Gia Nhà Gái',
+    addressLines: ['Thôn Hồng Tiến', 'Xã Hợp Thịnh', 'Bắc Ninh'],
+    fullAddress: 'Thôn Hồng Tiến, Xã Hợp Thịnh, Bắc Ninh',
+  },
+}
+
+// The extra <br /> after groomFather compensates for brideFather's longer
+// "(Cố phụ)" text wrapping to two lines, keeping both mothers' names level
+// with each other regardless of which side ends up in which column below.
+const GROOM_FAMILY_LINES = (
+  <>
+    NHÀ TRAI
+    <br />
+    {groomFather}
+    <br />
+    <br />
+    {groomMother}
+  </>
+)
+const BRIDE_FAMILY_LINES = (
+  <>
+    NHÀ GÁI
+    <br />
+    {brideFather}
+    <br />
+    {brideMother}
+  </>
+)
+
+const GREETING_LINE: Record<InvitationSide, React.ReactNode> = {
+  trai: (
+    <>
+      Đến dự bữa cơm thân mật chung <br /> vui cùng gia đình chúng tôi
+    </>
+  ),
+  gai: (
+    <>
+      Đến dự bữa cơm thân mật chung <br /> vui cùng gia đình chúng tôi
+    </>
+  ),
+}
+
+export function InvitationCard({ side = 'trai' }: { side?: InvitationSide }) {
   const [guestName, setGuestName] = useState<string | null>(null)
+  const receptionEvent = invitationEventBySide[side]
 
   useEffect(() => {
     const name = new URLSearchParams(window.location.search).get('name')
@@ -170,13 +244,27 @@ export function InvitationCard() {
                 color="#000"
                 textAlign="center"
               >
-                Đến dự bữa cơm thân mật chung <br /> vui cùng gia đình chúng tôi
+                {GREETING_LINE[side]}
               </LadiHeadline>
             </LadiGroup>
 
-            <LadiGroup top={118} left={0} width={420} height={99}>
+            <LadiGroup top={108} left={0} width={420} height={91}>
               <LadiHeadline
                 top={0}
+                left={35}
+                width={350}
+                fontFamily="var(--font-heading)"
+                fontSize={11}
+                letterSpacing={2}
+                lineHeight={1.4}
+                color="var(--color-quote)"
+                textAlign="center"
+                textTransform="uppercase"
+              >
+                Được tổ chức tại
+              </LadiHeadline>
+              <LadiHeadline
+                top={18}
                 left={35}
                 width={350}
                 fontFamily="var(--font-heading)"
@@ -185,6 +273,7 @@ export function InvitationCard() {
                 lineHeight={1.4}
                 color="var(--color-champagne)"
                 textAlign="center"
+                fontWeight={600}
                 textTransform="uppercase"
               >
                 {receptionEvent.venueName ?? receptionEvent.title}
@@ -215,7 +304,7 @@ export function InvitationCard() {
           </LadiGroup>
           </motion.div>
 
-          <motion.div variants={fadeUp} style={{ position: 'absolute', inset: 0 }}>
+          <motion.div variants={fadeUp} style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}>
           <LadiGroup
             top={205}
             left={50}
@@ -227,13 +316,13 @@ export function InvitationCard() {
               className="flex flex-1 items-center justify-center text-center"
               style={{ fontFamily: 'var(--font-heading)', fontSize: 19, letterSpacing: 0.5, lineHeight: 1, color: 'var(--color-ink)', whiteSpace: 'nowrap', textTransform: 'uppercase' }}
             >
-              {receptionChapter.label}
+              {receptionEvent.chapterLabel}
             </span>
             <span
               className="flex flex-1 items-center justify-center text-center"
               style={{ fontFamily: 'var(--font-heading)', fontSize: 19, letterSpacing: 0.5, lineHeight: 1, color: 'var(--color-ink)', whiteSpace: 'nowrap', textTransform: 'uppercase' }}
             >
-              {receptionChapter.date}
+              {receptionEvent.chapterDate}
             </span>
             <span
               className="flex flex-1 items-center justify-center text-center"
@@ -244,7 +333,7 @@ export function InvitationCard() {
           </LadiGroup>
           </motion.div>
 
-          <motion.div variants={fadeUp} style={{ position: 'absolute', inset: 0 }}>
+          <motion.div variants={fadeUp} style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}>
           <LadiHeadline
             top={270}
             left={0}
@@ -256,11 +345,11 @@ export function InvitationCard() {
             textAlign="center"
             fontStyle="italic"
           >
-            {lunarDateLabelSunday}
+            {receptionEvent.lunarDate}
           </LadiHeadline>
           </motion.div>
 
-          <motion.div variants={fadeUp} style={{ position: 'absolute', inset: 0 }}>
+          <motion.div variants={fadeUp} style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}>
           <LadiGroup top={311} left={0} width={429} height={80}>
             <LadiHeadline
               top={0}
@@ -272,12 +361,7 @@ export function InvitationCard() {
               color="#000"
               textAlign="right"
             >
-              NHÀ TRAI
-              <br />
-              {groomFather}
-              <br />
-              <br />
-              {groomMother}
+              {side === 'gai' ? BRIDE_FAMILY_LINES : GROOM_FAMILY_LINES}
             </LadiHeadline>
             <LadiLine top={0} left={208.7} width={1} height={80} color="#000" />
             <LadiHeadline
@@ -290,16 +374,12 @@ export function InvitationCard() {
               color="#000"
               textAlign="left"
             >
-              NHÀ GÁI
-              <br />
-              {brideFather}
-              <br />
-              {brideMother}
+              {side === 'gai' ? GROOM_FAMILY_LINES : BRIDE_FAMILY_LINES}
             </LadiHeadline>
           </LadiGroup>
           </motion.div>
 
-          <motion.div variants={fadeUp} style={{ position: 'absolute', inset: 0 }}>
+          <motion.div variants={fadeUp} style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}>
           <LadiHeadline
             top={162}
             left={2.3}

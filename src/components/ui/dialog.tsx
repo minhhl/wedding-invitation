@@ -24,6 +24,11 @@ const DialogOverlay = React.forwardRef<
 ))
 DialogOverlay.displayName = DialogPrimitive.Overlay.displayName
 
+// Bottom sheet on mobile (slides up from the edge, like a native app sheet)
+// and a centered modal from sm: up (where there's room for one). Radix keeps
+// DialogPrimitive.Content mounted with data-state="closed" for the duration
+// of the exit animation, so animate-out actually gets to play instead of the
+// content just vanishing.
 const DialogContent = React.forwardRef<
   React.ElementRef<typeof DialogPrimitive.Content>,
   React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content>
@@ -33,13 +38,16 @@ const DialogContent = React.forwardRef<
     <DialogPrimitive.Content
       ref={ref}
       className={cn(
-        'fixed left-1/2 top-1/2 z-50 w-full max-w-md -translate-x-1/2 -translate-y-1/2 rounded-xl border border-zinc-700 bg-zinc-900 p-6 shadow-xl outline-none',
+        'fixed inset-x-0 bottom-0 z-50 max-h-[85vh] w-full overflow-y-auto rounded-t-2xl border-t border-zinc-700 bg-zinc-900 p-6 pb-[calc(1.5rem+env(safe-area-inset-bottom))] shadow-xl outline-none',
+        'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom',
+        'sm:inset-x-auto sm:left-1/2 sm:top-1/2 sm:bottom-auto sm:max-h-[90vh] sm:max-w-md sm:-translate-x-1/2 sm:-translate-y-1/2 sm:rounded-xl sm:border sm:pb-6',
+        'sm:data-[state=closed]:slide-out-to-bottom-0 sm:data-[state=open]:slide-in-from-bottom-0 sm:data-[state=closed]:zoom-out-95 sm:data-[state=open]:zoom-in-95',
         className
       )}
       {...props}
     >
       {children}
-      <DialogPrimitive.Close className="absolute right-4 top-4 rounded-sm text-zinc-400 opacity-70 transition-opacity hover:opacity-100 hover:text-zinc-100 outline-none">
+      <DialogPrimitive.Close className="absolute right-4 top-4 rounded-lg p-1.5 text-zinc-400 opacity-70 transition-opacity hover:bg-zinc-800 hover:opacity-100 hover:text-zinc-100 outline-none">
         <X className="h-4 w-4" />
         <span className="sr-only">Đóng</span>
       </DialogPrimitive.Close>
@@ -52,8 +60,17 @@ const DialogHeader = ({ className, ...props }: React.HTMLAttributes<HTMLDivEleme
   <div className={cn('mb-4 flex flex-col gap-1.5', className)} {...props} />
 )
 
+// Stacked full-width buttons on mobile (primary action on top, closest to the
+// thumb, cancel at the bottom — matching native bottom-sheet conventions),
+// side-by-side from sm: up where a modal has room to spare.
 const DialogFooter = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => (
-  <div className={cn('mt-6 flex justify-end gap-2', className)} {...props} />
+  <div
+    className={cn(
+      'mt-6 flex flex-col-reverse gap-2 [&>*]:w-full sm:flex-row sm:justify-end sm:[&>*]:w-auto',
+      className
+    )}
+    {...props}
+  />
 )
 
 const DialogTitle = React.forwardRef<
