@@ -15,9 +15,9 @@ const buttonVariants = cva(
         ghost: 'text-zinc-300 hover:bg-zinc-800 hover:text-zinc-100',
       },
       size: {
-        default: 'h-9 px-4 py-2',
-        sm: 'h-8 px-3 text-xs',
-        icon: 'h-8 w-8',
+        default: 'h-10 px-4 py-2',
+        sm: 'h-9 px-3 text-xs',
+        icon: 'h-9 w-9',
       },
     },
     defaultVariants: {
