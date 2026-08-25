@@ -41,7 +41,7 @@ export function RsvpDetailDialog({
             {request.status !== 'PENDING' && (
               <Row
                 label="Đã xử lý"
-                value={`${request.status === 'APPROVED' ? 'Approved' : 'Rejected'} bởi ${request.approvedBy ?? '—'}${
+                value={`${request.status === 'APPROVED' ? 'Đã duyệt' : 'Đã từ chối'} bởi ${request.approvedBy ?? '—'}${
                   request.approvedAt ? ` · ${new Date(request.approvedAt).toLocaleString('vi-VN')}` : ''
                 }`}
               />

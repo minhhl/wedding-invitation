@@ -14,9 +14,9 @@ import { cn } from '@/lib/utils'
 
 const TABS: Array<{ label: string; value: RsvpStatus | 'ALL' }> = [
   { label: 'Tất cả', value: 'ALL' },
-  { label: 'Pending', value: 'PENDING' },
-  { label: 'Approved', value: 'APPROVED' },
-  { label: 'Rejected', value: 'REJECTED' },
+  { label: 'Chờ duyệt', value: 'PENDING' },
+  { label: 'Đã duyệt', value: 'APPROVED' },
+  { label: 'Đã từ chối', value: 'REJECTED' },
 ]
 
 function parseStatusParam(value: string | null): RsvpStatus | 'ALL' {
@@ -59,7 +59,7 @@ export function RsvpRequestsPage() {
     <>
       <div className="border-b border-zinc-800">
         <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6">
-          <h1 className="text-xl font-semibold text-zinc-50 sm:text-2xl">RSVP Requests</h1>
+          <h1 className="text-xl font-semibold text-zinc-50 sm:text-2xl">Yêu cầu RSVP</h1>
           <p className="text-sm text-zinc-400">
             Duyệt yêu cầu RSVP từ khách trước khi tạo hồ sơ khách mời chính thức.
           </p>

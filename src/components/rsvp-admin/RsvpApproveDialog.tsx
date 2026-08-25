@@ -103,7 +103,7 @@ export function RsvpApproveDialog({ request, onOpenChange, onConfirm }: RsvpAppr
     <Dialog open={!!request} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-lg">
         <DialogHeader>
-          <DialogTitle>Tạo Guest Profile từ RSVP này?</DialogTitle>
+          <DialogTitle>Tạo hồ sơ khách từ RSVP này?</DialogTitle>
           <DialogDescription>
             {request.guestName} · {request.side} ({request.attending ? 'sẽ tham dự' : 'không tham dự'})
           </DialogDescription>
@@ -140,7 +140,7 @@ export function RsvpApproveDialog({ request, onOpenChange, onConfirm }: RsvpAppr
                 onChange={() => setMode('new')}
                 className="h-4 w-4 accent-emerald-600"
               />
-              Tạo Guest mới
+              Tạo khách mới
             </label>
             <label className="flex items-center gap-2 text-sm text-zinc-200">
               <input
@@ -149,7 +149,7 @@ export function RsvpApproveDialog({ request, onOpenChange, onConfirm }: RsvpAppr
                 onChange={() => setMode('link')}
                 className="h-4 w-4 accent-emerald-600"
               />
-              Ghép vào Guest đã tồn tại
+              Ghép vào khách đã tồn tại
             </label>
           </div>
 
@@ -254,7 +254,7 @@ export function RsvpApproveDialog({ request, onOpenChange, onConfirm }: RsvpAppr
             Hủy
           </Button>
           <Button onClick={handleConfirm} disabled={!canSubmit || submitting}>
-            Xác nhận Approve
+            Xác nhận duyệt
           </Button>
         </DialogFooter>
       </DialogContent>

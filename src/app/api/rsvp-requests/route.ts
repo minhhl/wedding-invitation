@@ -10,7 +10,7 @@ export async function GET() {
     requests.sort((a, b) => b.submittedAt.localeCompare(a.submittedAt))
     return NextResponse.json({ requests })
   } catch (error) {
-    const message = error instanceof Error ? error.message : 'Unexpected error'
+    const message = error instanceof Error ? error.message : 'Đã xảy ra lỗi không xác định.'
     return NextResponse.json({ error: message }, { status: 500 })
   }
 }

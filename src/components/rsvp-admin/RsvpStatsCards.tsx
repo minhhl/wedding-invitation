@@ -5,19 +5,19 @@ import { StatCardConfig, StatCardGrid } from '@/components/guest-management/Stat
 export function RsvpStatsCards({ counts }: { counts: RsvpCounts }) {
   const cards: StatCardConfig[] = [
     {
-      label: 'RSVP Pending',
+      label: 'RSVP chờ duyệt',
       value: counts.pending,
       icon: Clock,
       accent: 'text-amber-400 bg-amber-500/10',
     },
     {
-      label: 'RSVP Approved',
+      label: 'RSVP đã duyệt',
       value: counts.approved,
       icon: CheckCircle2,
       accent: 'text-emerald-400 bg-emerald-500/10',
     },
     {
-      label: 'RSVP Rejected',
+      label: 'RSVP đã từ chối',
       value: counts.rejected,
       icon: XCircle,
       accent: 'text-red-400 bg-red-500/10',

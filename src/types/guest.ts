@@ -21,7 +21,7 @@ export type GuestSource = (typeof GUEST_SOURCES)[number]
 
 export const GUEST_SOURCE_LABELS: Record<GuestSource, string> = {
   MANUAL: 'Thủ công',
-  IMPORT_EXCEL: 'Import Excel',
+  IMPORT_EXCEL: 'Nhập từ Excel',
   RSVP: 'RSVP',
 }
 

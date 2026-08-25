@@ -21,7 +21,7 @@ export function DashboardPanel({ stats, tableStats }: { stats: GuestStats; table
       >
         <span className="flex min-w-0 items-center gap-2 font-medium">
           <LayoutDashboard className="h-4 w-4 shrink-0 text-zinc-400" />
-          Dashboard
+          Tổng quan
           {collapsed && (
             <span className="truncate text-xs font-normal text-zinc-500">
               {stats.totalGuests} khách · {stats.totalPeople} người · {stats.confirmedGuests} sẽ đến ·{' '}

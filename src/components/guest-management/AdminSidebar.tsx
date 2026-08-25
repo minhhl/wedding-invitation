@@ -112,40 +112,40 @@ export function AdminSidebar() {
   const statusParam = searchParams.get('status')
 
   const sections: NavSection[] = [
-    { key: 'dashboard', label: 'Dashboard', icon: LayoutDashboard, href: '/guest-management#dashboard' },
+    { key: 'dashboard', label: 'Tổng quan', icon: LayoutDashboard, href: '/guest-management#dashboard' },
     {
       key: 'guests',
-      label: 'Guest Management',
+      label: 'Quản lý khách mời',
       icon: Users,
       children: [
-        { label: 'Guest List', href: '/guest-management' },
-        { label: 'Table Assignment', href: '/guest-management#guest-table' },
+        { label: 'Danh sách khách', href: '/guest-management' },
+        { label: 'Phân bàn', href: '/guest-management#guest-table' },
       ],
     },
     {
       key: 'invitations',
-      label: 'Invitations',
+      label: 'Thiệp mời',
       icon: Mail,
       children: [
-        { label: 'Wedding Invitations', href: '/', external: true },
+        { label: 'Thiệp cưới', href: '/', external: true },
         { label: 'Tạo Link Mời', href: '/guest-management/invite-links' },
       ],
     },
     {
       key: 'rsvp',
-      label: 'RSVP Management',
+      label: 'Quản lý RSVP',
       icon: MessageCircleHeart,
       children: [
         {
-          label: 'RSVP Requests',
+          label: 'Yêu cầu RSVP',
           href: '/guest-management/rsvp?status=PENDING',
           badge: pendingCount || null,
         },
-        { label: 'Approved RSVP', href: '/guest-management/rsvp?status=APPROVED' },
-        { label: 'Rejected RSVP', href: '/guest-management/rsvp?status=REJECTED' },
+        { label: 'RSVP đã duyệt', href: '/guest-management/rsvp?status=APPROVED' },
+        { label: 'RSVP đã từ chối', href: '/guest-management/rsvp?status=REJECTED' },
       ],
     },
-    { key: 'reports', label: 'RSVP Statistics', icon: BarChart3, href: '/guest-management/rsvp' },
+    { key: 'reports', label: 'Thống kê RSVP', icon: BarChart3, href: '/guest-management/rsvp' },
   ]
 
   const navProps = { sections, pathname, statusParam, openSections, toggleSection }
@@ -160,7 +160,7 @@ export function AdminSidebar() {
         )}
       >
         <div className="flex h-14 items-center gap-2 border-b border-zinc-800 px-4">
-          {!collapsed && <span className="truncate text-sm font-semibold text-zinc-100">Wedding Admin</span>}
+          {!collapsed && <span className="truncate text-sm font-semibold text-zinc-100">Quản Trị Đám Cưới</span>}
           <button
             type="button"
             onClick={toggleCollapsed}
@@ -188,7 +188,7 @@ export function AdminSidebar() {
         >
           <Menu className="h-5 w-5" />
         </button>
-        <span className="truncate text-sm font-semibold text-zinc-100">Wedding Admin</span>
+        <span className="truncate text-sm font-semibold text-zinc-100">Quản Trị Đám Cưới</span>
         <Link
           href="/guest-management/rsvp?status=PENDING"
           className="relative ml-auto rounded-lg p-2 text-zinc-300 transition-colors hover:bg-zinc-800 active:bg-zinc-800"
@@ -212,7 +212,7 @@ export function AdminSidebar() {
           />
           <div className="absolute inset-y-0 left-0 flex w-72 max-w-[85vw] flex-col border-r border-zinc-800 bg-zinc-950 shadow-xl animate-in slide-in-from-left duration-200">
             <div className="flex h-14 items-center gap-2 border-b border-zinc-800 px-4">
-              <span className="truncate text-sm font-semibold text-zinc-100">Wedding Admin</span>
+              <span className="truncate text-sm font-semibold text-zinc-100">Quản Trị Đám Cưới</span>
               <button
                 type="button"
                 onClick={() => setDrawerOpen(false)}
@@ -374,7 +374,7 @@ function SessionFooter({
         {!collapsed && (
           <div className="min-w-0 flex-1">
             <p className="truncate text-sm text-zinc-200">{session.username}</p>
-            <p className="text-xs text-zinc-500">{session.role === 'admin' ? 'Admin' : 'Viewer'}</p>
+            <p className="text-xs text-zinc-500">{session.role === 'admin' ? 'Quản trị viên' : 'Người xem'}</p>
           </div>
         )}
         <button

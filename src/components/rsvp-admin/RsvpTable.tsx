@@ -12,9 +12,9 @@ const STATUS_STYLES: Record<RsvpStatus, string> = {
 }
 
 const STATUS_LABELS: Record<RsvpStatus, string> = {
-  PENDING: 'Pending',
-  APPROVED: 'Approved',
-  REJECTED: 'Rejected',
+  PENDING: 'Chờ duyệt',
+  APPROVED: 'Đã duyệt',
+  REJECTED: 'Đã từ chối',
 }
 
 function formatDate(iso: string) {
@@ -56,17 +56,17 @@ function RequestActions({
     <div className="flex flex-wrap items-center gap-2">
       <Button variant="ghost" size="sm" onClick={() => onView(request)}>
         <Eye className="h-3.5 w-3.5" />
-        View
+        Xem
       </Button>
       {request.status === 'PENDING' && isAdmin && (
         <>
           <Button size="sm" onClick={() => onApprove(request)}>
             <Check className="h-3.5 w-3.5" />
-            Approve
+            Duyệt
           </Button>
           <Button variant="destructive" size="sm" onClick={() => onReject(request)}>
             <X className="h-3.5 w-3.5" />
-            Reject
+            Từ chối
           </Button>
         </>
       )}
@@ -114,7 +114,7 @@ export function RsvpTable({ requests, isAdmin, onView, onApprove, onReject }: Rs
               <p className="text-xs text-zinc-500">Đăng ký: {formatDate(r.submittedAt)}</p>
               {r.status === 'APPROVED' && (
                 <span className="w-fit rounded-full bg-zinc-800 px-2 py-1 text-xs font-medium text-zinc-400">
-                  {r.creationMode === 'link' ? 'Linked Guest' : 'Đã tạo Guest'}
+                  {r.creationMode === 'link' ? 'Đã ghép khách' : 'Đã tạo khách'}
                 </span>
               )}
 
@@ -134,7 +134,7 @@ export function RsvpTable({ requests, isAdmin, onView, onApprove, onReject }: Rs
               <th className="px-4 py-3 min-w-[160px]">Người đi cùng</th>
               <th className="px-4 py-3 min-w-[110px]">Trạng thái</th>
               <th className="px-4 py-3 min-w-[160px]">Ngày đăng ký</th>
-              <th className="px-4 py-3 min-w-[220px]">Action</th>
+              <th className="px-4 py-3 min-w-[220px]">Thao tác</th>
             </tr>
           </thead>
           <tbody>
@@ -160,7 +160,7 @@ export function RsvpTable({ requests, isAdmin, onView, onApprove, onReject }: Rs
                     </span>
                     {r.status === 'APPROVED' && (
                       <span className="inline-flex items-center rounded-full bg-zinc-800 px-2 py-1 text-xs font-medium text-zinc-400">
-                        {r.creationMode === 'link' ? 'Linked Guest' : 'Đã tạo Guest'}
+                        {r.creationMode === 'link' ? 'Đã ghép khách' : 'Đã tạo khách'}
                       </span>
                     )}
                   </div>

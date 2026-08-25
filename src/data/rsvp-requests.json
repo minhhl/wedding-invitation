@@ -7,15 +7,15 @@
     "guestCount": 2,
     "message": "Chúc hai bạn trăm năm hạnh phúc!",
     "attending": true,
-    "status": "PENDING",
+    "status": "REJECTED",
     "submittedAt": "2026-08-17T20:43:18.477Z",
-    "approvedAt": null,
-    "approvedBy": null,
+    "approvedAt": "2026-08-25T20:40:01.175Z",
+    "approvedBy": "minh",
     "linkedGuestId": null,
     "creationMode": null,
     "rejectionReason": null,
     "createdAt": "2026-08-17T20:43:18.477Z",
-    "updatedAt": "2026-08-17T20:43:18.477Z"
+    "updatedAt": "2026-08-25T20:40:01.175Z"
   },
   {
     "id": "rsvp-seed-2",
@@ -43,15 +43,15 @@
     "guestCount": 1,
     "message": "Rất tiếc mình bận công tác nước ngoài.",
     "attending": false,
-    "status": "PENDING",
+    "status": "REJECTED",
     "submittedAt": "2026-08-16T20:43:18.477Z",
-    "approvedAt": null,
-    "approvedBy": null,
+    "approvedAt": "2026-08-25T20:39:57.892Z",
+    "approvedBy": "minh",
     "linkedGuestId": null,
     "creationMode": null,
     "rejectionReason": null,
     "createdAt": "2026-08-16T20:43:18.477Z",
-    "updatedAt": "2026-08-16T20:43:18.477Z"
+    "updatedAt": "2026-08-25T20:39:57.892Z"
   },
   {
     "id": "rsvp-1787689327441-ii5le13l",
@@ -60,14 +60,14 @@
     "companion": "",
     "message": "",
     "attending": true,
-    "status": "PENDING",
+    "status": "REJECTED",
     "submittedAt": "2026-08-25T20:22:07.441Z",
-    "approvedAt": null,
-    "approvedBy": null,
+    "approvedAt": "2026-08-25T20:40:04.712Z",
+    "approvedBy": "minh",
     "linkedGuestId": null,
     "creationMode": null,
     "rejectionReason": null,
     "createdAt": "2026-08-25T20:22:07.441Z",
-    "updatedAt": "2026-08-25T20:22:07.441Z"
+    "updatedAt": "2026-08-25T20:40:04.712Z"
   }
 ]

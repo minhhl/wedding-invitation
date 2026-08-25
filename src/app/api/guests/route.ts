@@ -27,7 +27,7 @@ export async function GET() {
     const guests = readGuestsFromDisk()
     return NextResponse.json({ guests })
   } catch (error) {
-    const message = error instanceof Error ? error.message : 'Unexpected error'
+    const message = error instanceof Error ? error.message : 'Đã xảy ra lỗi không xác định.'
     return NextResponse.json({ error: message }, { status: 500 })
   }
 }
@@ -44,7 +44,7 @@ export async function POST(request: Request) {
     writeGuestsToDisk(guests)
     return NextResponse.json({ ok: true })
   } catch (error) {
-    const message = error instanceof Error ? error.message : 'Unexpected error'
+    const message = error instanceof Error ? error.message : 'Đã xảy ra lỗi không xác định.'
     return NextResponse.json({ error: message }, { status: 500 })
   }
 }
