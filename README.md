@@ -81,32 +81,37 @@ Modify colors in `tailwind.config.ts` under the `wedding` theme colors.
 
 ## 🗄️ Database Setup (Supabase)
 
-1. Create a Supabase project
-2. Create the following tables:
+Normal builds (`npm run dev` / `npm start`) store RSVP and guest data in local
+JSON files under `src/data/`, managed through `/guest-management`. Supabase is
+only needed for the **static GitHub Pages export**, where there's no server
+to write those files to — there, the RSVP form inserts straight into Supabase
+from the browser using the anon key.
 
-### `rsvp_responses`
+1. Create a Supabase project at [supabase.com](https://supabase.com)
+2. Create the `rsvp_responses` table:
 ```sql
 CREATE TABLE rsvp_responses (
   id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
-  full_name VARCHAR(255) NOT NULL,
-  phone_number VARCHAR(20) NOT NULL,
-  number_of_guests INTEGER NOT NULL,
-  attendance VARCHAR(10) NOT NULL,
-  wishes TEXT,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  guest_name TEXT NOT NULL,
+  side TEXT NOT NULL CHECK (side IN ('Nhà trai', 'Nhà gái')),
+  companion TEXT,
+  message TEXT,
+  attending BOOLEAN NOT NULL,
+  created_at TIMESTAMPTZ DEFAULT now()
 );
-```
 
-### `guest_book`
-```sql
-CREATE TABLE guest_book (
-  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
-  guest_name VARCHAR(255) NOT NULL,
-  message TEXT NOT NULL,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  approved BOOLEAN DEFAULT FALSE
-);
+-- The anon key is public, so only allow it to insert — not read/update/delete.
+-- View submissions from the Supabase dashboard instead.
+ALTER TABLE rsvp_responses ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Allow public RSVP submissions"
+  ON rsvp_responses FOR INSERT
+  TO anon
+  WITH CHECK (true);
 ```
+3. Add `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` (Project
+   Settings → API) as repository secrets, and pass them to the GitHub Pages
+   build in `.github/workflows/deploy.yml`.
 
 ## 💻 Development
 

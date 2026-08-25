@@ -53,6 +53,12 @@ jobs:
           # Baked into the public JS bundle — NOT real security, just keeps
           # /login functional with no server to verify a password against.
           NEXT_PUBLIC_STATIC_AUTH_USERS: '[{"username":"minh","password":"minh","role":"admin"},{"username":"ngoc","password":"ngoc","role":"admin"}]'
+          # Lets the RSVP form insert straight into Supabase from the browser
+          # (no server to write src/data/ to on static export). Anon key is
+          # public by design — the rsvp_responses RLS policy only allows
+          # inserts. Set these as repo secrets; see README.md "Database Setup".
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

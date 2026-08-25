@@ -13,6 +13,7 @@ import { footerImage } from '@/lib/images'
 import { groomName, brideName } from '@/lib/weddingData'
 import { GUEST_SIDES, type GuestSide } from '@/types/guest'
 import { EASE } from '@/lib/motion'
+import { supabase, isSupabaseConfigured } from '@/lib/supabase'
 import type { InvitationSide } from '@/components/InvitationCard'
 
 // Maps the /nha-trai and /nha-gai routes' own "trai"/"gai" side to the
@@ -29,7 +30,9 @@ const fieldClass =
 const selectClass = `${fieldClass} appearance-none pr-9`
 
 // The GitHub Pages build is static-exported with no backend, so /api/rsvp
-// doesn't exist there — fall back to a message instead of a dead form.
+// doesn't exist there — submit straight to Supabase from the browser
+// instead. If Supabase isn't configured either, fall back to a message
+// instead of a dead form.
 const isStaticExport = process.env.NEXT_PUBLIC_STATIC_EXPORT === 'true'
 
 function ClosingPhoto() {
@@ -63,7 +66,7 @@ function ClosingPhoto() {
 }
 
 export function RSVPSection({ side }: { side?: InvitationSide } = {}) {
-  if (isStaticExport) {
+  if (isStaticExport && !isSupabaseConfigured) {
     return (
       <section id="rsvp" className="relative overflow-hidden bg-white">
         <PlasterBackground className="pointer-events-none absolute inset-0 opacity-40" />
@@ -102,13 +105,25 @@ function RSVPForm({ side }: { side?: InvitationSide }) {
     setIsLoading(true)
     setSubmitError(false)
     try {
-      const response = await fetch('/api/rsvp', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-      })
+      if (isStaticExport) {
+        if (!supabase) throw new Error('Supabase is not configured')
+        const { error } = await supabase.from('rsvp_responses').insert({
+          guest_name: data.guestName,
+          side: data.side,
+          companion: data.companion || null,
+          message: data.message || null,
+          attending: data.attending === 'yes',
+        })
+        if (error) throw error
+      } else {
+        const response = await fetch('/api/rsvp', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        })
 
-      if (!response.ok) throw new Error('Failed to submit RSVP')
+        if (!response.ok) throw new Error('Failed to submit RSVP')
+      }
 
       reset()
       setShowThankYou(true)
