@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { MapPin } from 'lucide-react'
+import { motion } from 'framer-motion'
 import { LadiCanvas, LadiGroup, LadiImage, LadiHeadline, LadiLine } from '@/components/ladi'
 import { PlasterBackground } from '@/components/PlasterBackground'
 import { weddingScheduleChapters, googleMapsDirectionsUrl } from '@/lib/weddingSchedule'
@@ -16,6 +17,7 @@ import {
   initial,
 } from '@/lib/weddingData'
 import { invitationBg, paperCard, flowerBranch, pearl, logo } from '@/lib/decor'
+import { EASE, fadeUp, staggerContainer } from '@/lib/motion'
 
 const SECTION_HEIGHT = 1027
 
@@ -35,43 +37,91 @@ export function InvitationCard() {
     <section className="relative bg-white">
       <LadiCanvas height={SECTION_HEIGHT}>
         <PlasterBackground top={0} left={0.5} width={419} height={1027} />
-        <LadiImage top={-40} left={0.3} width={420.6} height={993} src={invitationBg} alt="" objectFit="fill" />
-        <LadiImage top={221} left={9.9} width={400} height={567} src={paperCard} alt="" />
-        <LadiImage top={481} left={-88.8} width={250} height={358} src={flowerBranch} alt="" />
 
-        <LadiGroup top={81} left={17.5} width={397} height={187}>
+        <motion.div
+          style={{ position: 'absolute', top: -40, left: 0.3, width: 420.6, height: 993 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1.2, ease: EASE }}
+        >
+          <LadiImage top={0} left={0} width={420.6} height={993} src={invitationBg} alt="" objectFit="fill" />
+        </motion.div>
+
+        <motion.div
+          style={{ position: 'absolute', top: 221, left: 9.9, width: 400, height: 567 }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.9, delay: 0.15, ease: EASE }}
+        >
+          <LadiImage top={0} left={0} width={400} height={567} src={paperCard} alt="" />
+        </motion.div>
+
+        <motion.div
+          style={{ position: 'absolute', top: 481, left: -88.8, width: 250, height: 358 }}
+          initial={{ opacity: 0, x: -30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, delay: 0.3, ease: EASE }}
+        >
+          <LadiImage top={0} left={0} width={250} height={358} src={flowerBranch} alt="" />
+        </motion.div>
+
+        <motion.div
+          style={{ position: 'absolute', top: 81, left: 17.5, width: 397, height: 187 }}
+          initial={{ opacity: 0, scale: 0.85 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.45, ease: EASE }}
+        >
           <LadiImage top={108} left={317.6} width={79.5} height={79} src={pearl} alt="" />
           <LadiImage top={136.6} left={299.6} width={50} height={50} src={pearl} alt="" />
           <LadiImage top={0} left={0} width={37.9} height={37.6} src={pearl} alt="" />
-        </LadiGroup>
+        </motion.div>
 
-        <LadiGroup top={53} left={114} width={200} height={113} className="flex items-center justify-center">
-          <LadiImage top={0} left={0} width={200} height={113} src={logo} alt="" />
-          <LadiHeadline
-            top={17}
-            left={21}
-            width={72}
-            fontFamily="var(--font-heading)"
-            fontSize={60}
-            color="var(--color-champagne)"
-            textAlign="center"
-          >
-            {initial(groomName)}
-          </LadiHeadline>
-          <LadiHeadline
-            top={17}
-            left={98}
-            width={72}
-            fontFamily="var(--font-heading)"
-            fontSize={60}
-            color="var(--color-champagne)"
-            textAlign="center"
-          >
-            {initial(brideName)}
-          </LadiHeadline>
-        </LadiGroup>
+        <motion.div
+          style={{ position: 'absolute', top: 53, left: 114, width: 200, height: 113 }}
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.55, ease: EASE }}
+        >
+          <LadiGroup top={0} left={0} width={200} height={113} className="flex items-center justify-center">
+            <LadiImage top={0} left={0} width={200} height={113} src={logo} alt="" />
+            <LadiHeadline
+              top={17}
+              left={21}
+              width={72}
+              fontFamily="var(--font-heading)"
+              fontSize={60}
+              color="var(--color-champagne)"
+              textAlign="center"
+            >
+              {initial(groomName)}
+            </LadiHeadline>
+            <LadiHeadline
+              top={17}
+              left={98}
+              width={72}
+              fontFamily="var(--font-heading)"
+              fontSize={60}
+              color="var(--color-champagne)"
+              textAlign="center"
+            >
+              {initial(brideName)}
+            </LadiHeadline>
+          </LadiGroup>
+        </motion.div>
 
-        <LadiGroup top={273} left={1.4} width={429} height={463}>
+        <motion.div
+          style={{ position: 'absolute', top: 273, left: 1.4, width: 429, height: 463 }}
+          variants={staggerContainer(0.15, 0.65)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
+          <motion.div variants={fadeUp} style={{ position: 'absolute', inset: 0 }}>
           <LadiGroup top={0} left={5.7} width={420} height={463}>
             <LadiGroup top={0} left={0} width={420} height={100}>
               <LadiHeadline
@@ -163,7 +213,9 @@ export function InvitationCard() {
               </a>
             </LadiGroup>
           </LadiGroup>
+          </motion.div>
 
+          <motion.div variants={fadeUp} style={{ position: 'absolute', inset: 0 }}>
           <LadiGroup
             top={205}
             left={50}
@@ -190,7 +242,9 @@ export function InvitationCard() {
               {receptionEvent.time}
             </span>
           </LadiGroup>
+          </motion.div>
 
+          <motion.div variants={fadeUp} style={{ position: 'absolute', inset: 0 }}>
           <LadiHeadline
             top={270}
             left={0}
@@ -204,7 +258,9 @@ export function InvitationCard() {
           >
             {lunarDateLabelSunday}
           </LadiHeadline>
+          </motion.div>
 
+          <motion.div variants={fadeUp} style={{ position: 'absolute', inset: 0 }}>
           <LadiGroup top={311} left={0} width={429} height={80}>
             <LadiHeadline
               top={0}
@@ -241,7 +297,9 @@ export function InvitationCard() {
               {brideMother}
             </LadiHeadline>
           </LadiGroup>
+          </motion.div>
 
+          <motion.div variants={fadeUp} style={{ position: 'absolute', inset: 0 }}>
           <LadiHeadline
             top={162}
             left={2.3}
@@ -255,7 +313,8 @@ export function InvitationCard() {
           >
             {receptionEvent.addressLines.join(', ')}
           </LadiHeadline>
-        </LadiGroup>
+          </motion.div>
+        </motion.div>
       </LadiCanvas>
     </section>
   )

@@ -6,6 +6,7 @@ import { PlasterBackground } from '@/components/PlasterBackground'
 import { weddingScheduleChapters } from '@/lib/weddingSchedule'
 import { groomName, brideName } from '@/lib/weddingData'
 import { timelinePhoto } from '@/lib/images'
+import { EASE } from '@/lib/motion'
 import {
   timelineWordmark,
   iconCar,
@@ -36,10 +37,6 @@ const ICON_PEARL_GAP = 20
 const ICON_LEFT = PHOTO_WIDTH - PEARL_R - ICON_PEARL_GAP - ICON_BOX
 const TEXT_LEFT = PHOTO_WIDTH + PEARL_R + 16
 const TEXT_WIDTH = 420 - TEXT_LEFT - 16
-
-// Shared "expo-out" easing reads as a slow, deliberate settle rather than a
-// mechanical linear/ease-in-out — the smooth, upscale feel asked for here.
-const EASE = [0.16, 1, 0.3, 1] as const
 
 const rowContainerVariants: Variants = {
   hidden: {},

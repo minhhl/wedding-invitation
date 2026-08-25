@@ -12,6 +12,7 @@ import { plasterTexture } from '@/lib/decor'
 import { footerImage } from '@/lib/images'
 import { groomName, brideName } from '@/lib/weddingData'
 import { GUEST_SIDES } from '@/types/guest'
+import { EASE } from '@/lib/motion'
 
 const fieldClass =
   'w-full rounded-xl border border-champagne/45 bg-white px-4 py-2.5 font-body text-sm text-ink placeholder:text-text/40 focus:border-champagne focus:outline-none focus:ring-1 focus:ring-champagne/30 transition-colors duration-300'
@@ -112,12 +113,12 @@ function RSVPForm() {
 
   const containerVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8, staggerChildren: 0.1 } },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: EASE, staggerChildren: 0.1 } },
   }
 
   const itemVariants: Variants = {
     hidden: { opacity: 0, y: 10 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE } },
   }
 
   return (
