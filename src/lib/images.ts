@@ -17,7 +17,7 @@ const photo = (file: string) =>
   })
 
 // Header — full-bleed cover photo
-export const headerImage = photo('HTC04088.jpg')
+export const headerImage = photo('HTC03975.jpg')
 
 export const ogImage = headerImage
 
