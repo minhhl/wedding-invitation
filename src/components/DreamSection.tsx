@@ -45,7 +45,15 @@ export function DreamSection() {
           transition={{ duration: 0.9, delay: 0.2, ease: EASE }}
         >
           <LadiGroup top={0} left={0} width={372} height={422}>
-            <LadiImage top={22} left={38} width={267} height={262} src={dreamPolaroidImage} alt={`${groomName} & ${brideName}`} />
+            <LadiImage
+              top={22}
+              left={38}
+              width={267}
+              height={262}
+              src={dreamPolaroidImage}
+              alt={`${groomName} & ${brideName}`}
+              objectPosition="center"
+            />
             <LadiImage top={0} left={0} width={372} height={422} src={photoFrame} alt="" />
             <LadiHeadline
               top={307}

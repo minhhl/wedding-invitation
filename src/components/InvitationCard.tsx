@@ -38,7 +38,7 @@ interface InvitationEventDetails {
 // can't accidentally affect the other. nhà trai's card points at the
 // reception (Tiệc Cưới) in Hà Nội, held Sunday 20/09; nhà gái's card points
 // at their own reception the day before, at the bride's family home in
-// Bắc Ninh — hence the different chapter/lunar dates too.
+// Bắc Giang — hence the different chapter/lunar dates too.
 const invitationEventBySide: Record<InvitationSide, InvitationEventDetails> = {
   trai: {
     chapterLabel: 'Chủ Nhật',
@@ -57,8 +57,11 @@ const invitationEventBySide: Record<InvitationSide, InvitationEventDetails> = {
     time: '16:00',
     title: 'Tiệc Cưới',
     venueName: 'Tư Gia Nhà Gái',
-    addressLines: ['Thôn Hồng Tiến', 'Xã Hợp Thịnh', 'Bắc Ninh'],
-    fullAddress: 'Thôn Hồng Tiến, Xã Hợp Thịnh, Bắc Ninh',
+    addressLines: ['Xã Hợp Thịnh', 'Bắc Giang'],
+    // GPS coordinates (21°20'42.2"N 105°57'07.2"E), not the text address —
+    // more reliable for Google Maps directions to a rural/hamlet-level
+    // location than a street address that may not geocode precisely.
+    fullAddress: '21.345056,105.952',
   },
 }
 

@@ -84,12 +84,12 @@ create table rsvp_requests (
 
 alter table rsvp_requests enable row level security;
 
--- Public RSVP submission — anyone can insert a pending request, but can't
--- read anything back (no anon select policy) or set it to anything but
--- PENDING.
+-- Public RSVP submission — anyone (including a signed-in admin/viewer
+-- testing the public form) can insert a pending request, but can't read
+-- anything back (no anon select policy) or set it to anything but PENDING.
 create policy "Anyone can submit an RSVP"
   on rsvp_requests for insert
-  to anon
+  to anon, authenticated
   with check (status = 'PENDING');
 
 create policy "Authenticated can read RSVP requests"

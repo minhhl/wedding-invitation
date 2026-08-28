@@ -26,7 +26,16 @@ export function PolaroidCollection() {
           viewport={{ once: true }}
           transition={{ duration: 1, ease: EASE }}
         >
-          <LadiImage top={0} left={0} width={393} height={410} src={wide} alt={`${groomName} & ${brideName}`} priority />
+          <LadiImage
+            top={0}
+            left={0}
+            width={393}
+            height={410}
+            src={wide}
+            alt={`${groomName} & ${brideName}`}
+            objectPosition="center"
+            priority
+          />
         </motion.div>
 
         <motion.div
@@ -50,7 +59,15 @@ export function PolaroidCollection() {
             <LadiImage top={0} left={0} width={228} height={398.5} src={left1} alt={`${groomName} & ${brideName}`} />
           </motion.div>
           <motion.div variants={photoVariants} style={{ position: 'absolute', top: 528, left: 248.8, width: 158, height: 194 }}>
-            <LadiImage top={0} left={0} width={158} height={194} src={right1} alt={`${groomName} & ${brideName}`} />
+            <LadiImage
+              top={0}
+              left={0}
+              width={158}
+              height={194}
+              src={right1}
+              alt={`${groomName} & ${brideName}`}
+              objectPosition="center"
+            />
           </motion.div>
           <motion.div variants={photoVariants} style={{ position: 'absolute', top: 728, left: 248.8, width: 158, height: 198.5 }}>
             <LadiImage top={0} left={0} width={158} height={198.5} src={right2} alt={`${groomName} & ${brideName}`} />

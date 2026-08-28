@@ -49,7 +49,15 @@ export function SaveTheDate() {
             <LadiImage top={0} left={0} width={195} height={293} src={saveTheDateImages[2]} alt={`${groomName} & ${brideName}`} />
           </motion.div>
           <motion.div variants={photoVariants} style={{ position: 'absolute', top: 301.4, left: 215.4, width: 195, height: 293 }}>
-            <LadiImage top={0} left={0} width={195} height={293} src={saveTheDateImages[3]} alt={`${groomName} & ${brideName}`} />
+            <LadiImage
+              top={0}
+              left={0}
+              width={195}
+              height={293}
+              src={saveTheDateImages[3]}
+              alt={`${groomName} & ${brideName}`}
+              objectPosition="center"
+            />
           </motion.div>
         </motion.div>
 

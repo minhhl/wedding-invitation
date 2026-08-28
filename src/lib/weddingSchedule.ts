@@ -24,8 +24,10 @@ export const weddingScheduleChapters: ScheduleChapter[] = [
         icon: 'dove',
         time: '13:15',
         title: 'Lễ Vu Quy',
-        addressLines: ['Thôn Hồng Tiến', 'Xã Hợp Thịnh', 'Bắc Ninh'],
-        fullAddress: 'Thôn Hồng Tiến, Xã Hợp Thịnh, Bắc Ninh',
+        addressLines: ['Xã Hợp Thịnh', 'Bắc Giang'],
+        // GPS coordinates (21°20'42.2"N 105°57'07.2"E) — see the same note
+        // in InvitationCard.tsx.
+        fullAddress: '21.345056,105.952',
         startISO: '2026-09-19T13:15:00+07:00',
         endISO: '2026-09-19T15:15:00+07:00',
       },

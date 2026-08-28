@@ -25,26 +25,26 @@ export const ogImage = headerImage
 export const saveTheDateImages = [
   photo('HTC04181.jpg'),
   photo('HTC04088.jpg'),
-  photo('HTC04348.jpg'),
   photo('HTC04025.jpg'),
+  photo('HTC03975.jpg'),
 ]
 
 // Invitation Card — faint corner background photo
 export const invitationBackgroundImage = photo('HTC03983.jpg')
 
 // Dream section — small polaroid-style photo beside the quote
-export const dreamPolaroidImage = photo('HTC03937.jpg')
+export const dreamPolaroidImage = photo('HTC04348.jpg')
 
 // Wedding-day timeline — tall photo beside the schedule list
 export const timelinePhoto = photo('HTC04093.jpg')
 
 // Endless Romance gallery — wide photo plus a two-up row
 export const endlessRomanceImages = [
-  photo('HTC03975.jpg'),
-  photo('HTC04032.jpg'),
-  photo('HTC04032.jpg'),
+  photo('HTC03937.jpg'),
   photo('HTC03983.jpg'),
+  photo('HTC04050.jpg'),
+  photo('HTC04025.jpg'),
 ]
 
 // Thank You footer — wide closing photo
-export const footerImage = photo('HTC04348.jpg')
+export const footerImage = photo('HTC04032.jpg')

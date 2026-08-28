@@ -7,7 +7,6 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { motion, AnimatePresence, type Variants } from 'framer-motion'
 import { ChevronDown, Loader2, X } from 'lucide-react'
 import { rsvpSubmissionSchema, RsvpSubmissionFormData } from '@/lib/rsvpValidation'
-import { PlasterBackground } from '@/components/PlasterBackground'
 import { plasterTexture } from '@/lib/decor'
 import { footerImage } from '@/lib/images'
 import { groomName, brideName } from '@/lib/weddingData'
@@ -24,10 +23,27 @@ const GUEST_SIDE_BY_INVITATION_SIDE: Record<InvitationSide, GuestSide> = {
   gai: 'Nhà gái',
 }
 
+// [color-scheme:light] keeps native chrome (a <select>'s dropdown popup,
+// autofill, etc.) rendering light/white even when the device is in dark
+// mode — bg-white alone only covers the field itself, not that native UI.
 const fieldClass =
-  'w-full rounded-xl border border-champagne/45 bg-white px-4 py-2.5 font-body text-sm text-ink placeholder:text-text/40 focus:border-champagne focus:outline-none focus:ring-1 focus:ring-champagne/30 transition-colors duration-300'
+  'w-full rounded-xl border border-champagne/45 bg-white [color-scheme:light] px-4 py-2.5 font-body text-sm text-ink placeholder:text-text/40 focus:border-champagne focus:outline-none focus:ring-1 focus:ring-champagne/30 transition-colors duration-300'
 
 const selectClass = `${fieldClass} appearance-none pr-9`
+
+// Floating label: rests inside the field like a placeholder, then floats up
+// to sit on the border itself once focused or filled in. The fields
+// themselves have no background (the plaster texture shows through), but
+// the label keeps bg-white — matching the section's own background — so the
+// border doesn't visibly cut through the label text where they cross.
+const floatingLabelFloated =
+  'peer-focus:top-0 peer-focus:bg-white peer-focus:px-1 peer-focus:text-[11px] peer-focus:text-champagne-dark'
+const floatingLabelClass = `pointer-events-none absolute left-4 top-1/2 z-10 -translate-y-1/2 text-sm text-text/40 transition-all duration-200 ${floatingLabelFloated} peer-[&:not(:placeholder-shown)]:top-0 peer-[&:not(:placeholder-shown)]:bg-white peer-[&:not(:placeholder-shown)]:px-1 peer-[&:not(:placeholder-shown)]:text-[11px] peer-[&:not(:placeholder-shown)]:text-ink/60`
+
+// Same as floatingLabelClass, but for a <select> — which has no
+// :placeholder-shown, so it uses :valid instead (paired with `required` +
+// an empty disabled first option).
+const floatingLabelSelectClass = `pointer-events-none absolute left-4 top-1/2 z-10 -translate-y-1/2 text-sm text-text/40 transition-all duration-200 ${floatingLabelFloated} peer-valid:top-0 peer-valid:bg-white peer-valid:px-1 peer-valid:text-[11px] peer-valid:text-ink/60`
 
 function ClosingPhoto() {
   return (
@@ -45,8 +61,8 @@ function ClosingPhoto() {
           className="max-w-md font-heading text-sm leading-relaxed md:text-base"
           style={{ textShadow: '0 1px 8px rgba(0, 0, 0, 0.45)' }}
         >
-          Hẹn gặp bạn trong ngày đặc biệt nhất của chúng mình. Sẽ thật hạnh phúc khi có bạn ở đó,
-          cùng sẻ chia niềm vui và chứng kiến khoảnh khắc ý nghĩa này của chúng mình.
+          Kính mong quý khách có mặt trong ngày đặc biệt nhất của chúng tôi. Sẽ thật hạnh phúc khi
+          có sự hiện diện của quý khách, cùng sẻ chia niềm vui và chứng kiến khoảnh khắc ý nghĩa này.
         </p>
         <p
           className="mt-5 font-editorial text-3xl"
@@ -63,14 +79,13 @@ export function RSVPSection({ side }: { side?: InvitationSide } = {}) {
   if (!isSupabaseConfigured) {
     return (
       <section id="rsvp" className="relative overflow-hidden bg-white">
-        <PlasterBackground className="pointer-events-none absolute inset-0 opacity-40" />
         <div className="relative mx-auto w-full max-w-[420px] px-6 py-16 text-center md:py-20">
           <p className="eyebrow mb-4">RSVP</p>
-          <h2 className="heading-2 mb-4 text-ink">Rất mong được đón tiếp bạn.</h2>
+          <h2 className="heading-2 mb-4 text-ink">Rất mong được đón tiếp quý khách.</h2>
           <p className="mx-auto font-body text-sm leading-relaxed text-text/80">
-            Vui lòng xác nhận sự tham dự của bạn để chúng mình chuẩn bị đón tiếp một cách chu đáo
-            nhất. Trân trọng cảm ơn! Bạn có thể xác nhận trực tiếp qua điện thoại hoặc tin nhắn
-            với cô dâu chú rể.
+            Kính mong quý khách xác nhận tham dự để chúng tôi chuẩn bị đón tiếp một cách chu đáo
+            nhất. Trân trọng cảm ơn! Quý khách có thể xác nhận trực tiếp qua điện thoại hoặc tin
+            nhắn với cô dâu chú rể.
           </p>
         </div>
         <ClosingPhoto />
@@ -134,7 +149,6 @@ function RSVPForm({ side }: { side?: InvitationSide }) {
       <div className="relative mx-auto w-full max-w-[420px] px-6 py-16 md:py-20">
         <div
         className="pointer-events-none absolute inset-0 opacity-40"
-        style={{ backgroundImage: `url(${plasterTexture})`, backgroundRepeat: 'repeat', backgroundSize: '420px auto' }}
       />
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -144,7 +158,7 @@ function RSVPForm({ side }: { side?: InvitationSide }) {
           className="mb-8 text-center"
         >
           <p className="mx-auto font-body text-sm leading-relaxed text-text/80">
-            Vui lòng xác nhận sự tham dự của bạn để chúng mình chuẩn bị đón tiếp một cách chu đáo
+            Kính mong quý khách xác nhận tham dự để chúng tôi chuẩn bị đón tiếp một cách chu đáo
             nhất. <br /> Trân trọng cảm ơn!
           </p>
         </motion.div>
@@ -157,27 +171,33 @@ function RSVPForm({ side }: { side?: InvitationSide }) {
           onSubmit={handleSubmit(onSubmit)}
           className="space-y-4"
         >
-          <motion.div variants={itemVariants}>
+          <motion.div variants={itemVariants} className="relative">
             <input
               id="guestName"
               type="text"
-              placeholder="Tên của bạn"
+              placeholder=" "
               {...register('guestName')}
-              className={fieldClass}
+              className={`${fieldClass} peer`}
             />
+            <label htmlFor="guestName" className={floatingLabelClass}>
+              Họ và tên
+            </label>
             {errors.guestName && (
               <p className="mt-2 text-xs text-red-500">{errors.guestName.message}</p>
             )}
           </motion.div>
 
-          <motion.div variants={itemVariants}>
+          <motion.div variants={itemVariants} className="relative">
             <textarea
               id="message"
-              placeholder="Gửi lời chúc đến cô dâu chú rể"
+              placeholder=" "
               rows={4}
               {...register('message')}
-              className={`${fieldClass} resize-none`}
+              className={`${fieldClass} peer resize-none`}
             />
+            <label htmlFor="message" className={floatingLabelClass}>
+              Lời chúc
+            </label>
             {errors.message && <p className="mt-2 text-xs text-red-500">{errors.message.message}</p>}
           </motion.div>
 
@@ -186,14 +206,16 @@ function RSVPForm({ side }: { side?: InvitationSide }) {
               id="attending"
               {...register('attending')}
               defaultValue=""
-              className={selectClass}
+              required
+              className={`${selectClass} peer`}
             >
-              <option value="" disabled>
-                Xác nhận tham dự?
-              </option>
+              <option value="" disabled></option>
               <option value="yes">Có, tôi sẽ tham dự</option>
               <option value="no">Rất tiếc, tôi không thể tham dự</option>
             </select>
+            <label htmlFor="attending" className={floatingLabelSelectClass}>
+              Xác nhận tham dự
+            </label>
             <ChevronDown
               size={16}
               className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-text/50"
@@ -203,14 +225,17 @@ function RSVPForm({ side }: { side?: InvitationSide }) {
             )}
           </motion.div>
 
-          <motion.div variants={itemVariants}>
+          <motion.div variants={itemVariants} className="relative">
             <input
               id="companion"
               type="text"
-              placeholder="Bạn có tham dự cùng ai không?"
+              placeholder=" "
               {...register('companion')}
-              className={fieldClass}
+              className={`${fieldClass} peer`}
             />
+            <label htmlFor="companion" className={floatingLabelClass}>
+              Người đi cùng
+            </label>
             {errors.companion && (
               <p className="mt-2 text-xs text-red-500">{errors.companion.message}</p>
             )}
@@ -221,17 +246,19 @@ function RSVPForm({ side }: { side?: InvitationSide }) {
               id="side"
               {...register('side')}
               defaultValue={side ? GUEST_SIDE_BY_INVITATION_SIDE[side] : ''}
-              className={selectClass}
+              required
+              className={`${selectClass} peer`}
             >
-              <option value="" disabled>
-                Bạn là khách mời của ai?
-              </option>
+              <option value="" disabled></option>
               {GUEST_SIDES.map((side) => (
                 <option key={side} value={side}>
                   {side}
                 </option>
               ))}
             </select>
+            <label htmlFor="side" className={floatingLabelSelectClass}>
+              Khách mời của
+            </label>
             <ChevronDown
               size={16}
               className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-text/50"
@@ -299,8 +326,8 @@ function RSVPForm({ side }: { side?: InvitationSide }) {
                 style={{ backgroundImage: `url(${plasterTexture})`, backgroundSize: 'cover' }}
               >
                 <p className="font-body text-sm leading-relaxed" style={{ color: 'var(--color-quote)' }}>
-                  Cảm ơn bạn đã dành thời gian phản hồi! Chúng mình vô cùng trân quý sự quan tâm của
-                  bạn
+                  Cảm ơn quý khách đã dành thời gian phản hồi! Chúng tôi vô cùng trân quý sự quan
+                  tâm của quý khách
                 </p>
                 <p className="mt-4 font-editorial text-2xl" style={{ color: 'var(--color-quote)' }}>
                   Thank you!
