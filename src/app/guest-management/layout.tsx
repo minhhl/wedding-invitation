@@ -1,6 +1,6 @@
 import { Suspense } from 'react'
 import { AdminSidebar } from '@/components/guest-management/AdminSidebar'
-import { StaticAuthGate } from '@/components/guest-management/StaticAuthGate'
+import { AuthGate } from '@/components/guest-management/AuthGate'
 
 export default function GuestManagementLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -12,7 +12,7 @@ export default function GuestManagementLayout({ children }: { children: React.Re
           safe area on notched phones; both collapse away at md: where the
           tab bar doesn't render. */}
       <div className="min-w-0 flex-1 pb-[calc(4rem+env(safe-area-inset-bottom))] md:pb-0">
-        <StaticAuthGate>{children}</StaticAuthGate>
+        <AuthGate>{children}</AuthGate>
       </div>
     </div>
   )

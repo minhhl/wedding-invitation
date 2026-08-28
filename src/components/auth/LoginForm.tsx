@@ -5,12 +5,7 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import { Loader2, Lock } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import {
-  checkStaticCredentials,
-  getStaticSession,
-  IS_STATIC_EXPORT,
-  setStaticSession,
-} from '@/lib/staticAuth'
+import { getSessionWithRole, signInWithUsername } from '@/lib/supabaseAuth'
 
 export function LoginForm() {
   const router = useRouter()
@@ -20,13 +15,11 @@ export function LoginForm() {
   const [error, setError] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
 
-  // On a normal server, proxy.ts already redirects a signed-in visitor away
-  // from /login server-side. The static export has no proxy, so do the same
-  // check client-side there.
+  // Already signed in — no need to show the login form again.
   useEffect(() => {
-    if (IS_STATIC_EXPORT && getStaticSession()) {
-      router.replace(searchParams.get('next') || '/guest-management')
-    }
+    getSessionWithRole().then((session) => {
+      if (session) router.replace(searchParams.get('next') || '/guest-management')
+    })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -35,38 +28,15 @@ export function LoginForm() {
     setLoading(true)
     setError(null)
 
-    if (IS_STATIC_EXPORT) {
-      const session = checkStaticCredentials(username, password)
-      if (!session) {
-        setError('Sai tên đăng nhập hoặc mật khẩu.')
-        setLoading(false)
-        return
-      }
-      setStaticSession(session)
-      router.push(searchParams.get('next') || '/guest-management')
+    const { session, error } = await signInWithUsername(username, password)
+    if (!session) {
+      setError(error ?? 'Đăng nhập thất bại.')
       setLoading(false)
       return
     }
 
-    try {
-      const res = await fetch('/api/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password }),
-      })
-      const data = await res.json()
-      if (!res.ok) {
-        setError(data.error ?? 'Đăng nhập thất bại.')
-        return
-      }
-      const next = searchParams.get('next') || '/guest-management'
-      router.push(next)
-      router.refresh()
-    } catch {
-      setError('Không thể kết nối máy chủ.')
-    } finally {
-      setLoading(false)
-    }
+    router.push(searchParams.get('next') || '/guest-management')
+    setLoading(false)
   }
 
   return (

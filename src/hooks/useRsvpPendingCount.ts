@@ -1,22 +1,26 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { RsvpRequest } from '@/types/rsvp'
+import { supabase } from '@/lib/supabase'
 
 /** null = still loading. Used for the nav badge and the pending-RSVP banner. */
 export function useRsvpPendingCount(): number | null {
   const [count, setCount] = useState<number | null>(null)
 
   useEffect(() => {
+    if (!supabase) {
+      setCount(0)
+      return
+    }
+
     let cancelled = false
-    fetch('/api/rsvp-requests')
-      .then((res) => (res.ok ? res.json() : { requests: [] }))
-      .then((data: { requests: RsvpRequest[] }) => {
+    supabase
+      .from('rsvp_requests')
+      .select('*', { count: 'exact', head: true })
+      .eq('status', 'PENDING')
+      .then(({ count, error }) => {
         if (cancelled) return
-        setCount(data.requests.filter((r) => r.status === 'PENDING').length)
-      })
-      .catch(() => {
-        if (!cancelled) setCount(0)
+        setCount(error ? 0 : (count ?? 0))
       })
     return () => {
       cancelled = true

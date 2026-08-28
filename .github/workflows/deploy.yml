@@ -31,18 +31,12 @@ jobs:
         run: npm ci
 
       # This build only ever produces static HTML for GitHub Pages, which
-      # can't run any server code at all. /api/* (including the public
-      # /api/rsvp) and src/proxy.ts genuinely cannot exist in a static
-      # export, so they're stripped here. /login and /guest-management are
-      # KEPT — they fall back to a client-side-only, localStorage-based
-      # "login" (see src/lib/staticAuth.ts) with no real data behind it,
-      # since there's no backend left to call. Full functionality (real
-      # login, working Guest Management/RSVP) is only ever available via
-      # `npm run dev` / `npm start`.
+      # can't run any server code at all. /api/* genuinely cannot exist in a
+      # static export, so it's stripped here. Everything else — login, Guest
+      # Management, RSVP — talks straight to Supabase from the browser (see
+      # supabase/schema.sql), so it's fully functional on this build too.
       - name: Remove server-only routes (unsupported on static export)
-        run: |
-          rm -rf src/app/api
-          rm -f src/proxy.ts
+        run: rm -rf src/app/api
 
       - name: Build
         run: npm run build
@@ -50,13 +44,9 @@ jobs:
           NEXT_PUBLIC_STATIC_EXPORT: 'true'
           NEXT_PUBLIC_BASE_PATH: /wedding-invitation
           NEXT_PUBLIC_SITE_URL: https://minhhl.github.io/wedding-invitation
-          # Baked into the public JS bundle — NOT real security, just keeps
-          # /login functional with no server to verify a password against.
-          NEXT_PUBLIC_STATIC_AUTH_USERS: '[{"username":"minh","password":"minh","role":"admin"},{"username":"ngoc","password":"ngoc","role":"admin"}]'
-          # Lets the RSVP form insert straight into Supabase from the browser
-          # (no server to write src/data/ to on static export). Anon key is
-          # public by design — the rsvp_responses RLS policy only allows
-          # inserts. Set these as repo secrets; see README.md "Database Setup".
+          # Anon key is public by design — RLS (supabase/schema.sql) is what
+          # actually restricts what it can read/write. Set these as repo
+          # secrets; see README.md "Database Setup".
           NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
           NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
 

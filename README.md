@@ -81,35 +81,33 @@ Modify colors in `tailwind.config.ts` under the `wedding` theme colors.
 
 ## 🗄️ Database Setup (Supabase)
 
-Normal builds (`npm run dev` / `npm start`) store RSVP and guest data in local
-JSON files under `src/data/`, managed through `/guest-management`. Supabase is
-only needed for the **static GitHub Pages export**, where there's no server
-to write those files to — there, the RSVP form inserts straight into Supabase
-from the browser using the anon key.
+The whole backend — guests, RSVP requests, and admin login — lives in
+Supabase. The browser talks to it directly (via `NEXT_PUBLIC_SUPABASE_URL` /
+`NEXT_PUBLIC_SUPABASE_ANON_KEY`), so `/guest-management` and RSVP work the
+same whether the app runs as a server (`npm run dev` / `npm start`) or as the
+static GitHub Pages export. The anon key is public by design — what it can
+read/write is enforced by Postgres row-level security (RLS), not by keeping
+the key secret.
+
+Admin login is by plain username/password. Supabase Auth itself requires an
+email, so each account gets a hidden synthetic one
+(`<username>@wedding.local`) that's never shown in the UI — see
+`src/lib/supabaseAuth.ts`.
 
 1. Create a Supabase project at [supabase.com](https://supabase.com)
-2. Create the `rsvp_responses` table:
-```sql
-CREATE TABLE rsvp_responses (
-  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
-  guest_name TEXT NOT NULL,
-  side TEXT NOT NULL CHECK (side IN ('Nhà trai', 'Nhà gái')),
-  companion TEXT,
-  message TEXT,
-  attending BOOLEAN NOT NULL,
-  created_at TIMESTAMPTZ DEFAULT now()
-);
-
--- The anon key is public, so only allow it to insert — not read/update/delete.
--- View submissions from the Supabase dashboard instead.
-ALTER TABLE rsvp_responses ENABLE ROW LEVEL SECURITY;
-
-CREATE POLICY "Allow public RSVP submissions"
-  ON rsvp_responses FOR INSERT
-  TO anon
-  WITH CHECK (true);
-```
-3. Add `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` (Project
+2. Run [`supabase/schema.sql`](supabase/schema.sql) in the SQL Editor
+   (Project → SQL Editor → New query) — creates `profiles`, `guests`, and
+   `rsvp_requests` with their RLS policies.
+3. Create your admin/viewer accounts: copy `.env.local.example` to
+   `.env.local`, add `SUPABASE_SECRET_KEY` (Project Settings → API — keep
+   this out of version control), fill in the accounts in
+   `scripts/seed-supabase-users.mjs`, then run:
+   ```bash
+   node --env-file=.env.local scripts/seed-supabase-users.mjs
+   ```
+   Remove `SUPABASE_SECRET_KEY` from `.env.local` afterwards — nothing else
+   in the app needs it.
+4. Add `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` (Project
    Settings → API) as repository secrets, and pass them to the GitHub Pages
    build in `.github/workflows/deploy.yml`.
 

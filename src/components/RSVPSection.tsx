@@ -29,12 +29,6 @@ const fieldClass =
 
 const selectClass = `${fieldClass} appearance-none pr-9`
 
-// The GitHub Pages build is static-exported with no backend, so /api/rsvp
-// doesn't exist there — submit straight to Supabase from the browser
-// instead. If Supabase isn't configured either, fall back to a message
-// instead of a dead form.
-const isStaticExport = process.env.NEXT_PUBLIC_STATIC_EXPORT === 'true'
-
 function ClosingPhoto() {
   return (
     <div className="relative mx-auto h-[420px] w-full max-w-[420px] overflow-hidden bg-white">
@@ -66,7 +60,7 @@ function ClosingPhoto() {
 }
 
 export function RSVPSection({ side }: { side?: InvitationSide } = {}) {
-  if (isStaticExport && !isSupabaseConfigured) {
+  if (!isSupabaseConfigured) {
     return (
       <section id="rsvp" className="relative overflow-hidden bg-white">
         <PlasterBackground className="pointer-events-none absolute inset-0 opacity-40" />
@@ -105,25 +99,15 @@ function RSVPForm({ side }: { side?: InvitationSide }) {
     setIsLoading(true)
     setSubmitError(false)
     try {
-      if (isStaticExport) {
-        if (!supabase) throw new Error('Supabase is not configured')
-        const { error } = await supabase.from('rsvp_responses').insert({
-          guest_name: data.guestName,
-          side: data.side,
-          companion: data.companion || null,
-          message: data.message || null,
-          attending: data.attending === 'yes',
-        })
-        if (error) throw error
-      } else {
-        const response = await fetch('/api/rsvp', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data),
-        })
-
-        if (!response.ok) throw new Error('Failed to submit RSVP')
-      }
+      if (!supabase) throw new Error('Supabase is not configured')
+      const { error } = await supabase.from('rsvp_requests').insert({
+        guest_name: data.guestName,
+        side: data.side,
+        companion: data.companion || '',
+        message: data.message || '',
+        attending: data.attending === 'yes',
+      })
+      if (error) throw error
 
       reset()
       setShowThankYou(true)

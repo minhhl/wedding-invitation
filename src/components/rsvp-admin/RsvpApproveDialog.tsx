@@ -15,8 +15,9 @@ import {
 } from '@/components/ui/dialog'
 import { cn } from '@/lib/utils'
 import { RsvpRequest } from '@/types/rsvp'
-import { Guest, GUEST_GROUPS, GUEST_SIDES, TABLE_CAPACITY } from '@/types/guest'
+import { GUEST_GROUPS, GUEST_SIDES, TABLE_CAPACITY } from '@/types/guest'
 import { getTableTotal } from '@/lib/guestTable'
+import { useGuestStore } from '@/store/guestStore'
 import { ApprovePayload } from '@/hooks/useRsvpRequests'
 
 interface RsvpApproveDialogProps {
@@ -33,7 +34,7 @@ export function RsvpApproveDialog({ request, onOpenChange, onConfirm }: RsvpAppr
   const [selectedGuestId, setSelectedGuestId] = useState<string | null>(null)
   const [tableInput, setTableInput] = useState('')
   const [totalGuestsInput, setTotalGuestsInput] = useState('1')
-  const [guests, setGuests] = useState<Guest[]>([])
+  const guests = useGuestStore((s) => s.guests)
   const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
@@ -47,10 +48,6 @@ export function RsvpApproveDialog({ request, onOpenChange, onConfirm }: RsvpAppr
     setTableInput('')
     setTotalGuestsInput('1')
     setError(null)
-    fetch('/api/guests')
-      .then((res) => (res.ok ? res.json() : { guests: [] }))
-      .then((data: { guests: Guest[] }) => setGuests(data.guests))
-      .catch(() => setGuests([]))
   }, [request])
 
   const totalGuests = Number(totalGuestsInput)
