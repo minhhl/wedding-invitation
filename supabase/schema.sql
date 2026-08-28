@@ -9,10 +9,14 @@
 -- After running this, create the admin/viewer accounts with
 -- scripts/seed-supabase-users.mjs (see README "Database Setup (Supabase)").
 
+-- Safe to re-run during initial setup — everything is dropped and recreated
+-- from scratch. Do NOT re-run this against a project that already has real
+-- guests/RSVP/account data, since it discards all of it. Some Supabase
+-- projects also come with a starter `profiles` table from the dashboard's
+-- quickstart template, which this clears too.
 drop table if exists rsvp_responses;
--- Some Supabase projects come with a starter `profiles` table from the
--- dashboard's quickstart template — drop it so ours (below) can be created
--- with the exact columns this app needs.
+drop table if exists rsvp_requests cascade;
+drop table if exists guests cascade;
 drop table if exists profiles cascade;
 
 -- Maps a Supabase Auth user to an app role + display username. Only the

@@ -2,19 +2,15 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { usePathname, useRouter, useSearchParams } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import {
-  LayoutDashboard,
   Users,
   Mail,
   MessageCircleHeart,
-  BarChart3,
-  ChevronDown,
   ChevronsLeft,
   ChevronsRight,
   LogOut,
   ExternalLink,
-  Lock,
   Menu,
   Link as LinkIcon,
   X,
@@ -24,56 +20,36 @@ import { useSession } from '@/hooks/useSession'
 import { useRsvpPendingCount } from '@/hooks/useRsvpPendingCount'
 import { signOut } from '@/lib/supabaseAuth'
 
-interface NavLeaf {
-  label: string
-  href?: string
-  external?: boolean
-  comingSoon?: boolean
-  badge?: number | null
-}
-
-interface NavSection {
+interface NavItem {
   key: string
   label: string
   icon: React.ElementType
-  href?: string
-  comingSoon?: boolean
-  children?: NavLeaf[]
+  href: string
+  external?: boolean
+  badge?: number | null
 }
 
 const COLLAPSE_KEY = 'admin-sidebar-collapsed'
-const OPEN_SECTIONS_KEY = 'admin-sidebar-open-sections'
-const DEFAULT_OPEN_SECTIONS = ['guests', 'rsvp']
 
-function isLeafActive(leaf: NavLeaf, pathname: string, statusParam: string | null): boolean {
-  if (!leaf.href || leaf.external) return false
-  const [hrefPath, hrefQuery] = leaf.href.split('?')
-  if (hrefPath.split('#')[0] !== pathname) return false
-  const hrefStatus = hrefQuery ? new URLSearchParams(hrefQuery).get('status') : null
-  return hrefStatus === statusParam
+/** Ignores hash/query when matching the current route — e.g. both the RSVP
+ * link (?status=PENDING) and the reports link (no query) count as active on
+ * /guest-management/rsvp. */
+function isItemActive(item: NavItem, pathname: string): boolean {
+  if (item.external) return false
+  return item.href.split('#')[0].split('?')[0] === pathname
 }
 
 export function AdminSidebar() {
   const pathname = usePathname()
-  const searchParams = useSearchParams()
   const router = useRouter()
   const session = useSession()
   const pendingCount = useRsvpPendingCount()
 
   const [collapsed, setCollapsed] = useState(false)
-  const [openSections, setOpenSections] = useState<string[]>(DEFAULT_OPEN_SECTIONS)
   const [drawerOpen, setDrawerOpen] = useState(false)
 
   useEffect(() => {
     setCollapsed(localStorage.getItem(COLLAPSE_KEY) === '1')
-    const stored = localStorage.getItem(OPEN_SECTIONS_KEY)
-    if (stored) {
-      try {
-        setOpenSections(JSON.parse(stored))
-      } catch {
-        // ignore malformed value
-      }
-    }
   }, [])
 
   // Close the mobile drawer whenever the route actually changes (a nav tap
@@ -90,59 +66,25 @@ export function AdminSidebar() {
     })
   }
 
-  function toggleSection(key: string) {
-    setOpenSections((prev) => {
-      const next = prev.includes(key) ? prev.filter((k) => k !== key) : [...prev, key]
-      localStorage.setItem(OPEN_SECTIONS_KEY, JSON.stringify(next))
-      return next
-    })
-  }
-
   async function logout() {
     await signOut()
     router.push('/login')
   }
 
-  const statusParam = searchParams.get('status')
-
-  const sections: NavSection[] = [
-    { key: 'dashboard', label: 'Tổng quan', icon: LayoutDashboard, href: '/guest-management#dashboard' },
-    {
-      key: 'guests',
-      label: 'Quản lý khách mời',
-      icon: Users,
-      children: [
-        { label: 'Danh sách khách', href: '/guest-management' },
-        { label: 'Phân bàn', href: '/guest-management#guest-table' },
-      ],
-    },
-    {
-      key: 'invitations',
-      label: 'Thiệp mời',
-      icon: Mail,
-      children: [
-        { label: 'Thiệp cưới', href: '/', external: true },
-        { label: 'Tạo Link Mời', href: '/guest-management/invite-links' },
-      ],
-    },
+  const sections: NavItem[] = [
+    { key: 'guests', label: 'Khách mời', icon: Users, href: '/guest-management' },
+    { key: 'invite-links', label: 'Tạo Link Mời', icon: LinkIcon, href: '/invite-links' },
+    { key: 'invitation', label: 'Thiệp cưới', icon: Mail, href: '/', external: true },
     {
       key: 'rsvp',
-      label: 'Quản lý RSVP',
+      label: 'Yêu cầu RSVP',
       icon: MessageCircleHeart,
-      children: [
-        {
-          label: 'Yêu cầu RSVP',
-          href: '/guest-management/rsvp?status=PENDING',
-          badge: pendingCount || null,
-        },
-        { label: 'RSVP đã duyệt', href: '/guest-management/rsvp?status=APPROVED' },
-        { label: 'RSVP đã từ chối', href: '/guest-management/rsvp?status=REJECTED' },
-      ],
+      href: '/guest-management/rsvp?status=PENDING',
+      badge: pendingCount || null,
     },
-    { key: 'reports', label: 'Thống kê RSVP', icon: BarChart3, href: '/guest-management/rsvp' },
   ]
 
-  const navProps = { sections, pathname, statusParam, openSections, toggleSection }
+  const navProps = { sections, pathname }
 
   return (
     <>
@@ -240,7 +182,7 @@ export function AdminSidebar() {
           badge={pendingCount || null}
         />
         <BottomTabLink
-          href="/guest-management/invite-links"
+          href="/invite-links"
           pathname={pathname}
           icon={LinkIcon}
           label="Link mời"
@@ -259,95 +201,29 @@ export function AdminSidebar() {
 }
 
 interface NavListProps {
-  sections: NavSection[]
+  sections: NavItem[]
   pathname: string
-  statusParam: string | null
-  openSections: string[]
-  toggleSection: (key: string) => void
   collapsed: boolean
   onNavigate?: () => void
 }
 
-function NavList({
-  sections,
-  pathname,
-  statusParam,
-  openSections,
-  toggleSection,
-  collapsed,
-  onNavigate,
-}: NavListProps) {
+function NavList({ sections, pathname, collapsed, onNavigate }: NavListProps) {
   return (
     <ul className="flex flex-col gap-0.5">
-      {sections.map((section) => {
-        const hasChildren = !!section.children?.length
-        const sectionActive =
-          !hasChildren && section.href ? section.href.split('#')[0] === pathname : false
-        const sectionOpen = openSections.includes(section.key)
-        const badgeTotal = section.children?.reduce((sum, c) => sum + (c.badge || 0), 0) || null
-
-        return (
-          <li key={section.key}>
-            {hasChildren ? (
-              <button
-                type="button"
-                onClick={() => toggleSection(section.key)}
-                disabled={section.comingSoon}
-                title={collapsed ? section.label : undefined}
-                className={cn(
-                  'flex w-full items-center gap-2.5 rounded-lg px-2.5 py-2 text-sm font-medium text-zinc-300 transition-colors hover:bg-zinc-800/60 hover:text-zinc-100',
-                  section.comingSoon && 'cursor-not-allowed opacity-50 hover:bg-transparent'
-                )}
-              >
-                <section.icon className="h-4 w-4 shrink-0" />
-                {!collapsed && (
-                  <>
-                    <span className="flex-1 truncate text-left">{section.label}</span>
-                    {!!badgeTotal && (
-                      <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-red-500 px-1 text-xs font-semibold text-white">
-                        {badgeTotal}
-                      </span>
-                    )}
-                    <ChevronDown
-                      className={cn('h-3.5 w-3.5 shrink-0 transition-transform', sectionOpen && 'rotate-180')}
-                    />
-                  </>
-                )}
-              </button>
-            ) : (
-              <SidebarLink
-                href={section.href}
-                active={sectionActive}
-                collapsed={collapsed}
-                comingSoon={section.comingSoon}
-                icon={section.icon}
-                label={section.label}
-                onNavigate={onNavigate}
-              />
-            )}
-
-            {hasChildren && !collapsed && sectionOpen && (
-              <ul className="ml-5 mt-0.5 flex flex-col gap-0.5 border-l border-zinc-800 pl-3">
-                {section.children!.map((leaf) => (
-                  <li key={leaf.label}>
-                    <SidebarLink
-                      href={leaf.href}
-                      active={isLeafActive(leaf, pathname, statusParam)}
-                      collapsed={false}
-                      comingSoon={leaf.comingSoon}
-                      external={leaf.external}
-                      label={leaf.label}
-                      badge={leaf.badge}
-                      onNavigate={onNavigate}
-                      leaf
-                    />
-                  </li>
-                ))}
-              </ul>
-            )}
-          </li>
-        )
-      })}
+      {sections.map((item) => (
+        <li key={item.key}>
+          <SidebarLink
+            href={item.href}
+            active={isItemActive(item, pathname)}
+            collapsed={collapsed}
+            external={item.external}
+            icon={item.icon}
+            label={item.label}
+            badge={item.badge}
+            onNavigate={onNavigate}
+          />
+        </li>
+      ))}
     </ul>
   )
 }
@@ -418,42 +294,24 @@ function BottomTabLink({
 }
 
 interface SidebarLinkProps {
-  href?: string
+  href: string
   active: boolean
   collapsed: boolean
-  comingSoon?: boolean
   external?: boolean
-  icon?: React.ElementType
+  icon: React.ElementType
   label: string
   badge?: number | null
-  leaf?: boolean
   onNavigate?: () => void
 }
 
-function SidebarLink({
-  href,
-  active,
-  collapsed,
-  comingSoon,
-  external,
-  icon: Icon,
-  label,
-  badge,
-  leaf,
-  onNavigate,
-}: SidebarLinkProps) {
+function SidebarLink({ href, active, collapsed, external, icon: Icon, label, badge, onNavigate }: SidebarLinkProps) {
   const content = (
     <>
-      {Icon && <Icon className="h-4 w-4 shrink-0" />}
+      <Icon className="h-4 w-4 shrink-0" />
       {!collapsed && <span className="flex-1 truncate text-left">{label}</span>}
       {!collapsed && !!badge && (
         <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-red-500 px-1 text-xs font-semibold text-white">
           {badge}
-        </span>
-      )}
-      {!collapsed && comingSoon && (
-        <span className="rounded-full bg-zinc-800 px-1.5 py-0.5 text-[10px] font-medium text-zinc-500">
-          Sắp ra mắt
         </span>
       )}
       {!collapsed && external && <ExternalLink className="h-3 w-3 shrink-0 text-zinc-500" />}
@@ -462,28 +320,10 @@ function SidebarLink({
 
   const className = cn(
     'flex items-center gap-2.5 rounded-lg px-2.5 py-2 text-sm font-medium transition-colors',
-    leaf && 'py-1.5',
-    comingSoon
-      ? 'cursor-not-allowed text-zinc-600'
-      : active
-        ? 'bg-emerald-600/15 text-emerald-300'
-        : 'text-zinc-300 hover:bg-zinc-800/60 hover:text-zinc-100',
-    active && !comingSoon && 'border-l-2 border-emerald-500 -ml-px pl-[9px]'
+    active
+      ? 'bg-emerald-600/15 text-emerald-300 border-l-2 border-emerald-500 -ml-px pl-[9px]'
+      : 'text-zinc-300 hover:bg-zinc-800/60 hover:text-zinc-100'
   )
-
-  if (comingSoon || !href) {
-    return (
-      <span className={className} title={collapsed ? label : 'Sắp ra mắt'}>
-        {Icon ? <Icon className="h-4 w-4 shrink-0" /> : <Lock className="h-3.5 w-3.5 shrink-0" />}
-        {!collapsed && <span className="flex-1 truncate text-left">{label}</span>}
-        {!collapsed && (
-          <span className="rounded-full bg-zinc-800 px-1.5 py-0.5 text-[10px] font-medium text-zinc-500">
-            Sắp ra mắt
-          </span>
-        )}
-      </span>
-    )
-  }
 
   if (external) {
     return (

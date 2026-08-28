@@ -4,7 +4,6 @@ import { useState } from 'react'
 import { Check, Copy, Link as LinkIcon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Select } from '@/components/ui/select'
 
 type InviteSide = 'trai' | 'gai'
 
@@ -12,6 +11,14 @@ const SIDE_LABEL: Record<InviteSide, string> = {
   trai: 'Nhà trai',
   gai: 'Nhà gái',
 }
+
+const SIDE_OPTIONS: InviteSide[] = ['trai', 'gai']
+
+// next/image's basePath auto-prefixing doesn't apply to plain URLs, so it's
+// added by hand here too (see the same note in src/lib/decor.ts) — needed so
+// the generated link is correct under the GitHub Pages static export
+// (served from /wedding-invitation).
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
 
 export function InviteLinkGenerator() {
   const [name, setName] = useState('')
@@ -24,15 +31,7 @@ export function InviteLinkGenerator() {
     const trimmedName = name.trim()
     if (!trimmedName) return
 
-    // Use everything before "/guest-management" as the base, not just
-    // location.origin — under a basePath deploy (e.g. GitHub Pages at
-    // /wedding-invitation) the origin alone drops that prefix.
-    const guestManagementIndex = window.location.href.indexOf('/guest-management')
-    const base =
-      guestManagementIndex === -1
-        ? window.location.origin
-        : window.location.href.slice(0, guestManagementIndex)
-    const url = new URL(`/nha-${side}`, base)
+    const url = new URL(`${basePath}/nha-${side}`, window.location.origin)
     url.searchParams.set('name', trimmedName)
     setLink(url.toString())
     setCopied(false)
@@ -65,18 +64,22 @@ export function InviteLinkGenerator() {
           />
         </div>
 
-        <div className="w-full sm:w-44">
-          <label htmlFor="invite-side" className="mb-1 block text-xs font-medium text-zinc-400">
-            Khách mời của
-          </label>
-          <Select
-            id="invite-side"
-            value={side}
-            onChange={(e) => setSide(e.target.value as InviteSide)}
-          >
-            <option value="trai">Nhà trai</option>
-            <option value="gai">Nhà gái</option>
-          </Select>
+        <div>
+          <span className="mb-1 block text-xs font-medium text-zinc-400">Khách mời của</span>
+          <div className="flex h-9 items-center gap-4">
+            {SIDE_OPTIONS.map((option) => (
+              <label key={option} className="flex items-center gap-1.5 text-sm text-zinc-200">
+                <input
+                  type="radio"
+                  name="invite-side"
+                  checked={side === option}
+                  onChange={() => setSide(option)}
+                  className="h-4 w-4 accent-emerald-600"
+                />
+                {SIDE_LABEL[option]}
+              </label>
+            ))}
+          </div>
         </div>
 
         <Button type="submit" disabled={!name.trim()}>
