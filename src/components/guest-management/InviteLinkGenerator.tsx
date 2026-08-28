@@ -134,7 +134,7 @@ export function InviteLinkGenerator() {
                 key={previewLink}
                 src={previewLink ?? undefined}
                 title="Xem trước thiệp mời"
-                className="h-[1027px] w-full"
+                className="h-[1120px] w-full"
               />
             </div>
           </div>

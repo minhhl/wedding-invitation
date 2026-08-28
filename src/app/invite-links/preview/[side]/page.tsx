@@ -1,5 +1,12 @@
 import { notFound } from 'next/navigation'
-import { InvitationCard, type InvitationSide } from '@/components/InvitationCard'
+import { InvitationCardPreview } from '@/components/InvitationCardPreview'
+import type { InvitationSide } from '@/components/InvitationCard'
+
+// Required for the static GitHub Pages export (output: 'export') — both
+// values get pre-rendered at build time instead of on demand.
+export function generateStaticParams() {
+  return [{ side: 'trai' }, { side: 'gai' }]
+}
 
 // Card-only preview for the invite-link generator (src/components/
 // guest-management/InviteLinkGenerator.tsx) — just the InvitationCard
@@ -16,7 +23,7 @@ export default async function InviteLinkPreviewPage({
 
   return (
     <main className="min-h-screen bg-white">
-      <InvitationCard side={side as InvitationSide} />
+      <InvitationCardPreview side={side as InvitationSide} />
     </main>
   )
 }
