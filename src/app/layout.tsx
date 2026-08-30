@@ -6,6 +6,9 @@ import { groomName, brideName } from '@/lib/weddingData'
 import {
   arnoProLightDisplay,
   vipHastegi,
+  vipHighSpirited,
+  heptaSlab,
+  lora,
   bhnEcatherina,
   ghiocityItalic,
   openSans,
@@ -35,6 +38,9 @@ export const viewport: Viewport = {
 const fontVariables = [
   arnoProLightDisplay.variable,
   vipHastegi.variable,
+  vipHighSpirited.variable,
+  heptaSlab.variable,
+  lora.variable,
   bhnEcatherina.variable,
   ghiocityItalic.variable,
   openSans.variable,

@@ -3,22 +3,15 @@
 import { useEffect, useState } from 'react'
 import { MapPin } from 'lucide-react'
 import { motion } from 'framer-motion'
-import { LadiCanvas, LadiGroup, LadiImage, LadiHeadline, LadiLine } from '@/components/ladi'
+import { LadiCanvas, LadiGroup, LadiImage, LadiHeadline } from '@/components/ladi'
 import { PlasterBackground } from '@/components/PlasterBackground'
 import { googleMapsDirectionsUrl } from '@/lib/weddingSchedule'
-import {
-  groomName,
-  brideName,
-  groomFather,
-  groomMother,
-  brideFather,
-  brideMother,
-  initial,
-} from '@/lib/weddingData'
+import { groomName, brideName, initial } from '@/lib/weddingData'
 import { invitationBg, paperCard, flowerBranch, pearl, logo } from '@/lib/decor'
 import { EASE, fadeUp, staggerContainer } from '@/lib/motion'
 
-const SECTION_HEIGHT = 1027
+const SECTION_HEIGHT = 935
+const PAPER_CARD_HEIGHT = 565
 
 export type InvitationSide = 'trai' | 'gai'
 
@@ -65,29 +58,6 @@ const invitationEventBySide: Record<InvitationSide, InvitationEventDetails> = {
   },
 }
 
-// The extra <br /> after groomFather compensates for brideFather's longer
-// "(Cố phụ)" text wrapping to two lines, keeping both mothers' names level
-// with each other regardless of which side ends up in which column below.
-const GROOM_FAMILY_LINES = (
-  <>
-    NHÀ TRAI
-    <br />
-    {groomFather}
-    <br />
-    <br />
-    {groomMother}
-  </>
-)
-const BRIDE_FAMILY_LINES = (
-  <>
-    NHÀ GÁI
-    <br />
-    {brideFather}
-    <br />
-    {brideMother}
-  </>
-)
-
 const GREETING_LINE: Record<InvitationSide, React.ReactNode> = {
   trai: (
     <>
@@ -113,30 +83,30 @@ export function InvitationCard({ side = 'trai' }: { side?: InvitationSide }) {
   return (
     <section className="relative bg-white">
       <LadiCanvas height={SECTION_HEIGHT}>
-        <PlasterBackground top={0} left={0.5} width={419} height={1027} />
+        <PlasterBackground top={0} left={0.5} width={419} height={SECTION_HEIGHT} />
 
         <motion.div
-          style={{ position: 'absolute', top: -40, left: 0.3, width: 420.6, height: 993 }}
+          style={{ position: 'absolute', top: -40, left: 0.3, width: 420.6, height: 1000 }}
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 1.2, ease: EASE }}
         >
-          <LadiImage top={0} left={0} width={420.6} height={993} src={invitationBg} alt="" objectFit="fill" />
+          <LadiImage top={0} left={0} width={420.6} height={1000} src={invitationBg} alt="" objectFit="fill" priority />
         </motion.div>
 
         <motion.div
-          style={{ position: 'absolute', top: 221, left: 9.9, width: 400, height: 567 }}
+          style={{ position: 'absolute', top: 221, left: 9.9, width: 400, height: PAPER_CARD_HEIGHT }}
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.9, delay: 0.15, ease: EASE }}
         >
-          <LadiImage top={0} left={0} width={400} height={567} src={paperCard} alt="" />
+          <LadiImage top={0} left={0} width={400} height={PAPER_CARD_HEIGHT} src={paperCard} alt="" />
         </motion.div>
 
         <motion.div
-          style={{ position: 'absolute', top: 481, left: -88.8, width: 250, height: 358 }}
+          style={{ position: 'absolute', top: 479, left: -88.8, width: 250, height: 358 }}
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
@@ -192,14 +162,14 @@ export function InvitationCard({ side = 'trai' }: { side?: InvitationSide }) {
         </motion.div>
 
         <motion.div
-          style={{ position: 'absolute', top: 273, left: 1.4, width: 429, height: 463 }}
+          style={{ position: 'absolute', top: 273, left: 1.4, width: 429, height: 480 }}
           variants={staggerContainer(0.15, 0.65)}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
         >
           <motion.div variants={fadeUp} style={{ position: 'absolute', inset: 0 }}>
-          <LadiGroup top={0} left={5.7} width={420} height={463}>
+          <LadiGroup top={0} left={5.7} width={420} height={480}>
             <LadiGroup top={0} left={0} width={420} height={100}>
               <LadiHeadline
                 top={0}
@@ -251,7 +221,7 @@ export function InvitationCard({ side = 'trai' }: { side?: InvitationSide }) {
               </LadiHeadline>
             </LadiGroup>
 
-            <LadiGroup top={108} left={0} width={420} height={91}>
+            <LadiGroup top={130} left={0} width={420} height={91}>
               <LadiHeadline
                 top={0}
                 left={35}
@@ -271,7 +241,7 @@ export function InvitationCard({ side = 'trai' }: { side?: InvitationSide }) {
                 left={35}
                 width={350}
                 fontFamily="var(--font-heading)"
-                fontSize={20}
+                fontSize={25}
                 fontStyle="italic"
                 lineHeight={1.4}
                 color="var(--color-champagne)"
@@ -283,7 +253,7 @@ export function InvitationCard({ side = 'trai' }: { side?: InvitationSide }) {
               </LadiHeadline>
             </LadiGroup>
 
-            <LadiGroup top={409} left={141} width={124} height={55} className="flex flex-col items-center">
+            <LadiGroup top={411} left={141} width={124} height={55} className="flex flex-col items-center">
               <a
                 href={googleMapsDirectionsUrl(receptionEvent.fullAddress)}
                 target="_blank"
@@ -309,7 +279,7 @@ export function InvitationCard({ side = 'trai' }: { side?: InvitationSide }) {
 
           <motion.div variants={fadeUp} style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}>
           <LadiGroup
-            top={205}
+            top={278}
             left={50}
             width={321}
             height={51}
@@ -338,11 +308,11 @@ export function InvitationCard({ side = 'trai' }: { side?: InvitationSide }) {
 
           <motion.div variants={fadeUp} style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}>
           <LadiHeadline
-            top={270}
+            top={359}
             left={0}
             width={420}
             fontFamily="var(--font-heading)"
-            fontSize={13}
+            fontSize={14}
             lineHeight={1.6}
             color="var(--color-quote)"
             textAlign="center"
@@ -353,38 +323,8 @@ export function InvitationCard({ side = 'trai' }: { side?: InvitationSide }) {
           </motion.div>
 
           <motion.div variants={fadeUp} style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}>
-          <LadiGroup top={311} left={0} width={429} height={80}>
-            <LadiHeadline
-              top={0}
-              left={0}
-              width={192}
-              fontFamily='"EB Garamond", serif'
-              fontSize={14}
-              lineHeight={1.3}
-              color="#000"
-              textAlign="right"
-            >
-              {side === 'gai' ? BRIDE_FAMILY_LINES : GROOM_FAMILY_LINES}
-            </LadiHeadline>
-            <LadiLine top={0} left={208.7} width={1} height={80} color="#000" />
-            <LadiHeadline
-              top={0}
-              left={225}
-              width={175}
-              fontFamily='"EB Garamond", serif'
-              fontSize={14}
-              lineHeight={1.3}
-              color="#000"
-              textAlign="left"
-            >
-              {side === 'gai' ? GROOM_FAMILY_LINES : BRIDE_FAMILY_LINES}
-            </LadiHeadline>
-          </LadiGroup>
-          </motion.div>
-
-          <motion.div variants={fadeUp} style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}>
           <LadiHeadline
-            top={162}
+            top={196}
             left={2.3}
             width={408}
             fontFamily="var(--font-heading)"

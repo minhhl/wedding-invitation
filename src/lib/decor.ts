@@ -24,6 +24,7 @@ import timelineWordmarkImg from '../../assets/decor/timeline-wordmark.png'
 import dresscodeImg from '../../assets/decor/dresscode.png'
 import dreamWordmarkImg from '../../assets/decor/dream-wordmark.png'
 import ornamentQuoteBImg from '../../assets/decor/ornament-quote-b.png'
+import paperStripImg from '../../assets/decor/paper-strip.png'
 
 // White satin/fabric texture — ambient backdrop, reused across several sections.
 export const heroBg = heroBgImg.src
@@ -55,3 +56,5 @@ export const dresscode = dresscodeImg.src
 // Gold script "DREAM" wordmark — the save-the-date section's big backdrop word.
 export const dreamWordmark = dreamWordmarkImg.src
 export const ornamentQuoteB = ornamentQuoteBImg.src
+// Torn deckle-edge paper strip — the GROUP38 countdown's backdrop.
+export const paperStrip = paperStripImg.src

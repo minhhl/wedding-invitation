@@ -16,11 +16,14 @@
   --color-offwhite: #f1f3f4;
   --color-quote: #836f6f;
 
-  /* Typography — the 4 real fonts loaded in src/lib/fonts.ts, matched from
+  /* Typography — the real fonts loaded in src/lib/fonts.ts, matched from
      the reference templates' own @font-face declarations. */
   --font-heading: var(--font-arno-pro), Georgia, serif;
   --font-script: var(--font-vip-hastegi), cursive;
   --font-script-flourish: var(--font-ghiocity), cursive;
+  --font-script-countdown: var(--font-vip-high-spirited), cursive;
+  --font-slab: var(--font-hepta-slab), serif;
+  --font-calendar: var(--font-lora), Georgia, serif;
   --font-body: var(--font-open-sans), system-ui, sans-serif;
   --font-editorial: var(--font-ecatherina), Georgia, serif;
 }

@@ -1,9 +1,10 @@
 import type { Metadata } from 'next'
 import { Header } from '@/components/Header'
-import { SaveTheDate } from '@/components/SaveTheDate'
+import { MusicPlayer } from '@/components/MusicPlayer'
 import { InvitationCard } from '@/components/InvitationCard'
+import { WeddingCountdown } from '@/components/WeddingCountdown'
+import { WeddingCalendar } from '@/components/WeddingCalendar'
 import { DreamSection } from '@/components/DreamSection'
-import { WeddingTimeline } from '@/components/WeddingTimeline'
 import { PolaroidCollection } from '@/components/PolaroidCollection'
 import { RSVPSection } from '@/components/RSVPSection'
 import { groomName, brideName } from '@/lib/weddingData'
@@ -16,11 +17,12 @@ export const metadata: Metadata = {
 export default function NhaTraiPage() {
   return (
     <main className="min-h-screen bg-white">
+      <MusicPlayer />
       <Header />
       <InvitationCard side="trai" />
-      <SaveTheDate />
+      <WeddingCountdown />
+      <WeddingCalendar side="trai" />
       <DreamSection />
-      <WeddingTimeline />
       <PolaroidCollection />
       <RSVPSection side="trai" />
     </main>

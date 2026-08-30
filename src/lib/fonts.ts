@@ -2,7 +2,7 @@
 // (nawngs.com/naunhatmau), matched from the obfuscated font-family names in
 // its stylesheet to the .otf files it actually loads from its CDN.
 import localFont from 'next/font/local'
-import { Open_Sans } from 'next/font/google'
+import { Open_Sans, Hepta_Slab, Lora } from 'next/font/google'
 
 // Workhorse display serif — used for most headings/labels across every section.
 export const arnoProLightDisplay = localFont({
@@ -29,6 +29,29 @@ export const bhnEcatherina = localFont({
 export const ghiocityItalic = localFont({
   src: '../../assets/fonts/ghiocityanddhisthes-italic-20260623105043-2bpp3.otf',
   variable: '--font-ghiocity',
+  display: 'swap',
+})
+
+// Script font from the GROUP38 countdown reference (nawngswedding.online/maiphuongvietduc)
+// — used for its "Our wedding day" headline and the countdown's colon separators.
+export const vipHighSpirited = localFont({
+  src: '../../assets/fonts/1ftv-vip-high-spirited-20260517150751-hrtrm.otf',
+  variable: '--font-vip-high-spirited',
+  display: 'swap',
+})
+
+// Slab serif used for the countdown's day/hour/minute/second digits.
+export const heptaSlab = Hepta_Slab({
+  subsets: ['latin', 'vietnamese'],
+  variable: '--font-hepta-slab',
+  display: 'swap',
+})
+
+// Serif from the summergreen reference (nawngswedding.online/summergreen)
+// — used for its calendar strip, day labels, and the couple's names.
+export const lora = Lora({
+  subsets: ['latin', 'vietnamese'],
+  variable: '--font-lora',
   display: 'swap',
 })
 

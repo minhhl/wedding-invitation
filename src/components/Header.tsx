@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { LadiCanvas, LadiGroup, LadiImage, LadiHeadline } from '@/components/ladi'
 import { headerImage } from '@/lib/images'
-import { heroBg, ampersand } from '@/lib/decor'
+import { heroBg } from '@/lib/decor'
 import { groomName, brideName, weddingDateParts } from '@/lib/weddingData'
 import { EASE } from '@/lib/motion'
 
@@ -105,16 +105,18 @@ export function Header() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1.1, ease: EASE }}
           >
-            <LadiImage
-              top={48.0085}
-              left={0}
-              width={105.96}
-              height={54.061}
-              src={ampersand}
-              alt="and"
-              objectFit="contain"
-              objectPosition="0% 50%"
-            />
+            <LadiHeadline
+              top={35}
+              left={60}
+              width={106}
+              fontFamily="var(--font-editorial)"
+              fontSize={34}
+              lineHeight={1}
+              color="var(--color-offwhite)"
+              textAlign="left"
+            >
+              &amp;
+            </LadiHeadline>
           </motion.div>
         </LadiGroup>
 

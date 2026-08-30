@@ -32,6 +32,10 @@ export const saveTheDateImages = [
 // Invitation Card — faint corner background photo
 export const invitationBackgroundImage = photo('HTC03983.jpg')
 
+// Wedding Calendar — "Wedding of" photo pairing, close-up with faces clearly visible
+export const weddingOfGroomImage = photo('HTC04181.jpg')
+export const weddingOfBrideImage = photo('HTC04050.jpg')
+
 // Dream section — small polaroid-style photo beside the quote
 export const dreamPolaroidImage = photo('HTC04348.jpg')
 

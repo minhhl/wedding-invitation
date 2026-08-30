@@ -38,7 +38,7 @@ export function DreamSection() {
         </motion.div>
 
         <motion.div
-          style={{ position: 'absolute', top: 37, left: 55, width: 372, height: 422 }}
+          style={{ position: 'absolute', top: 37, left: 40, width: 372, height: 422 }}
           initial={{ opacity: 0, scale: 0.9, rotate: -3 }}
           whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
           viewport={{ once: true }}
