@@ -234,7 +234,7 @@ export function WeddingCalendar({ side = 'trai' }: { side?: InvitationSide }) {
           </LadiHeadline>
 
           <LadiHeadline
-            top={490}
+            top={480}
             left={200}
             width={43}
             fontFamily="var(--font-editorial)"
@@ -291,10 +291,11 @@ export function WeddingCalendar({ side = 'trai' }: { side?: InvitationSide }) {
               left={14}
               width={161}
               fontFamily="var(--font-calendar)"
-              fontSize={12}
-              lineHeight={1.5}
+              fontSize={11}
+              lineHeight={1.6}
               color="#000"
               textAlign="left"
+              className="whitespace-nowrap"
             >
               {leftPerson.father}
               <br />

@@ -11,7 +11,7 @@ const NOTE_ICONS = [Music, Music2, Music3, Music4]
 // asset/resource loader gives image imports — so the static-export basePath
 // has to be prefixed by hand, same as src/components/guest-management/InviteLinkGenerator.tsx.
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
-const musicSrc = `${basePath}/music/golden-hour-jvke.m4a`
+const musicSrc = `${basePath}/music/JVKE-golden-hour.m4a`
 
 const LOVE_LETTERS = ['L', 'O', 'V', 'E']
 
