@@ -51,10 +51,11 @@ const invitationEventBySide: Record<InvitationSide, InvitationEventDetails> = {
     title: 'Tiệc Cưới',
     venueName: 'Tư Gia Nhà Gái',
     addressLines: ['Thôn Hồng Tiến', 'Xã Hợp Thịnh', 'Tỉnh Bắc Ninh'],
-    // GPS coordinates (21°20'42.2"N 105°57'07.2"E), not the text address —
-    // more reliable for Google Maps directions to a rural/hamlet-level
-    // location than a street address that may not geocode precisely.
-    fullAddress: '21.345056,105.952',
+    // GPS coordinates, not the text address — more reliable for Google Maps
+    // directions to a rural/hamlet-level location than a street address
+    // that may not geocode precisely. Decoded from the Plus Code
+    // 8XW2+4Q9, Dốc chợ Thường, Hợp Thịnh, Bắc Ninh, Vietnam.
+    fullAddress: '21.345287,105.951984',
   },
 }
 
@@ -71,7 +72,13 @@ const GREETING_LINE: Record<InvitationSide, React.ReactNode> = {
   ),
 }
 
-export function InvitationCard({ side = 'trai' }: { side?: InvitationSide }) {
+export function InvitationCard({
+  side = 'trai',
+  showMonogram = true,
+}: {
+  side?: InvitationSide
+  showMonogram?: boolean
+}) {
   const [guestName, setGuestName] = useState<string | null>(null)
   const receptionEvent = invitationEventBySide[side]
 
@@ -127,39 +134,41 @@ export function InvitationCard({ side = 'trai' }: { side?: InvitationSide }) {
           <LadiImage top={0} left={0} width={37.9} height={37.6} src={pearl} alt="" />
         </motion.div>
 
-        <motion.div
-          style={{ position: 'absolute', top: 53, left: 114, width: 200, height: 113 }}
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.55, ease: EASE }}
-        >
-          <LadiGroup top={0} left={0} width={200} height={113} className="flex items-center justify-center">
-            <LadiImage top={0} left={0} width={200} height={113} src={logo} alt="" />
-            <LadiHeadline
-              top={17}
-              left={21}
-              width={72}
-              fontFamily="var(--font-heading)"
-              fontSize={60}
-              color="var(--color-champagne)"
-              textAlign="center"
-            >
-              {initial(groomName)}
-            </LadiHeadline>
-            <LadiHeadline
-              top={17}
-              left={98}
-              width={72}
-              fontFamily="var(--font-heading)"
-              fontSize={60}
-              color="var(--color-champagne)"
-              textAlign="center"
-            >
-              {initial(brideName)}
-            </LadiHeadline>
-          </LadiGroup>
-        </motion.div>
+        {showMonogram && (
+          <motion.div
+            style={{ position: 'absolute', top: 53, left: 114, width: 200, height: 113 }}
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.55, ease: EASE }}
+          >
+            <LadiGroup top={0} left={0} width={200} height={113} className="flex items-center justify-center">
+              <LadiImage top={0} left={0} width={200} height={113} src={logo} alt="" />
+              <LadiHeadline
+                top={17}
+                left={21}
+                width={72}
+                fontFamily="var(--font-heading)"
+                fontSize={60}
+                color="var(--color-champagne)"
+                textAlign="center"
+              >
+                {initial(groomName)}
+              </LadiHeadline>
+              <LadiHeadline
+                top={17}
+                left={98}
+                width={72}
+                fontFamily="var(--font-heading)"
+                fontSize={60}
+                color="var(--color-champagne)"
+                textAlign="center"
+              >
+                {initial(brideName)}
+              </LadiHeadline>
+            </LadiGroup>
+          </motion.div>
+        )}
 
         <motion.div
           style={{ position: 'absolute', top: 273, left: 1.4, width: 429, height: 480 }}

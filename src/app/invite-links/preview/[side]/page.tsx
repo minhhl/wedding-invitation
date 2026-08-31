@@ -1,6 +1,5 @@
 import { notFound } from 'next/navigation'
-import { InvitationCardPreview } from '@/components/InvitationCardPreview'
-import type { InvitationSide } from '@/components/InvitationCard'
+import { InvitationCard, type InvitationSide } from '@/components/InvitationCard'
 
 // Required for the static GitHub Pages export (output: 'export') — both
 // values get pre-rendered at build time instead of on demand.
@@ -22,8 +21,8 @@ export default async function InviteLinkPreviewPage({
   if (side !== 'trai' && side !== 'gai') notFound()
 
   return (
-    <main className="min-h-screen bg-white">
-      <InvitationCardPreview side={side as InvitationSide} />
+    <main className="bg-white">
+      <InvitationCard side={side as InvitationSide} showMonogram={false} />
     </main>
   )
 }

@@ -14,6 +14,12 @@ const SIDE_LABEL: Record<InviteSide, string> = {
 
 const SIDE_OPTIONS: InviteSide[] = ['trai', 'gai']
 
+// Crop window for the card preview, as a fraction of InvitationCard's fixed
+// 935px design height — just above the top-left pearl down through the
+// flower branch, skipping the empty satin-background padding above/below.
+const PREVIEW_TOP_FRACTION = 55 / 935
+const PREVIEW_HEIGHT_FRACTION = (845 - 55) / 935
+
 // next/image's basePath auto-prefixing doesn't apply to plain URLs, so it's
 // added by hand here too (see the same note in src/lib/decor.ts) — needed so
 // the generated link is correct under the GitHub Pages static export
@@ -26,6 +32,7 @@ export function InviteLinkGenerator() {
   const [link, setLink] = useState<string | null>(null)
   const [previewLink, setPreviewLink] = useState<string | null>(null)
   const [copied, setCopied] = useState(false)
+  const [previewHeight, setPreviewHeight] = useState(935)
 
   function handleGenerate(e: React.FormEvent) {
     e.preventDefault()
@@ -88,7 +95,7 @@ export function InviteLinkGenerator() {
             id="invite-name"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            placeholder="VD: Anh Chị Ba"
+            placeholder="VD: Gia đình bác A"
           />
         </div>
 
@@ -100,41 +107,63 @@ export function InviteLinkGenerator() {
 
       {link && (
         <>
-          <div className="mt-4 flex items-center gap-2 rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2">
-            <span className="shrink-0 rounded-full bg-zinc-800 px-2 py-0.5 text-xs font-medium text-zinc-300">
-              {SIDE_LABEL[side]}
-            </span>
-            <input
-              readOnly
-              value={link}
-              onFocus={(e) => e.target.select()}
-              className="flex-1 truncate bg-transparent text-sm text-zinc-200 outline-none"
-            />
-            <Button type="button" variant="secondary" size="sm" onClick={handleCopy}>
-              {copied ? <Check className="h-3.5 w-3.5" /> : <Copy className="h-3.5 w-3.5" />}
-              {copied ? 'Đã chép' : 'Sao chép'}
-            </Button>
-            <a
-              href={link}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex shrink-0 items-center gap-1.5 rounded-lg border border-zinc-700 px-3 py-1.5 text-sm font-medium text-zinc-200 transition-colors hover:bg-zinc-800"
-            >
-              <ExternalLink className="h-3.5 w-3.5" />
-              Mở tab mới
-            </a>
+          <div className="mt-4 flex flex-col gap-2 rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 sm:flex-row sm:items-center">
+            <div className="flex min-w-0 items-center gap-2 sm:flex-1">
+              <span className="shrink-0 rounded-full bg-zinc-800 px-2 py-0.5 text-xs font-medium text-zinc-300">
+                {SIDE_LABEL[side]}
+              </span>
+              <input
+                readOnly
+                value={link}
+                onFocus={(e) => e.target.select()}
+                className="min-w-0 flex-1 truncate bg-transparent text-sm text-zinc-200 outline-none"
+              />
+            </div>
+            <div className="flex items-center justify-end gap-2">
+              <Button type="button" variant="secondary" size="sm" onClick={handleCopy}>
+                {copied ? <Check className="h-3.5 w-3.5" /> : <Copy className="h-3.5 w-3.5" />}
+                {copied ? 'Đã chép' : 'Sao chép'}
+              </Button>
+              <a
+                href={link}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex shrink-0 items-center gap-1.5 rounded-lg border border-zinc-700 px-3 py-1.5 text-sm font-medium text-zinc-200 transition-colors hover:bg-zinc-800"
+              >
+                <ExternalLink className="h-3.5 w-3.5" />
+                Mở tab mới
+              </a>
+            </div>
           </div>
 
           <div className="mt-4">
             <p className="mb-2 text-xs font-medium text-zinc-400">Xem trước thiệp mời</p>
-            <div className="mx-auto w-full max-w-[420px] overflow-hidden rounded-xl border border-zinc-700 bg-white">
+            {/* Crops out the card's satin-background padding above the pearls
+                and below the flower branch, so the preview reads as "the
+                card" instead of a mostly-empty frame. Fractions are of
+                InvitationCard's fixed 935px design height (see PREVIEW_TOP_FRACTION
+                below) — the same ratio holds regardless of how wide the
+                iframe itself renders, since LadiCanvas scales everything
+                inside it uniformly. */}
+            <div
+              className="mx-auto w-full max-w-[420px] overflow-hidden rounded-xl border border-zinc-700 bg-white"
+              style={{ height: previewHeight * PREVIEW_HEIGHT_FRACTION }}
+            >
               {/* key forces a fresh reload when the name/side changes, since
-                  an iframe otherwise keeps its stale first-loaded page. */}
+                  an iframe otherwise keeps its stale first-loaded page. Height
+                  is measured after load (not a fixed guess) because the card
+                  scales down with the iframe's own width, so a fixed height
+                  either clips it or leaves blank space below. */}
               <iframe
                 key={previewLink}
                 src={previewLink ?? undefined}
                 title="Xem trước thiệp mời"
-                className="h-[1120px] w-full"
+                className="w-full"
+                style={{ height: previewHeight, marginTop: -(previewHeight * PREVIEW_TOP_FRACTION) }}
+                onLoad={(e) => {
+                  const doc = e.currentTarget.contentDocument
+                  if (doc) setPreviewHeight(doc.documentElement.scrollHeight)
+                }}
               />
             </div>
           </div>
