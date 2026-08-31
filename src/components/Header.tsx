@@ -32,7 +32,7 @@ export function Header() {
               fill
               priority
               sizes="420px"
-              style={{ objectFit: 'cover', objectPosition: 'center 30%' }}
+              style={{ objectFit: 'cover', objectPosition: 'center center' }}
             />
           </div>
 

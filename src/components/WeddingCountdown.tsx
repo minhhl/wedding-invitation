@@ -8,7 +8,7 @@ import { weddingDateTime } from '@/lib/weddingData'
 import { paperStrip } from '@/lib/decor'
 import { EASE } from '@/lib/motion'
 
-const SECTION_HEIGHT = 200
+const SECTION_HEIGHT = 220
 
 interface TimeLeft {
   days: number
@@ -30,10 +30,10 @@ function getTimeLeft(target: Date): TimeLeft {
 const pad = (n: number) => n.toString().padStart(2, '0')
 
 const UNITS: { key: keyof TimeLeft; label: string }[] = [
-  { key: 'days', label: 'Days' },
-  { key: 'hours', label: 'Hours' },
-  { key: 'minutes', label: 'Minutes' },
-  { key: 'seconds', label: 'Seconds' },
+  { key: 'days', label: 'Ngày' },
+  { key: 'hours', label: 'Giờ' },
+  { key: 'minutes', label: 'Phút' },
+  { key: 'seconds', label: 'Giây' },
 ]
 
 const ITEM_WIDTH = 91.5
@@ -65,19 +65,22 @@ export function WeddingCountdown() {
           transition={{ duration: 0.8, ease: EASE }}
         >
           <LadiHeadline
-            top={0}
-            left={56.5}
-            width={307}
-            fontFamily="var(--font-script-countdown)"
-            fontSize={60}
-            lineHeight={1.6}
+            top={30}
+            left={10}
+            width={400}
+            fontFamily="var(--font-heading)"
+            fontSize={16}
+            fontWeight={700}
+            letterSpacing={0.3}
+            lineHeight={1.3}
             color="var(--color-champagne)"
             textAlign="center"
+            textTransform="uppercase"
           >
-            Our wedding day
+            Đếm ngược đến ngày cưới của chúng mình
           </LadiHeadline>
 
-          <LadiGroup top={92} left={27} width={366} height={67}>
+          <LadiGroup top={85} left={27} width={366} height={67}>
             {UNITS.map(({ key, label }, i) => (
               <LadiHeadline
                 key={`label-${key}`}

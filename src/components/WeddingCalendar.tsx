@@ -45,28 +45,33 @@ const bridePerson: WeddingPerson = {
 
 const SECTION_HEIGHT = 700
 
-const WEEKDAYS = [
-  { label: 'thur', left: 0, width: 58 },
-  { label: 'fri', left: 61.5, width: 57 },
-  { label: 'sat', left: 122, width: 54 },
-  { label: 'sun', left: 179.5, width: 54 },
-  { label: 'mon', left: 237, width: 58 },
-  { label: 'tue', left: 298.5, width: 51 },
-  { label: 'wed', left: 353, width: 50 },
+// Columns run Monday (T2) through Sunday (CN), Vietnamese calendar convention.
+// Absolute canvas-relative lefts, shared by the weekday header and the date
+// grid so both rows line up.
+const COLUMNS = [
+  { label: 'th2', left: 5, width: 58 },
+  { label: 'th3', left: 65, width: 57 },
+  { label: 'th4', left: 124, width: 54 },
+  { label: 'th5', left: 180, width: 54 },
+  { label: 'th6', left: 236, width: 58 },
+  { label: 'th7', left: 296, width: 51 },
+  { label: 'cn', left: 349, width: 50 },
 ]
 
-// Centered on the actual wedding date (weddingDateParts, 20/09/2026 — a
-// Thursday-Sunday-Wednesday window: Sun 20 falls at index 3, matching the
-// heart decoration's fixed column position below.
-const DATES = [
-  { label: '17', left: 5, width: 58 },
-  { label: '18', left: 66.5, width: 57 },
-  { label: '19', left: 127, width: 54 },
-  { label: '20', left: 184.5, width: 54 },
-  { label: '21', left: 242, width: 58 },
-  { label: '22', left: 303.5, width: 51 },
-  { label: '23', left: 358, width: 50 },
+const ROW_TOPS = [68, 91, 114, 137, 160]
+
+// Full September 2026 grid (Sep 1 is a Tuesday, so it lands in column
+// index 1). null cells are the leading/trailing days from Aug/Oct.
+const CALENDAR_WEEKS: (number | null)[][] = [
+  [null, 1, 2, 3, 4, 5, 6],
+  [7, 8, 9, 10, 11, 12, 13],
+  [14, 15, 16, 17, 18, 19, 20],
+  [21, 22, 23, 24, 25, 26, 27],
+  [28, 29, 30, null, null, null, null],
 ]
+
+// The actual wedding date (weddingDateParts, 20/09/2026), highlighted below.
+const WEDDING_DAY = 20
 
 /** Calendar-week strip + "Wedding of" photo pairing, cloned from the
  * summergreen reference (nawngswedding.online/summergreen) — same
@@ -99,66 +104,84 @@ export function WeddingCalendar({ side = 'trai' }: { side?: InvitationSide }) {
             textAlign="center"
             textTransform="uppercase"
           >
-            September 2026
+            Tháng 9, 2026
           </LadiHeadline>
 
-          <LadiGroup top={41} left={5} width={403} height={19}>
-            {WEEKDAYS.map((d) => (
+          <LadiGroup top={41} left={0} width={420} height={19}>
+            {COLUMNS.map((col) => (
               <LadiHeadline
-                key={d.label}
+                key={col.label}
                 top={0}
-                left={d.left}
-                width={d.width}
+                left={col.left}
+                width={col.width}
                 fontFamily="var(--font-calendar)"
                 fontSize={12}
                 color="var(--color-champagne)"
                 textAlign="center"
                 textTransform="uppercase"
               >
-                {d.label}
+                {col.label}
               </LadiHeadline>
             ))}
           </LadiGroup>
 
-          {DATES.map((d) => (
-            <LadiHeadline
-              key={d.label}
-              top={71}
-              left={d.left}
-              width={d.width}
-              fontFamily="var(--font-calendar)"
-              fontSize={12}
-              color="var(--color-champagne)"
-              textAlign="center"
-              textTransform="uppercase"
-            >
-              {d.label}
-            </LadiHeadline>
-          ))}
+          {CALENDAR_WEEKS.map((week, rowIndex) =>
+            week.map((day, colIndex) => {
+              if (day === null) return null
+              const col = COLUMNS[colIndex]
+              const rowTop = ROW_TOPS[rowIndex]
 
-          <LadiGroup top={53} left={187.5} width={48} height={77}>
-            <motion.div
-              style={{ position: 'absolute', top: 0, left: 0, color: 'var(--color-champagne)' }}
-              animate={{ scale: [1, 1.15, 1] }}
-              transition={{ duration: 1.1, repeat: Infinity, ease: 'easeInOut' }}
-            >
-              <Heart size={48} strokeWidth={0.75} />
-            </motion.div>
-            <LadiLine top={45} left={23.5} width={1} height={45} color="var(--color-champagne)" />
-          </LadiGroup>
+              if (day === WEDDING_DAY) {
+                return (
+                  <motion.div
+                    key={day}
+                    style={{
+                      position: 'absolute',
+                      top: rowTop - 10,
+                      left: col.left + (col.width - 35) / 2,
+                      width: 35,
+                      height: 35,
+                      color: 'var(--color-champagne)',
+                    }}
+                    animate={{ scale: [1, 1.15, 1] }}
+                    transition={{ duration: 1.1, repeat: Infinity, ease: 'easeInOut' }}
+                  >
+                    <Heart size={35} strokeWidth={0} fill="currentColor" style={{ position: 'absolute', top: 0, left: 0 }} />
+                    <span
+                      style={{
+                        position: 'absolute',
+                        inset: 0,
+                        paddingTop: 3,
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        fontFamily: 'var(--font-calendar)',
+                        fontSize: 12,
+                        color: '#fff',
+                      }}
+                    >
+                      {day}
+                    </span>
+                  </motion.div>
+                )
+              }
 
-          <LadiHeadline
-            top={130}
-            left={49}
-            width={323}
-            fontFamily="var(--font-script-countdown)"
-            fontSize={44}
-            lineHeight={1.6}
-            color="var(--color-champagne)"
-            textAlign="center"
-          >
-            Save the date
-          </LadiHeadline>
+              return (
+                <LadiHeadline
+                  key={day}
+                  top={rowTop}
+                  left={col.left}
+                  width={col.width}
+                  fontFamily="var(--font-calendar)"
+                  fontSize={12}
+                  color="var(--color-champagne)"
+                  textAlign="center"
+                >
+                  {day}
+                </LadiHeadline>
+              )
+            }),
+          )}
 
           <LadiImage
             top={225}
@@ -249,7 +272,7 @@ export function WeddingCalendar({ side = 'trai' }: { side?: InvitationSide }) {
                 backgroundColor: 'var(--color-champagne)',
               }}
             />
-            <LadiLine top={10} left={2.5} width={1} height={65} color="var(--color-champagne)" />
+            <LadiLine top={10} left={2.5} width={1} height={45} color="var(--color-champagne)" />
             <LadiHeadline
               top={0}
               left={14}
@@ -291,7 +314,7 @@ export function WeddingCalendar({ side = 'trai' }: { side?: InvitationSide }) {
                 backgroundColor: 'var(--color-champagne)',
               }}
             />
-            <LadiLine top={10} left={182.5} width={1} height={65} color="var(--color-champagne)" />
+            <LadiLine top={10} left={182.5} width={1} height={45} color="var(--color-champagne)" />
             <LadiHeadline
               top={0}
               left={0}
@@ -310,10 +333,11 @@ export function WeddingCalendar({ side = 'trai' }: { side?: InvitationSide }) {
               left={0}
               width={174.5}
               fontFamily="var(--font-calendar)"
-              fontSize={12}
-              lineHeight={1.5}
+              fontSize={11}
+              lineHeight={1.6}
               color="#000"
               textAlign="right"
+              className="whitespace-nowrap"
             >
               {rightPerson.father}
               <br />

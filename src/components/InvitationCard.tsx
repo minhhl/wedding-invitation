@@ -31,7 +31,7 @@ interface InvitationEventDetails {
 // can't accidentally affect the other. nhà trai's card points at the
 // reception (Tiệc Cưới) in Hà Nội, held Sunday 20/09; nhà gái's card points
 // at their own reception the day before, at the bride's family home in
-// Bắc Giang — hence the different chapter/lunar dates too.
+// Bắc Ninh — hence the different chapter/lunar dates too.
 const invitationEventBySide: Record<InvitationSide, InvitationEventDetails> = {
   trai: {
     chapterLabel: 'Chủ Nhật',
@@ -50,7 +50,7 @@ const invitationEventBySide: Record<InvitationSide, InvitationEventDetails> = {
     time: '16:00',
     title: 'Tiệc Cưới',
     venueName: 'Tư Gia Nhà Gái',
-    addressLines: ['Xã Hợp Thịnh', 'Bắc Giang'],
+    addressLines: ['Thôn Hồng Tiến', 'Xã Hợp Thịnh', 'Tỉnh Bắc Ninh'],
     // GPS coordinates (21°20'42.2"N 105°57'07.2"E), not the text address —
     // more reliable for Google Maps directions to a rural/hamlet-level
     // location than a street address that may not geocode precisely.
@@ -61,12 +61,12 @@ const invitationEventBySide: Record<InvitationSide, InvitationEventDetails> = {
 const GREETING_LINE: Record<InvitationSide, React.ReactNode> = {
   trai: (
     <>
-      Đến dự bữa cơm thân mật chung <br /> vui cùng gia đình chúng tôi
+      Đến dự bữa cơm thân mật chung vui <br /> cùng gia đình chúng tôi
     </>
   ),
   gai: (
     <>
-      Đến dự bữa cơm thân mật chung <br /> vui cùng gia đình chúng tôi
+      Đến dự bữa cơm thân mật chung vui <br /> cùng gia đình chúng tôi
     </>
   ),
 }
@@ -176,7 +176,7 @@ export function InvitationCard({ side = 'trai' }: { side?: InvitationSide }) {
                 left={0}
                 width={420}
                 fontFamily="var(--font-heading)"
-                fontSize={15}
+                fontSize={18}
                 letterSpacing={2}
                 lineHeight={1.2}
                 color="#000"
@@ -190,7 +190,7 @@ export function InvitationCard({ side = 'trai' }: { side?: InvitationSide }) {
                 left={0}
                 width={420}
                 fontFamily="var(--font-heading)"
-                fontSize={19}
+                fontSize={21}
                 fontStyle="italic"
                 lineHeight={1.4}
                 color="var(--color-quote)"
@@ -209,10 +209,10 @@ export function InvitationCard({ side = 'trai' }: { side?: InvitationSide }) {
               />
               <LadiHeadline
                 top={67}
-                left={95}
-                width={230}
+                left={60}
+                width={300}
                 fontFamily="var(--font-heading)"
-                fontSize={15}
+                fontSize={18}
                 lineHeight={1.1}
                 color="#000"
                 textAlign="center"
@@ -227,7 +227,7 @@ export function InvitationCard({ side = 'trai' }: { side?: InvitationSide }) {
                 left={35}
                 width={350}
                 fontFamily="var(--font-heading)"
-                fontSize={11}
+                fontSize={16}
                 letterSpacing={2}
                 lineHeight={1.4}
                 color="var(--color-quote)"
@@ -237,11 +237,11 @@ export function InvitationCard({ side = 'trai' }: { side?: InvitationSide }) {
                 Được tổ chức tại
               </LadiHeadline>
               <LadiHeadline
-                top={18}
+                top={28}
                 left={35}
                 width={350}
                 fontFamily="var(--font-heading)"
-                fontSize={25}
+                fontSize={27}
                 fontStyle="italic"
                 lineHeight={1.4}
                 color="var(--color-champagne)"
@@ -260,11 +260,11 @@ export function InvitationCard({ side = 'trai' }: { side?: InvitationSide }) {
                 rel="noopener noreferrer"
                 className="flex flex-col items-center gap-1 text-champagne"
               >
-                <MapPin size={20} strokeWidth={1.5} />
+                <MapPin size={21} strokeWidth={1.5} />
                 <span
                   style={{
                     fontFamily: 'var(--font-heading)',
-                    fontSize: 19,
+                    fontSize: 20,
                     lineHeight: 1.6,
                     textAlign: 'center',
                     textTransform: 'uppercase',
@@ -287,19 +287,19 @@ export function InvitationCard({ side = 'trai' }: { side?: InvitationSide }) {
           >
             <span
               className="flex flex-1 items-center justify-center text-center"
-              style={{ fontFamily: 'var(--font-heading)', fontSize: 19, letterSpacing: 0.5, lineHeight: 1, color: 'var(--color-ink)', whiteSpace: 'nowrap', textTransform: 'uppercase' }}
+              style={{ fontFamily: 'var(--font-heading)', fontSize: 20, letterSpacing: 0.5, lineHeight: 1, color: 'var(--color-ink)', whiteSpace: 'nowrap', textTransform: 'uppercase' }}
             >
               {receptionEvent.chapterLabel}
             </span>
             <span
               className="flex flex-1 items-center justify-center text-center"
-              style={{ fontFamily: 'var(--font-heading)', fontSize: 19, letterSpacing: 0.5, lineHeight: 1, color: 'var(--color-ink)', whiteSpace: 'nowrap', textTransform: 'uppercase' }}
+              style={{ fontFamily: 'var(--font-heading)', fontSize: 20, letterSpacing: 0.5, lineHeight: 1, color: 'var(--color-ink)', whiteSpace: 'nowrap', textTransform: 'uppercase' }}
             >
               {receptionEvent.chapterDate}
             </span>
             <span
               className="flex flex-1 items-center justify-center text-center"
-              style={{ fontFamily: 'var(--font-heading)', fontSize: 19, letterSpacing: 0.5, lineHeight: 1, color: 'var(--color-ink)', whiteSpace: 'nowrap', textTransform: 'uppercase' }}
+              style={{ fontFamily: 'var(--font-heading)', fontSize: 20, letterSpacing: 0.5, lineHeight: 1, color: 'var(--color-ink)', whiteSpace: 'nowrap', textTransform: 'uppercase' }}
             >
               {receptionEvent.time}
             </span>
@@ -308,11 +308,11 @@ export function InvitationCard({ side = 'trai' }: { side?: InvitationSide }) {
 
           <motion.div variants={fadeUp} style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}>
           <LadiHeadline
-            top={359}
+            top={340}
             left={0}
             width={420}
             fontFamily="var(--font-heading)"
-            fontSize={14}
+            fontSize={18}
             lineHeight={1.6}
             color="var(--color-quote)"
             textAlign="center"
@@ -328,7 +328,7 @@ export function InvitationCard({ side = 'trai' }: { side?: InvitationSide }) {
             left={2.3}
             width={408}
             fontFamily="var(--font-heading)"
-            fontSize={18}
+            fontSize={19}
             lineHeight={1.3}
             letterSpacing={0.5}
             color="#000"
