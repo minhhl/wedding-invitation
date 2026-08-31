@@ -6,12 +6,12 @@ import { Music, Music2, Music3, Music4 } from 'lucide-react'
 
 const NOTE_ICONS = [Music, Music2, Music3, Music4]
 
-// Served from /public (not bundled via assets/, see src/lib/decor.ts) since
-// an <audio src> needs a plain URL, not the StaticImageData object webpack's
-// asset/resource loader gives image imports — so the static-export basePath
-// has to be prefixed by hand, same as src/components/guest-management/InviteLinkGenerator.tsx.
-const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
-const musicSrc = `${basePath}/music/JVKE-golden-hour.m4a`
+// Served from ImageKit (same CDN + urlEndpoint pattern as the gallery photos,
+// see src/lib/images.ts) rather than /public, so it isn't duplicated in the
+// static export bundle.
+const imagekitUrlEndpoint =
+  process.env.NEXT_PUBLIC_IMAGEKIT_URL_ENDPOINT || 'https://ik.imagekit.io/minhngocwd'
+const musicSrc = `${imagekitUrlEndpoint}/assest/music/JVKE-golden-hour.m4a`
 
 const LOVE_LETTERS = ['L', 'O', 'V', 'E']
 
