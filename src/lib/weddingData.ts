@@ -6,10 +6,10 @@ export const groomFullName = process.env.NEXT_PUBLIC_GROOM_FULL_NAME || 'Hoàng 
 export const brideFullName = process.env.NEXT_PUBLIC_BRIDE_FULL_NAME || 'Nguyễn Minh Ngọc'
 
 // Parents' names for the invitation-details section.
-export const groomFather = process.env.NEXT_PUBLIC_GROOM_FATHER || 'Ông Hoàng Văn Lâm'
-export const groomMother = process.env.NEXT_PUBLIC_GROOM_MOTHER || 'Bà Lê Thị Hải'
-export const brideFather = process.env.NEXT_PUBLIC_BRIDE_FATHER || 'Ông Nguyễn Thanh Tùng (Cố phụ)'
-export const brideMother = process.env.NEXT_PUBLIC_BRIDE_MOTHER || 'Bà Nguyễn Thị Quý'
+export const groomFather = process.env.NEXT_PUBLIC_GROOM_FATHER || 'Bố Hoàng Văn Lâm'
+export const groomMother = process.env.NEXT_PUBLIC_GROOM_MOTHER || 'Mẹ Lê Thị Hải'
+export const brideFather = process.env.NEXT_PUBLIC_BRIDE_FATHER || 'Bố Nguyễn Thanh Tùng (Cố phụ)'
+export const brideMother = process.env.NEXT_PUBLIC_BRIDE_MOTHER || 'Mẹ Nguyễn Thị Quý'
 
 // Vietnamese naming convention: the given name is the last word.
 export const initial = (name: string) => name.trim().split(/\s+/).pop()?.[0] ?? name[0]
