@@ -27,8 +27,8 @@ export const weddingScheduleChapters: ScheduleChapter[] = [
         addressLines: ['Thôn Hồng Tiến', 'Xã Hợp Thịnh', 'Tỉnh Bắc Ninh'],
         // GPS coordinates — see the same note in InvitationCard.tsx.
         fullAddress: '21.345287,105.951984',
-        startISO: '2026-09-19T13:15:00+07:00',
-        endISO: '2026-09-19T15:15:00+07:00',
+        startISO: '2026-09-20T13:15:00+07:00',
+        endISO: '2026-09-20T15:15:00+07:00',
       },
       {
         icon: 'rings',

@@ -31,7 +31,9 @@ export function InviteLinkGenerator() {
   const [side, setSide] = useState<InviteSide>('trai')
   const [link, setLink] = useState<string | null>(null)
   const [previewLink, setPreviewLink] = useState<string | null>(null)
+  const [paperLink, setPaperLink] = useState<string | null>(null)
   const [copied, setCopied] = useState(false)
+  const [copiedPaper, setCopiedPaper] = useState(false)
   const [previewHeight, setPreviewHeight] = useState(935)
 
   function handleGenerate(e: React.FormEvent) {
@@ -51,7 +53,13 @@ export function InviteLinkGenerator() {
     previewUrl.searchParams.set('name', trimmedName)
     setPreviewLink(previewUrl.toString())
 
+    // Same-name link to the print-style paper card (PaperInvitation).
+    const paperUrl = new URL(`${basePath}/thiep-giay/${side}`, window.location.origin)
+    paperUrl.searchParams.set('name', trimmedName)
+    setPaperLink(paperUrl.toString())
+
     setCopied(false)
+    setCopiedPaper(false)
   }
 
   async function handleCopy() {
@@ -59,6 +67,13 @@ export function InviteLinkGenerator() {
     await navigator.clipboard.writeText(link)
     setCopied(true)
     setTimeout(() => setCopied(false), 2000)
+  }
+
+  async function handleCopyPaper() {
+    if (!paperLink) return
+    await navigator.clipboard.writeText(paperLink)
+    setCopiedPaper(true)
+    setTimeout(() => setCopiedPaper(false), 2000)
   }
 
   return (
@@ -126,6 +141,37 @@ export function InviteLinkGenerator() {
               </Button>
               <a
                 href={link}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex shrink-0 items-center gap-1.5 rounded-lg border border-zinc-700 px-3 py-1.5 text-sm font-medium text-zinc-200 transition-colors hover:bg-zinc-800"
+              >
+                <ExternalLink className="h-3.5 w-3.5" />
+                Mở tab mới
+              </a>
+            </div>
+          </div>
+
+          {/* Same guest, same side — the print-style card (PaperInvitation)
+              instead of the scrolling site. */}
+          <div className="mt-2 flex flex-col gap-2 rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 sm:flex-row sm:items-center">
+            <div className="flex min-w-0 items-center gap-2 sm:flex-1">
+              <span className="shrink-0 rounded-full bg-zinc-800 px-2 py-0.5 text-xs font-medium text-zinc-300">
+                Thiệp giấy
+              </span>
+              <input
+                readOnly
+                value={paperLink ?? ''}
+                onFocus={(e) => e.target.select()}
+                className="min-w-0 flex-1 truncate bg-transparent text-sm text-zinc-200 outline-none"
+              />
+            </div>
+            <div className="flex items-center justify-end gap-2">
+              <Button type="button" variant="secondary" size="sm" onClick={handleCopyPaper}>
+                {copiedPaper ? <Check className="h-3.5 w-3.5" /> : <Copy className="h-3.5 w-3.5" />}
+                {copiedPaper ? 'Đã chép' : 'Sao chép'}
+              </Button>
+              <a
+                href={paperLink ?? undefined}
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex shrink-0 items-center gap-1.5 rounded-lg border border-zinc-700 px-3 py-1.5 text-sm font-medium text-zinc-200 transition-colors hover:bg-zinc-800"
